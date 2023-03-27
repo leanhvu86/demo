@@ -21,8 +21,8 @@ export class AuthService {
 
   public getUser(): Observable<User> {
     return of({
-      name: 'John',
-      lastName: 'Smith'
+      name: 'Trung',
+      lastName: 'Bẹt'
     });
   }
 }
