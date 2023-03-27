@@ -1,60 +1,100 @@
-## [1.9.0] - 2022-11-28
+# Change Log
+
+## [3.0.5] 2022-10-10
+### Updates & Improvements
+- update Bootstrap to v5.2.2
+- update Popper to v2.11.6
+- update `start-0` and `end-0` classes on RTL
+- fix perfectScrollbar issue on RTL
+- fix the NavTabs second active tab issue
+
+## [3.0.4] 2022-06-15
+### BugFixing
+- fix inputs on RTL
+- update <html> tag border
+
+## [3.0.3] 2022-06-08
+### Update and Improvements
+- update Bootstrap to v5.2.0-beta1
+- fix modal close button on docs
+- update color of `.form-control` on Dark Mode
+- update typo on card stats
+- fix Safari browser button styling issue
+- add sticky navbar option on Profile page
+- add link to Sign In page in navbar
+- update dropdown item color on hover - Dark Mode
+
+## [3.0.2] 2022-03-25
 ### Updates
-- update to Angular 14
-- update all dependencies to match the Angular 14 version
+- update SCSS folder
 
-## [1.8.0] - 2022-05-06
-### Updates
-- update to Angular 13
-- update all dependencies to match the Angular 13 version
-- routing, build and configuration issues fixed
+## [3.0.1] 2022-03-07
+### Update and Improvements
+- fix running 'npm install' issue
+- fix SCSS compiling issues
 
-## [1.7.0] - 2020-12-15
-### Updates
-- update to Angular 11
-- update all dependencies to match Angular 11 version
+## [3.0.0] 2021-10-19
+### Refactor and Improvements
+- Update Bootstrap to v5.1.3
+- Update to Material Design 2
+- New Documentation version
+- New Product structure
 
-## [1.6.0] - 2020-03-12
-### Updates
-- update to Angular 9
-- update all dependencies to match Angular 9 version
+## [2.1.2] 2020-02-11
+### Improvements, BugFixing
+- Fixed the broken links
+- Improvements and BugFixing for documentation
+- Change versions on CSS and JS files
 
-## [1.5.0] - 2018-10-04
-### Changes
-- update to Angular 6
-- added online documentation
+## [2.1.1] 2018-11-13
+### Improvements, BugFixing
+- Changes for responsive devices
+- Improvements and BugFixing for documentation
+- Change versions on CSS and JS files
+- Pro Documentation integrated in Free Version
+- Eliminated extra CSS and JS
 
-## [1.4.0] - 2017-08-28
-### Changes for Angular 4
-- added angular-cli
-- update to Angular 4
+## [2.1.0] 2018-06-13
+### Bug fixing
+- Card-chart fixed on Windows
+- Bug fixes for responsive devices
+- Small changes for components
 
-## [v1.3.0] 2017-08-28
-### skipped for sync with Angular 4 version convention
+## [2.0.0] 2018-03-27
+### Bootstrap 4 update
+- Core base code on Bootstrap 4
+- Documentation code base written from scratch
+- Speed optimizations
+- Class changes : .card-block to .card-body
+    - .navbar-toggleable-* to .navbar-expand-*
+    - .hidden-*-down to .d-none .d-*-block
+    - .hidden-*-up to .d-*-none
+    - .checkbox to .form-check
+    - .radio to .form-check
+    - more class changes here:https://getbootstrap.com/docs/4.0/migration/
+- Bug fixes for responsive devices
+- Small changes for components
 
-## [v1.2.0] 2017-08-28
-### skipped for sync with Angular 4 version convention
+## [1.2.0] 2017-09-08
+### BugFixing
+- added PerfectScrollbar for windows better scroll
+- added arrive.js library for dynamic content
+- fix issue with charts when resizing window
+- change size of buttons for notifications on mobile
+- added pagination style
+- fixed issue with Bootstrap modal
+- added fixed navbar
+- documentation updates
+- minor design fixes
 
-## [1.1.1] - 2017-03-21
-### Added
-- added "@types/core-js": "0.9.35" in package
+## [1.1.1] 2017-02-08
+### MIT License
+- switched to MIT License
 
-## [1.1.0] - 2017-03-01
-### Added
-- fix version numbers in package.json and CSS and JS
+## [1.1.0] 2016-11-10
+### New Page Added, Small Fixes
+- fix link in documentation
+- for those who want to upsell inside their dashboard we added a new page "Upgrade to PRO" with a pricing and options table
 
-## [1.0.2] - 2017-02-27
-### Added
-- added upgrade to pro page
-- fixed navbar title
-- changed http://www.creative-tim.com/ with https://www.creative-tim.com/
-
-## [1.0.1] - 2017-02-13
-### small fix
-- changes in routes(redirect '' to 'dashboard' + added HashLocationStrategy)
-- changes in documentation
-- changes in sidebar(cleaned li tags + changed z-index)
-- changes in footer(added current date)
-
-## [1.0.0] - 2016-12-14
-### initial Release
+## [1.0.0] 2016-09-21
+### Initial Release
