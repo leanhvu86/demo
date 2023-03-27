@@ -1,100 +1,71 @@
-# Change Log
+# Changelog
 
-## [3.0.5] 2022-10-10
-### Updates & Improvements
-- update Bootstrap to v5.2.2
-- update Popper to v2.11.6
-- update `start-0` and `end-0` classes on RTL
-- fix perfectScrollbar issue on RTL
-- fix the NavTabs second active tab issue
+## [1.0.6] - 07/09/2021
+### Updated
+- Added MIT License
 
-## [3.0.4] 2022-06-15
-### BugFixing
-- fix inputs on RTL
-- update <html> tag border
+## [1.0.5] - 05/10/2021
+### Fixed
+- Fixed ngx-echarts error
 
-## [3.0.3] 2022-06-08
-### Update and Improvements
-- update Bootstrap to v5.2.0-beta1
-- fix modal close button on docs
-- update color of `.form-control` on Dark Mode
-- update typo on card stats
-- fix Safari browser button styling issue
-- add sticky navbar option on Profile page
-- add link to Sign In page in navbar
-- update dropdown item color on hover - Dark Mode
+## [1.0.4] - 05/10/2021
+### Updated
 
-## [3.0.2] 2022-03-25
-### Updates
-- update SCSS folder
+- Updated the Angular builder;
+- Updated the Angular CLI;
+- Update Angular Material;
+- Added new package "resize-observer-polyfill" which is dependency of "ngx-echarts"
 
-## [3.0.1] 2022-03-07
-### Update and Improvements
-- fix running 'npm install' issue
-- fix SCSS compiling issues
+###Updated packages
+    @angular/animations: 9.1.12 -> 11.2.13
+    @angular/cdk: 9.2.4 -> 11.2.11
+    @angular/common: 9.1.12 -> 11.2.13
+    @angular/compiler: 9.1.12 -> 11.2.13
+    @angular/core: 9.1.12 -> 11.2.13
+    @angular/forms: 9.1.12 -> 11.2.13
+    @angular/material: 9.2.4 -> 11.2.12
+    @angular/platform-browser: 9.1.12 -> 11.2.13
+    @angular/platform-browser-dynamic: 9.1.12 -> 11.2.13
+    @angular/router: 9.1.12 -> 11.2.13
+    @angular-devkit/build-angular: 0.901.12 -> 0.1102.12
+    @angular/cli: 9.1.12 -> 11.2.12
+    @angular/compiler-cli: 9.1.12 -> 11.2.13
+    @angular/language-service: 9.1.12 -> 11.2.13
+    @types/echarts: 4.6.7 -> 4.9.7
+    @types/jasmine: 3.5.14 -> 3.6.0
+    tslib: 1.10.0 -> 2.0.0
+    codelyzer: 5.1.2 -> 6.0.0
+    typescript: 3.8.3 -> 4.1.5
+    apexcharts: 3.19.3 -> 3.26.2
+    echarts: 4.7.0 -> 5.1.1
+    ng-apexcharts: 1.2.3 -> 1.5.9
+    ngx-echarts: 4.2.2 -> 6.0.1
+    ngx-toastr: 12.0.1 -> 13.2.1
+    ngx-trend: 5.0.1 -> 6.1.1
+    rxjs: 6.5.5 -> 7.0.0
 
-## [3.0.0] 2021-10-19
-### Refactor and Improvements
-- Update Bootstrap to v5.1.3
-- Update to Material Design 2
-- New Documentation version
-- New Product structure
+###Added packages
+    resize-observer-polyfill: 1.5.1
+    
+## [1.0.3]
 
-## [2.1.2] 2020-02-11
-### Improvements, BugFixing
-- Fixed the broken links
-- Improvements and BugFixing for documentation
-- Change versions on CSS and JS files
+### Fixed
+- Notifications: fix titles
+- Tables add more padding
+- Add unlock-button
+- Clear code
 
-## [2.1.1] 2018-11-13
-### Improvements, BugFixing
-- Changes for responsive devices
-- Improvements and BugFixing for documentation
-- Change versions on CSS and JS files
-- Pro Documentation integrated in Free Version
-- Eliminated extra CSS and JS
+## [1.0.2]
 
-## [2.1.0] 2018-06-13
-### Bug fixing
-- Card-chart fixed on Windows
-- Bug fixes for responsive devices
-- Small changes for components
+### Update
+- Minor package updates
 
-## [2.0.0] 2018-03-27
-### Bootstrap 4 update
-- Core base code on Bootstrap 4
-- Documentation code base written from scratch
-- Speed optimizations
-- Class changes : .card-block to .card-body
-    - .navbar-toggleable-* to .navbar-expand-*
-    - .hidden-*-down to .d-none .d-*-block
-    - .hidden-*-up to .d-*-none
-    - .checkbox to .form-check
-    - .radio to .form-check
-    - more class changes here:https://getbootstrap.com/docs/4.0/migration/
-- Bug fixes for responsive devices
-- Small changes for components
+## [1.0.1]
 
-## [1.2.0] 2017-09-08
-### BugFixing
-- added PerfectScrollbar for windows better scroll
-- added arrive.js library for dynamic content
-- fix issue with charts when resizing window
-- change size of buttons for notifications on mobile
-- added pagination style
-- fixed issue with Bootstrap modal
-- added fixed navbar
-- documentation updates
-- minor design fixes
+### Added
+- The added configuration for router module.
 
-## [1.1.1] 2017-02-08
-### MIT License
-- switched to MIT License
+## [1.0.0]
 
-## [1.1.0] 2016-11-10
-### New Page Added, Small Fixes
-- fix link in documentation
-- for those who want to upsell inside their dashboard we added a new page "Upgrade to PRO" with a pricing and options table
-
-## [1.0.0] 2016-09-21
-### Initial Release
+### Added
+- Added Angular Material Admin v1.0.0
