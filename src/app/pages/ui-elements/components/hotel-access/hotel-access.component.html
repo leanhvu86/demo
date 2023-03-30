@@ -1,0 +1,1514 @@
+<!--<form [formGroup]="registerHotelForm" class="form-signin" style="width: 100%;margin-top: 50px;">-->
+<!--    <mat-tab-group [(selectedIndex)]="TabIndex" (selectedTabChange)="changeTabValid($event)">-->
+<!--        <mat-tab>-->
+<!--            <ng-template mat-tab-label>-->
+<!--                {{ "hotelRegister.basicInfo" | translate }}-->
+<!--            </ng-template>-->
+<!--            <div class="main-content">-->
+<!--                <div class="container-fluid">-->
+<!--                    <div class="row">-->
+<!--                        <div class="card">-->
+<!--                            <div class="card-header card-header-info">-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col">-->
+<!--                                        <h4 class="card-title"> {{ "hotelRegister.helpyoureach" | translate}}</h4>-->
+<!--                                        <p class="card-category"> {{ "hotelRegister.provideInformation" | translate }}-->
+<!--                                        </p>-->
+<!--                                    </div>-->
+<!--                                    <div class="col">-->
+<!--                                        <img src="assets/booking/image-header.png"-->
+<!--                                             class="img-thumbnail  img-fluid"-->
+<!--                                             style="height:auto;width: 50%;"/>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="card-body">-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col">-->
+<!--                                        <fieldset class="the-fieldset">-->
+<!--                                            <legend class="the-legend">{{ "hotelRegister.businessPremises" | translate }}</legend>-->
+<!--                                            <div class="layout-box">-->
+<!--                                                <div class="row">-->
+<!--                                                    <div class="col">-->
+<!--                                                        <label>-->
+<!--                                                            <input type="radio" name="type" value="1" checked>-->
+<!--                                                            <img src="assets/booking/bed-and-breakfast.png"-->
+<!--                                                                 style="height:auto;width: 100%;">-->
+<!--                                                        </label>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col">-->
+<!--                                                        <div class="row">-->
+<!--                                                            <div class="col">-->
+<!--                                                                <h3><span-->
+<!--                                                                        style="font-weight: bold">{{"hotelRegister.hotelName" | translate}}</span>-->
+<!--                                                                </h3>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="row">-->
+<!--                                                            <div class="col">-->
+<!--                                                                <mat-form-field>-->
+<!--                                                                    <input matInput-->
+<!--                                                                           [placeholder]="'hotelRegister.hotelName' | translate"-->
+<!--                                                                           type="text" formControlName="name">-->
+<!--                                                                </mat-form-field>-->
+<!--                                                                <mat-error-->
+<!--                                                                        *ngIf="isNext && registerHotelForm.get('name').hasError('required')">-->
+<!--                                                                    {{"hotelRegister.nameError" | translate}}-->
+<!--                                                                </mat-error>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="row">-->
+<!--                                                            <div class="col">-->
+<!--                                                                <h3><span-->
+<!--                                                                        style="font-weight: bold">{{"hotelRegister.hotelDes" | translate}}</span>-->
+<!--                                                                </h3>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="row">-->
+<!--                                                            <div class="col">-->
+<!--                                                                <mat-form-field class="example-full-width">-->
+<!--                                                                    <mat-label>{{"hotelRegister.hotelDesv2" | translate}}-->
+<!--                                                                    </mat-label>-->
+<!--                                                                    <textarea matInput-->
+<!--                                                                              [placeholder]="'hotelRegister.hotelDesv3'|translate"-->
+<!--                                                                              formControlName="desHotel"></textarea>-->
+<!--                                                                    <mat-error-->
+<!--                                                                            *ngIf="registerHotelForm.get('desHotel').hasError('required')">-->
+<!--                                                                        {{"hotelRegister.desError" | translate}}-->
+<!--                                                                    </mat-error>-->
+<!--                                                                </mat-form-field>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+
+<!--                                                    <div class="col">-->
+<!--                                                        <div class="row">-->
+<!--                                                            <div class="col">-->
+<!--                                                                <h3><span-->
+<!--                                                                        style="font-weight: bold">{{"hotelRegister.sqm" | translate}}</span>-->
+<!--                                                                </h3>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="row">-->
+<!--                                                            <div class="col">-->
+<!--                                                                <mat-form-field>-->
+<!--                                                                    <input matInput-->
+<!--                                                                           [placeholder]="'hotelRegister.sqmv2' | translate"-->
+<!--                                                                           type="text" formControlName="sqm" min="0">-->
+<!--                                                                    <mat-error *ngIf="sqm.hasError('pattern')">-->
+<!--                                                                        {{"hotelRegister.sqm.error" | translate}}-->
+<!--                                                                    </mat-error>-->
+<!--                                                                    <mat-error-->
+<!--                                                                            *ngIf="registerHotelForm.get('sqm').hasError('required')">-->
+<!--                                                                        {{"hotelRegister.sqmError" | translate}}-->
+<!--                                                                    </mat-error>-->
+<!--                                                                </mat-form-field>-->
+<!--                                                            </div>-->
+<!--                                                            <div class="col" style="padding: 4% 0 0 0"><h5>-->
+<!--                                                                m2</h5>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="row">-->
+<!--                                                            <div class="col">-->
+<!--                                                                <h3><span-->
+<!--                                                                        style="font-weight: bold">{{"hotelRegister.suggestPlayground" | translate }}</span>-->
+<!--                                                                </h3>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="row">-->
+<!--                                                            <div class="col">-->
+<!--                                                                <mat-form-field class="example-full-width">-->
+<!--                                                                    <mat-label>{{"hotelRegister.areAttractions" | translate}}-->
+<!--                                                                    </mat-label>-->
+<!--                                                                    <textarea matInput-->
+<!--                                                                              formControlName="suggestPlayground"></textarea>-->
+<!--                                                                    <mat-error-->
+<!--                                                                            *ngIf="registerHotelForm.get('suggestPlayground').hasError('required')">-->
+<!--                                                                        {{"hotelRegister.spError" | translate}}-->
+<!--                                                                    </mat-error>-->
+<!--                                                                </mat-form-field>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+
+<!--                                            <div>-->
+<!--                                                <div class="row">-->
+<!--                                                    <div class="col">-->
+<!--                                                        <h3><span-->
+<!--                                                                style="font-weight: bold">{{"hotelRegister.ruleHotel" | translate}}</span>-->
+<!--                                                        </h3>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="row">-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-form-field>-->
+<!--                                                            <mat-label>{{"hotelRegister.ruleHotelv2" | translate}}-->
+<!--                                                            </mat-label>-->
+<!--                                                            <textarea matInput-->
+<!--                                                                      [placeholder]="'hotelRegister.ruleHotelv3' | translate"-->
+<!--                                                                      rows="3" formControlName="rulerHotel"></textarea>-->
+<!--                                                            <mat-error-->
+<!--                                                                    *ngIf="registerHotelForm.get('rulerHotel').hasError('required')">-->
+<!--                                                                {{"hotelRegister.rulerError" | translate}}-->
+<!--                                                            </mat-error>-->
+<!--                                                        </mat-form-field>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+
+<!--                                            <div>-->
+<!--                                                <div class="row">-->
+<!--                                                    <div class="col">-->
+<!--                                                        <h3><span-->
+<!--                                                                style="font-weight: bold">{{"hotelRegister.howCustomerGotoPlaceYour" | translate}}</span>-->
+<!--                                                        </h3>-->
+<!--                                                        <label>{{"hotelRegister.howCustomerGotoPlaceYourv2" | translate}}-->
+<!--                                                        </label>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="row">-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-form-field>-->
+<!--                                                                <textarea matInput-->
+<!--                                                                          formControlName="guideToHotel"></textarea>-->
+<!--                                                        </mat-form-field>-->
+<!--                                                        <mat-error-->
+<!--                                                                *ngIf="isNext &&registerHotelForm.get('guideToHotel').hasError('required')">-->
+<!--                                                            {{"hotelRegister.guideToHotelError" | translate}}-->
+<!--                                                        </mat-error>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+
+<!--                                            <div class="row">-->
+<!--                                                <div class="col">-->
+<!--                                                    <h3><span-->
+<!--                                                            style="font-weight: bold">{{"hotelRegister.ratingStar" | translate}}</span>-->
+<!--                                                    </h3>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="row">-->
+<!--                                                <div class="col">-->
+<!--                                                    <app-star-rating [rating]="rating" [starCount]="starCount"-->
+<!--                                                                     [color]="starColor"-->
+<!--                                                                     (ratingUpdated)="onRatingChanged($event)"></app-star-rating>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+
+<!--                                            <div>-->
+<!--                                                <div class="row">-->
+<!--                                                    <div class="col">-->
+<!--                                                        <h3><span-->
+<!--                                                                style="font-weight: bold">{{"hotelRegister.image" | translate}}</span>-->
+<!--                                                        </h3>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="row">-->
+<!--                                                    <div class="col">-->
+<!--                                                        <app-image (imageSrcUrl)="getImageSrc($event)"-->
+<!--                                                                   (indexDelete)="getIndexDelete($event)"-->
+<!--                                                                   [multiple]="true"-->
+<!--                                                                   [imageProp]="imageProp"-->
+<!--                                                                   [listImgCurrent]="listImgCurrent"></app-image>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+
+<!--                                            <div>-->
+<!--                                                <div class="row">-->
+<!--                                                    <div class="col">-->
+<!--                                                        <h3><span-->
+<!--                                                                style="font-weight: bold">{{"hotelRegister.CountTypeRooms"|translate}}</span>-->
+<!--                                                        </h3>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="row">-->
+<!--                                                    <div class="col">-->
+<!--                                                        {{"hotelRegister.countTypeRoomsV2"|translate}}-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="row">-->
+<!--                                                    <div class="col">-->
+<!--                                                        <div class="input-group input-number-group">-->
+<!--                                                            <div class="input-group-button" id="totalRoomNumber"-->
+<!--                                                                 class="disabledbutton"-->
+<!--                                                                 (click)="minusTotalRoomNumber()">-->
+<!--                                                                <span class="input-number-decrement"> <div-->
+<!--                                                                        style="margin-top: 10%">-</div></span>-->
+<!--                                                            </div>-->
+<!--                                                            <input class="input-number" type="number"-->
+<!--                                                                   formControlName="totalRoomNumber"-->
+<!--                                                                   [value]="totaltypeRoomNumber">-->
+<!--                                                            <div class="input-group-button"-->
+<!--                                                                 (click)="plusTotalRoomNumber()">-->
+<!--                                                                <span class="input-number-increment">+</span>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+
+<!--                                            <div class="row">-->
+<!--                                                <div class="col text-right">-->
+<!--                                                    <button class="nexttab btn btn-success" (click)="tabNext()">-->
+<!--                                                        {{"common.button.next"|translate}}-->
+<!--                                                    </button>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </fieldset>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </mat-tab>-->
+<!--        <mat-tab [disabled]='this.tab2'>-->
+<!--            <ng-template mat-tab-label>-->
+<!--                <mat-icon>house</mat-icon>-->
+<!--                {{"hotelRegister.address"|translate}}-->
+<!--            </ng-template>-->
+<!--            <div class="main-content">-->
+<!--                <div class="container-fluid">-->
+<!--                    <div class="row">-->
+<!--                        <div class="card">-->
+<!--                            <div class="card-header card-header-info">-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col">-->
+<!--                                        <h4 class="card-title">{{"hotelRegister.positionYourOnMap" | translate}}-->
+<!--                                        </h4>-->
+<!--                                        <p class="card-category">{{"hotelRegister.whereWillCustomerBe" | translate}}-->
+<!--                                        </p>-->
+<!--                                    </div>-->
+<!--                                    <div class="col">-->
+<!--                                        <img src="assets/booking/addressHotel.png"-->
+<!--                                             class="img-thumbnail  img-fluid"-->
+<!--                                             style="height:auto;width: 50%;"/>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="card-body">-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col">-->
+<!--                                        <h3><span-->
+<!--                                                style="font-weight: bold">{{"hotelRegister.Place"|translate}}</span>-->
+<!--                                        </h3>-->
+<!--                                        <label>{{"hotelRegister.Placev2" | translate}}-->
+<!--                                        </label>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="card-body">-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col">-->
+<!--                                        <fieldset class="the-fieldset">-->
+<!--                                            <legend class="the-legend">{{"hotelRegister.Place" | translate}}</legend>-->
+
+<!--                                            <div>-->
+<!--                                                <div class="row">-->
+<!--                                                    <div class="col">-->
+<!--                                                        <h4><span-->
+<!--                                                                style="font-weight: bold">{{"hotelRegister.address" | translate}}</span>-->
+<!--                                                        </h4>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="row">-->
+<!--                                                    <div class="col-lg-6">-->
+<!--                                                        <AutocompleteComponent id="check-input"-->
+<!--                                                                               (setAddress)="getEstablishmentAddress($event)"-->
+<!--                                                                               adressType="address"></AutocompleteComponent>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                &lt;!&ndash;                                                <div class="row">&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                    <div class="col-lg-6">&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                        <mat-form-field>&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                            <input matInput placeholder="Nhập địa chỉ đi"&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                                   formControlName="address">&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                        </mat-form-field>&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                    </div>&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                </div>&ndash;&gt;-->
+<!--                                            </div>-->
+
+<!--                                            <div>-->
+<!--                                                <div class="row">-->
+<!--                                                    <div class="col">-->
+<!--                                                        <h4><span-->
+<!--                                                                style="font-weight: bold">{{"hotelRegister.nameHotelOptional" | translate }}</span>-->
+<!--                                                        </h4>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="row">-->
+<!--                                                    <div class="col-lg-6">-->
+<!--                                                        <mat-form-field>-->
+<!--                                                            <input matInput-->
+<!--                                                                   [placeholder]="'hotelRegister.address' | translate"-->
+<!--                                                                   formControlName="address">-->
+<!--                                                            <mat-error-->
+<!--                                                                    *ngIf="isNext &&registerHotelForm.get('address').hasError('required')">-->
+<!--                                                                {{"hotelRegister.address" | translate}}-->
+<!--                                                            </mat-error>-->
+<!--                                                        </mat-form-field>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col-lg-6">-->
+<!--                                                        <mat-form-field>-->
+<!--                                                            <input matInput-->
+<!--                                                                   [placeholder]="'hotelRegister.province' | translate"-->
+<!--                                                                   formControlName="province">-->
+<!--                                                            <mat-error-->
+<!--                                                                    *ngIf="isNext &&registerHotelForm.get('province').hasError('required')">-->
+<!--                                                                {{"hotelRegister.province" | translate}}-->
+<!--                                                            </mat-error>-->
+<!--                                                        </mat-form-field>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+
+<!--                                            &lt;!&ndash;                                            <div>&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                <div class="row">&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                    <div class="col-lg-3">&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                        <mat-form-field class="example-full-width">&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                            <mat-label>Quốc gia</mat-label>&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                            <input matInput placeholder="Quốc gia"&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                                   formControlName="country">&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                        </mat-form-field>&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                        &lt;!&ndash;                                                        <mat-form-field>&ndash;&gt;&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                        &lt;!&ndash;                                                            <mat-label>Quốc gia</mat-label>&ndash;&gt;&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                        &lt;!&ndash;                                                            &ndash;&gt;&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                        &lt;!&ndash;                                                            <mat-select formControlName="country">&ndash;&gt;&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                        &lt;!&ndash;                                                                <mat-option>None</mat-option>&ndash;&gt;&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                        &lt;!&ndash;                                                                <mat-option value="option1">Option 1&ndash;&gt;&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                        &lt;!&ndash;                                                                </mat-option>&ndash;&gt;&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                        &lt;!&ndash;                                                                <mat-option value="option2">Option 2&ndash;&gt;&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                        &lt;!&ndash;                                                                </mat-option>&ndash;&gt;&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                        &lt;!&ndash;                                                                <mat-option value="option3">Option 3&ndash;&gt;&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                        &lt;!&ndash;                                                                </mat-option>&ndash;&gt;&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                        &lt;!&ndash;                                                            </mat-select>&ndash;&gt;&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                        &lt;!&ndash;                                                        </mat-form-field>&ndash;&gt;&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                    </div>&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                    <div class="col-lg-3">&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                        <mat-form-field class="example-full-width">&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                            <mat-label>Tiểu bang / Tỉnh</mat-label>&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                            <input matInput placeholder="Tiểu bang / Tỉnh"&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                                   formControlName="province">&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                        </mat-form-field>&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                        &lt;!&ndash;                                                        <mat-form-field>&ndash;&gt;&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                        &lt;!&ndash;                                                            <mat-label>Tiểu bang / Tỉnh</mat-label>&ndash;&gt;&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                        &lt;!&ndash;                                                            <mat-select formControlName="province">&ndash;&gt;&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                        &lt;!&ndash;                                                                <mat-option>None</mat-option>&ndash;&gt;&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                        &lt;!&ndash;                                                                <mat-option value="option1">Option 1&ndash;&gt;&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                        &lt;!&ndash;                                                                </mat-option>&ndash;&gt;&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                        &lt;!&ndash;                                                                <mat-option value="option2">Option 2&ndash;&gt;&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                        &lt;!&ndash;                                                                </mat-option>&ndash;&gt;&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                        &lt;!&ndash;                                                                <mat-option value="option3">Option 3&ndash;&gt;&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                        &lt;!&ndash;                                                                </mat-option>&ndash;&gt;&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                        &lt;!&ndash;                                                            </mat-select>&ndash;&gt;&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                        &lt;!&ndash;                                                        </mat-form-field>&ndash;&gt;&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                    </div>&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                                </div>&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                                            </div>&ndash;&gt;-->
+
+<!--                                            <div>-->
+<!--                                                <div class="row">-->
+<!--                                                    <div class="col-lg-3">-->
+
+<!--                                                        <mat-form-field class="example-full-width">-->
+<!--                                                            <mat-label>{{"hotelRegister.country" | translate}}</mat-label>-->
+<!--                                                            <input matInput-->
+<!--                                                                   [placeholder]="'hotelRegister.country' | translate"-->
+<!--                                                                   formControlName="country">-->
+<!--                                                            <mat-error-->
+<!--                                                                    *ngIf="isNext &&registerHotelForm.get('country').hasError('required')">-->
+<!--                                                                {{"hotelRegister.country" | translate}}-->
+<!--                                                            </mat-error>-->
+<!--                                                        </mat-form-field>-->
+<!--                                                        &lt;!&ndash;                                                            <mat-label>Thành phố</mat-label>&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                            <input matInput placeholder="Thành phố"&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                                   formControlName="city">&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                        </mat-form-field>&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                        <mat-form-field>&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                            <mat-label>Thành phố</mat-label>&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                            <mat-select formControlName="city">&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                                <mat-option>None</mat-option>&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                                <mat-option value="option1">Option 1&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                                </mat-option>&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                                <mat-option value="option2">Option 2&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                                </mat-option>&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                                <mat-option value="option3">Option 3&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                                </mat-option>&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                            </mat-select>&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                        </mat-form-field>&ndash;&gt;-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col-lg-3">-->
+<!--                                                        <mat-form-field>-->
+<!--                                                            <mat-label>{{"hotelRegister.zipCode" | translate}}</mat-label>-->
+<!--                                                            <input matInput-->
+<!--                                                                   [placeholder]="'hotelRegister.zipCode' | translate"-->
+<!--                                                                   formControlName="zip">-->
+<!--                                                            <mat-error *ngIf="zip.hasError('pattern')">-->
+<!--                                                                {{"hotelRegister.zip.error" | translate}}-->
+<!--                                                            </mat-error>-->
+<!--                                                            <mat-error-->
+<!--                                                                    *ngIf="isNext &&registerHotelForm.get('zip').hasError('required')">-->
+<!--                                                                {{"hotelRegister.zipError" | translate}}-->
+<!--                                                            </mat-error>-->
+<!--                                                        </mat-form-field>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+
+<!--                                            <div>-->
+<!--                                                <div class="row">-->
+<!--                                                    <div class="col">-->
+<!--                                                        <h4><span-->
+<!--                                                                style="font-weight: bold">{{"hotelRegister.map" | translate}}</span>-->
+<!--                                                        </h4>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="row">-->
+<!--                                                    <div class="col">-->
+<!--                                                        <div style="height: 700px">-->
+<!--                                                            <app-hotel-map [lat]="lat" [lng]="lng" [zoom]="5"-->
+<!--                                                                           [address]="address"-->
+<!--                                                                           [name]="name"></app-hotel-map>-->
+<!--                                                        </div>-->
+
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+
+<!--                                            <div class="row">-->
+<!--                                                <div class="col text-right">-->
+<!--                                                    <button class="prevtab btn btn-success" (click)="tabPrevios()">-->
+<!--                                                        {{"common.button.back"|translate}}-->
+<!--                                                    </button>-->
+<!--                                                    <button class="nexttab btn btn-success" (click)="tabNext()">-->
+<!--                                                        {{"common.button.next"|translate}}-->
+<!--                                                    </button>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </fieldset>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </mat-tab>-->
+<!--        <mat-tab [disabled]='this.tab3'>-->
+<!--            <div formGroupName="facilities">-->
+<!--                <ng-template mat-tab-label>-->
+<!--                    <mat-icon>book</mat-icon>-->
+<!--                    {{"hotelRegister.item" |translate}}-->
+<!--                </ng-template>-->
+<!--                <div class="main-content">-->
+<!--                    <div class="container-fluid">-->
+<!--                        <div class="row">-->
+<!--                            <div class="card">-->
+<!--                                <div class="card-header card-header-info">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col">-->
+<!--                                            <h4 class="card-title">{{"hotelRegister.allItemYouProvide" | translate}}-->
+<!--                                            </h4>-->
+<!--                                            <p class="card-category">{{"hotelRegister.whatFacilitiesAvailable" | translate}}-->
+<!--                                            </p>-->
+<!--                                        </div>-->
+<!--                                        <div class="col">-->
+<!--                                            <img src="assets/booking/tienichHotel.png"-->
+<!--                                                 class="img-thumbnail  img-fluid"-->
+<!--                                                 style="height:auto;width: 50%;"/>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="card-body">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col">-->
+<!--                                            <h3><span-->
+<!--                                                    style="font-weight: bold">{{"hotelRegister.EssentialAmenities" | translate}}</span>-->
+<!--                                            </h3>-->
+<!--                                            <label>{{"hotelRegister.EssentialAmenitiesV2" | translate}}-->
+<!--                                            </label>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="card-body">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col">-->
+<!--                                            <fieldset class="the-fieldset">-->
+<!--                                                <div class="row">-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="airConditional">{{"facilities.airConditional" | translate}}-->
+<!--                                                        </mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="Hairdryer">{{"facilities.Hairdryer" | translate}}-->
+<!--                                                        </mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="ironingMachine">{{"facilities.ironingMachine" | translate}}-->
+<!--                                                        </mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="television">{{"facilities.televison" | translate}}</mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="row">-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="cableTelevision">{{"facilities.cableTV" | translate}}-->
+<!--                                                        </mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="freeWifi">{{"facilities.freeWifi"|translate}}-->
+<!--                                                        </mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="freeInternet">{{"facilities.freeInternet"| translate}}-->
+<!--                                                        </mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="washingMachine">{{"facilities.washingMachine" | translate}}-->
+<!--                                                        </mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="row">-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="Shampoo">{{"facilities.shampoo"|translate}}-->
+<!--                                                        </mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="beddingSet">{{"facilities.beddingSet" | translate}}-->
+<!--                                                        </mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="TowelsOfAllKinds">{{"facilities.TowelsOfAllKinds" | translate}}-->
+<!--                                                        </mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="smartKey">{{"facilities.smartKey"|translate}}-->
+<!--                                                        </mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </fieldset>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+<!--                                <div class="card-body">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col">-->
+<!--                                            <h3><span-->
+<!--                                                    style="font-weight: bold">{{"facilities.internet"|translate}}</span>-->
+<!--                                            </h3>-->
+<!--                                            <label>{{"facilities.internetConnection" | translate}}-->
+<!--                                            </label>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="card-body">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col">-->
+<!--                                            <fieldset class="the-fieldset">-->
+<!--                                                <div class="row">-->
+<!--                                                    <div class="col-lg-3">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="wifiCharge">{{"facilities.wifiCharge"|translate}}-->
+<!--                                                        </mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col-lg-3">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="internetCharge">{{"facilities.internetCharge" | translate}}-->
+<!--                                                        </mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </fieldset>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+<!--                                <div class="card-body">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col">-->
+<!--                                            <h3><span-->
+<!--                                                    style="font-weight: bold">{{"facilities.comfortable"|translate}}-->
+<!--                                                </span>-->
+<!--                                            </h3>-->
+<!--                                            <label>{{"facilities.comfortableV2"|translate}}-->
+<!--                                            </label>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="card-body">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col">-->
+<!--                                            <fieldset class="the-fieldset">-->
+<!--                                                <div class="row">-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="wheelchairAccessible">{{"facilities.wheelchairAccessible" |translate}}-->
+<!--                                                        </mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="elevatorInHotel">{{"facilities.elevatorInHotel"|translate}}-->
+<!--                                                        </mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="wirelessBell">{{"facilities.wirelessBell"|translate}}-->
+<!--                                                        </mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="doorStaff">{{"facilities.doorStaff"|translate}}-->
+<!--                                                        </mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </fieldset>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+<!--                                <div class="card-body">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col">-->
+<!--                                            <h3><span-->
+<!--                                                    style="font-weight: bold">{{"facilities.kitchen"|translate}}</span>-->
+<!--                                            </h3>-->
+<!--                                            <label>{{"facilities.equipment"|translate}}-->
+<!--                                            </label>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="card-body">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col">-->
+<!--                                            <fieldset class="the-fieldset">-->
+<!--                                                <div class="row">-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="teaMaker">{{"facilities.teaMaker"|translate}}-->
+<!--                                                        </mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="coffee">{{"facilities.coffe"|translate}}</mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="tea">{{"facilities.tea"|translate}}</mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="Kitchen">{{"facilities.Kitchen"|translate}}</mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="row">-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="freeBreakfast">{{"facilities.freeBreakfast" | translate}}-->
+<!--                                                        </mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </fieldset>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+<!--                                <div class="card-body">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col">-->
+<!--                                            <h3><span-->
+<!--                                                    style="font-weight: bold">{{"facilities.Convenient" | translate}}</span>-->
+<!--                                            </h3>-->
+<!--                                            <label>{{"facilities.Convenientv2" | translate}}-->
+<!--                                            </label>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="card-body">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col">-->
+<!--                                            <fieldset class="the-fieldset">-->
+<!--                                                <div class="row">-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="workspace">{{"facilities.workspace" | translate}}-->
+<!--                                                        </mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="privatePool">{{"facilities.privatePool" | translate}}-->
+<!--                                                        </mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="heaters">{{"facilities.heaters" | translate}}</mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="Dryer">{{"facilities.Dryer" | translate}}</mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="row">-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="Fireplace">{{"facilities.Fireplace" | translate}}-->
+<!--                                                        </mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="Wardrobe">{{"facilities.Wardrobe" | translate}}</mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="indooPool">{{"facilities.indooPool" | translate}}-->
+<!--                                                        </mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="hotTub">{{"facilities.hotTub" | translate}}-->
+<!--                                                        </mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="row">-->
+<!--                                                    <div class="col-lg-3">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="gymRoom">{{"facilities.gymRoom" | translate}}-->
+<!--                                                        </mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col-lg-3">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="outdoorSwimmingPool">{{"facilities.outdoorSwimmingPool" | translate}}-->
+<!--                                                        </mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col-lg-3">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="freeParking">{{"facilities.freeParking" | translate}}-->
+<!--                                                        </mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </fieldset>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+<!--                                <div class="card-body">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col">-->
+<!--                                            <h3><span-->
+<!--                                                    style="font-weight: bold">{{"facilities.safe" | translate}}</span>-->
+<!--                                            </h3>-->
+<!--                                            <label>{{"facilities.safeV2" | translate}}</label>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="card-body">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col">-->
+<!--                                            <fieldset class="the-fieldset">-->
+<!--                                                <div class="row">-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="SmokeDetector">{{"facilities.SmokeDetector" | translate}}-->
+<!--                                                        </mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="COAlarmSensor">{{"facilities.COAlarmSensor" | translate}}-->
+<!--                                                        </mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="FirstAidKit">{{"facilities.FirstAidKit" | translate}}-->
+<!--                                                        </mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="fireExtinguisher">{{"facilities.fireExtinguisher" | translate}}-->
+<!--                                                        </mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </fieldset>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+<!--                                <div class="card-body">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col">-->
+<!--                                            <h3><span-->
+<!--                                                    style="font-weight: bold">{{"facilities.OtherFacilities" | translate}}</span>-->
+<!--                                            </h3>-->
+<!--                                            <label>{{"facilities.OtherFacilitiesV2" | translate}}-->
+<!--                                            </label>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="card-body">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col">-->
+<!--                                            <fieldset class="the-fieldset">-->
+<!--                                                <div class="row">-->
+<!--                                                    <div class="col-lg-3">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="Smoking">{{"facilities.Smoking" | translate}}-->
+<!--                                                        </mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="col-lg-3">-->
+<!--                                                        <mat-checkbox color="primary"-->
+<!--                                                                      formControlName="petsAllowed">{{"facilities.petsAllowed" | translate}}-->
+<!--                                                        </mat-checkbox>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </fieldset>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+<!--                                <div class="card-body">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col text-right">-->
+<!--                                            <button class="prevtab btn btn-success" (click)="tabPrevios()">-->
+<!--                                                {{"common.button.back"|translate}}-->
+<!--                                            </button>-->
+<!--                                            <button class="nexttab btn btn-success" (click)="tabNext()">-->
+<!--                                                {{"common.button.next"|translate}}-->
+<!--                                            </button>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </mat-tab>-->
+<!--        <mat-tab [disabled]='this.tab4'>-->
+<!--            <ng-template mat-tab-label>-->
+<!--                <mat-icon>bubble_chart</mat-icon>-->
+<!--                {{"room.RoomInformation" |translate}}-->
+<!--            </ng-template>-->
+<!--            <div class="main-content">-->
+<!--                <div class="container-fluid">-->
+<!--                    <div class="row">-->
+<!--                        <div class="card">-->
+<!--                            <div class="card-header card-header-info">-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col">-->
+<!--                                        <h4 class="card-title">{{"room.RoomInformationYourProvide" | translate}}-->
+<!--                                        </h4>-->
+<!--                                        <p class="card-category">{{"room.whatKindOfRoom"|translate}}-->
+<!--                                        </p>-->
+<!--                                    </div>-->
+<!--                                    <div class="col">-->
+<!--                                        <img src="assets/booking/GiacaHotel.png"-->
+<!--                                             class="img-thumbnail  img-fluid"-->
+<!--                                             style="height:auto;width: 50%;"/>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="card-body">-->
+<!--                                <div formArrayName="formArrayRoomNumber">-->
+<!--                                    <mat-tab-group>-->
+<!--                                        <mat-tab [formGroup]="romNumber"-->
+<!--                                                 *ngFor="let romNumber of formArrayRoomNumber.controls; let i = index ">-->
+<!--                                            <ng-template mat-tab-label>-->
+<!--                                                <mat-icon>bubble_chart</mat-icon>-->
+<!--                                                {{"room.type"|translate}} {{i + 1}}-->
+<!--                                            </ng-template>-->
+<!--                                            <div class="row" style="width: 100%;padding-top: 5px;">-->
+<!--                                                <div class="col-7">-->
+<!--                                                    <fieldset class="the-fieldset">-->
+<!--                                                        <legend class="the-legend">{{"room.detailsOfRoomTypeAtNumber"|translate}} {{i + 1}}-->
+<!--                                                        </legend>-->
+<!--                                                        <div>-->
+<!--                                                            <div class="row">-->
+<!--                                                                <div class="col">-->
+<!--                                                                    <h3><span-->
+<!--                                                                            style="font-weight: bold">{{"room.Capacity"|translate}} </span>-->
+<!--                                                                    </h3>-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                            <div class="row">-->
+<!--                                                                <div class="col">-->
+<!--                                                                    {{"room.MaximumNumberOfPeople"|translate}}-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                            <div class="row">-->
+<!--                                                                <div class="col">-->
+<!--                                                                    <div class="input-group input-number-group">-->
+<!--                                                                        <div class="input-group-button disabledbutton"-->
+<!--                                                                             id="accommondates{{i}}"-->
+<!--                                                                             (click)="minusAccommodates(i)">-->
+<!--                                                                            <span class="input-number-decrement"> <div-->
+<!--                                                                                    style="margin-top: 5%">-</div></span>-->
+<!--                                                                        </div>-->
+<!--                                                                        <input class="input-number" type="number"-->
+<!--                                                                               id="accommodates{{i}}"-->
+<!--                                                                               formControlName="accommodates" min="0"-->
+<!--                                                                               max="100"-->
+<!--                                                                        >-->
+<!--                                                                        <div class="input-group-button"-->
+<!--                                                                             (click)="plusAccommodates(i)">-->
+<!--                                                                            <span class="input-number-increment">+</span>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+
+<!--                                                        <div style="display: none">-->
+<!--                                                            <div class="row">-->
+<!--                                                                <div class="col">-->
+<!--                                                                    <h3><span-->
+<!--                                                                            style="font-weight: bold">{{"room.LenghtOfStay"|translate}}</span>-->
+<!--                                                                    </h3>-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+
+<!--                                                            <div class="row">-->
+<!--                                                                <div class="col">-->
+<!--                                                                    {{"room.MinimumNumberOfDaysPerBooking" |translate}}-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                            <div class="row">-->
+<!--                                                                <div class="col">-->
+<!--                                                                    <div class="input-group input-number-group">-->
+<!--                                                                        <div class="input-group-button "-->
+<!--                                                                             class="disabledbutton"-->
+<!--                                                                             id="maxDay{{i}}"-->
+<!--                                                                             (click)="minusMaxDay(i)">-->
+<!--                                                                            <span class="input-number-decrement"><div-->
+<!--                                                                                    style="margin-top: 5%">-</div></span>-->
+<!--                                                                        </div>-->
+
+<!--                                                                        <input class="input-number" type="number"-->
+<!--                                                                               formControlName="maxDay"-->
+<!--                                                                               min="0" max="1000">-->
+<!--                                                                        <div class="input-group-button"-->
+<!--                                                                             (click)="plusMaxDay(i)">-->
+<!--                                                                            <span class="input-number-increment">+</span>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                        <div>-->
+<!--                                                            <div class="row">-->
+<!--                                                                <div class="col">-->
+<!--                                                                    <h3><span-->
+<!--                                                                            style="font-weight: bold">{{"room.Bathroom"|translate}}</span>-->
+<!--                                                                    </h3>-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                            <div class="row">-->
+<!--                                                                <div class="col">-->
+<!--                                                                    {{"room.countOnlyNumberBathroomsOfYourResidence"|translate}}-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                            <div class="row">-->
+<!--                                                                <div class="col">-->
+<!--                                                                    <div class="input-group input-number-group">-->
+<!--                                                                        <div class="input-group-button "-->
+<!--                                                                             class="disabledbutton" id="bathRooms{{i}}"-->
+<!--                                                                             (click)="minusNumberOfBathrooms(i)">-->
+<!--                                                                            <span class="input-number-decrement"><div-->
+<!--                                                                                    style="margin-top: 5%">-</div></span>-->
+<!--                                                                        </div>-->
+<!--                                                                        <input class="input-number" type="number"-->
+<!--                                                                               formControlName="bathRooms"-->
+<!--                                                                               min="0"-->
+<!--                                                                               max="1000"-->
+<!--                                                                        >-->
+<!--                                                                        <div class="input-group-button"-->
+<!--                                                                             (click)="plusNumberOfBathrooms(i)">-->
+<!--                                                                            <span class="input-number-increment">+</span>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+
+<!--                                                        <div>-->
+<!--                                                            <div class="row">-->
+<!--                                                                <div class="col">-->
+<!--                                                                    <h3><span-->
+<!--                                                                            style="font-weight: bold">{{"room.BedRoom"|translate}}</span>-->
+<!--                                                                    </h3>-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                            <div class="row">-->
+<!--                                                                <div class="col">-->
+<!--                                                                    {{"room.IfYourAccommodationIsAnAtticOrStudio"|translate}}-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                            <div class="row">-->
+<!--                                                                <div class="col">-->
+<!--                                                                    <div class="input-group input-number-group">-->
+<!--                                                                        <div class="input-group-button"-->
+<!--                                                                             class="disabledbutton" id="bedRooms{{i}}"-->
+<!--                                                                             (click)="minusNumberOfBedrooms(i)">-->
+<!--                                                                            <span class="input-number-decrement"><div-->
+<!--                                                                                    style="margin-top: 5%">-</div></span>-->
+<!--                                                                        </div>-->
+<!--                                                                        <input class="input-number" type="number"-->
+<!--                                                                               min="0" formControlName="bedRooms"-->
+<!--                                                                               max="1000">-->
+<!--                                                                        <div class="input-group-button"-->
+<!--                                                                             (click)="plusNumberOfBedrooms(i)">-->
+<!--                                                                            <span class="input-number-increment">+</span>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                        <hr>-->
+
+<!--                                                        <div formArrayName="bedRoomsDetails">-->
+<!--                                                            <div [formGroup]="roomDetails"-->
+<!--                                                                 *ngFor="let roomDetails of romNumber['controls'].bedRoomsDetails['controls']; let iz=index">-->
+<!--                                                                <div class="row">-->
+<!--                                                                    <div class="col-3">-->
+<!--                                                                        <h3><span-->
+<!--                                                                                style="font-weight: bold">{{"room.room"|translate}} {{iz + 1}} </span>-->
+<!--                                                                        </h3>-->
+<!--                                                                    </div>-->
+<!--                                                                </div>-->
+
+<!--                                                                <div formArrayName="arrayTypeBedRooms">-->
+<!--                                                                    <div [formGroup]="typeBedRoom"-->
+<!--                                                                         *ngFor="let typeBedRoom of roomDetails['controls'].arrayTypeBedRooms['controls'];let ia=index">-->
+<!--                                                                        <div class="row">-->
+<!--                                                                            <div class="col-lg-3">-->
+<!--                                                                                <mat-form-field>-->
+<!--                                                                                    <input matInput-->
+<!--                                                                                           [placeholder]="'room.quantity'|translate"-->
+<!--                                                                                           formControlName="bedQuantity">-->
+<!--                                                                                </mat-form-field>-->
+<!--                                                                            </div>-->
+<!--                                                                            <div class="col-lg-3">-->
+<!--                                                                                <mat-form-field>-->
+<!--                                                                                    <mat-label>{{"room.bedType"|translate}}</mat-label>-->
+<!--                                                                                    <mat-select-->
+<!--                                                                                            formControlName="bedType">-->
+<!--                                                                                        <mat-option-->
+<!--                                                                                                *ngFor="let typeBedRoom of lstTypeBedRoom;let in=index"-->
+<!--                                                                                                [value]="typeBedRoom.value"-->
+<!--                                                                                        >-->
+<!--                                                                                            {{typeBedRoom.name | translate}}-->
+<!--                                                                                        </mat-option>-->
+<!--                                                                                    </mat-select>-->
+<!--                                                                                </mat-form-field>-->
+<!--                                                                            </div>-->
+<!--                                                                            <div class="col-lg-3">-->
+<!--                                                                                <button mat-fab color="primary"-->
+<!--                                                                                        matTooltip="Delete"-->
+<!--                                                                                        (click)="deleteControlBedRoomType(i,iz,ia)">-->
+<!--                                                                                    <mat-icon>delete</mat-icon>-->
+<!--                                                                                </button>-->
+<!--                                                                            </div>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+<!--                                                                </div>-->
+
+<!--                                                                <div class="row" id="addMoreRoom{{iz}}">-->
+<!--                                                                    <div class="col">-->
+<!--                                                                        <p (click)="plusAddTypeBedRoom(i,iz)"-->
+<!--                                                                           class="evtHover">-->
+<!--                                                                            {{"room.addBedType"|translate}}-->
+<!--                                                                        </p>-->
+<!--                                                                    </div>-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+
+<!--                                                        <div>-->
+<!--                                                            <hr>-->
+<!--                                                            <app-image (imageSrcUrl)="getImageSrcTypeRoom($event,i)"-->
+<!--                                                                       (indexDelete)="getIndexDelete($event)"-->
+<!--                                                                       [multiple]="true"-->
+<!--                                                                       [imageRoomProp]="imageRoomProp"-->
+<!--                                                                       [indexRoom]="i"-->
+<!--                                                                       [listRoomImgCurrent]="listRoomImgCurrent"></app-image>-->
+<!--                                                        </div>-->
+<!--                                                        <hr>-->
+
+<!--                                                        <div>-->
+<!--                                                            <div class="row">-->
+<!--                                                                <div class="col">-->
+<!--                                                                    <h3><span-->
+<!--                                                                            style="font-weight: bold">{{"room.PricePerNight"|translate}}</span>-->
+<!--                                                                    </h3>-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                            <div class="row">-->
+<!--                                                                <div class="col">-->
+<!--                                                                    {{"room.PleaseEnterAPartnerNightlyPrice"|translate}}-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                            <div class="row">-->
+<!--                                                                <div class="col-3">-->
+<!--                                                                    <mat-form-field>-->
+<!--                                                                        <mat-label>-->
+<!--                                                                            <b>{{"room.WhatisTheMinimumPricePerNight"|translate}}</b>-->
+<!--                                                                        </mat-label>-->
+<!--                                                                        <input matInput formControlName="price">-->
+<!--                                                                    </mat-form-field>-->
+<!--                                                                    <mat-error-->
+<!--                                                                            *ngIf="this.isNext1 &&formArrayRoomNumber.controls[i].get('price').hasError('required')">-->
+<!--                                                                        {{"hotelRegister.price.errorRequired" | translate}}-->
+<!--                                                                    </mat-error>-->
+<!--                                                                    <mat-error-->
+<!--                                                                            *ngIf="this.isNext1 &&formArrayRoomNumber.controls[i].get('price').hasError('pattern')">-->
+<!--                                                                        {{"hotelRegister.price.errorTypeNumber" | translate}}-->
+<!--                                                                    </mat-error>-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+
+<!--                                                    </fieldset>-->
+<!--                                                </div>-->
+<!--                                                <div class="col-5">-->
+<!--                                                    <fieldset class="the-fieldset" style="margin-top: 10px;">-->
+
+<!--                                                        <div class="row" style="margin-left: 20px;">-->
+<!--                                                            <mat-form-field>-->
+<!--                                                                <mat-label>{{"room.type"|translate}}</mat-label>-->
+<!--                                                                <mat-select (selectionChange)="doSomething($event,i)"-->
+<!--                                                                            formControlName="roomType">-->
+<!--                                                                    <mat-option-->
+<!--                                                                            *ngFor="let typeRoom of lstTypeRoom;let i=index"-->
+<!--                                                                            [value]="typeRoom.value">-->
+<!--                                                                        {{typeRoom.name|translate}}-->
+<!--                                                                    </mat-option>-->
+<!--                                                                </mat-select>-->
+<!--                                                            </mat-form-field>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="row">-->
+<!--                                                            <div class="col">-->
+<!--                                                                <mat-checkbox color="primary"-->
+<!--                                                                              formControlName="roomAirConditional">{{"facilities.airConditional" | translate}}-->
+<!--                                                                </mat-checkbox>-->
+<!--                                                            </div>-->
+<!--                                                            <div class="col">-->
+<!--                                                                <mat-checkbox color="primary"-->
+<!--                                                                              formControlName="roomHairdryer">{{"facilities.Hairdryer" | translate}}-->
+<!--                                                                </mat-checkbox>-->
+<!--                                                            </div>-->
+
+<!--                                                        </div>-->
+<!--                                                        <div class="row">-->
+<!--                                                            <div class="col">-->
+<!--                                                                <mat-checkbox color="primary"-->
+<!--                                                                              formControlName="roomHeaters">{{"facilities.heaters" | translate}}</mat-checkbox>-->
+
+<!--                                                            </div>-->
+<!--                                                            <div class="col">-->
+<!--                                                                <mat-checkbox color="primary"-->
+<!--                                                                              formControlName="roomTelevison">{{"facilities.televison" | translate}}</mat-checkbox>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="row">-->
+<!--                                                            <div class="col">-->
+<!--                                                                <mat-checkbox color="primary"-->
+<!--                                                                              formControlName="roomCableTV">{{"facilities.cableTV" | translate}}-->
+<!--                                                                </mat-checkbox>-->
+<!--                                                            </div>-->
+<!--                                                            <div class="col">-->
+<!--                                                                <mat-checkbox color="primary"-->
+<!--                                                                              formControlName="roomFreeWifi">{{"facilities.freeWifi"|translate}}-->
+<!--                                                                </mat-checkbox>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="row">-->
+<!--                                                            <div class="col">-->
+<!--                                                                <mat-checkbox color="primary"-->
+<!--                                                                              formControlName="roomTea">{{"facilities.tea"|translate}}</mat-checkbox>-->
+<!--                                                            </div>-->
+<!--                                                            <div class="col">-->
+<!--                                                                <mat-checkbox color="primary"-->
+<!--                                                                              formControlName="roomCoffee">{{"facilities.coffe"|translate}}</mat-checkbox>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="row">-->
+<!--                                                            <div class="col">-->
+<!--                                                                <mat-checkbox color="primary"-->
+<!--                                                                              formControlName="roomShampoo">{{"facilities.shampoo"|translate}}-->
+<!--                                                                </mat-checkbox>-->
+<!--                                                            </div>-->
+<!--                                                            <div class="col">-->
+<!--                                                                <mat-checkbox color="primary"-->
+<!--                                                                              formControlName="roomBeddingSet">{{"facilities.beddingSet" | translate}}-->
+<!--                                                                </mat-checkbox>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="row">-->
+<!--                                                            <div class="col">-->
+<!--                                                                <mat-checkbox color="primary"-->
+<!--                                                                              formControlName="roomTowelsOfAllKinds">{{"facilities.TowelsOfAllKinds" | translate}}-->
+<!--                                                                </mat-checkbox>-->
+<!--                                                            </div>-->
+<!--                                                            <div class="col">-->
+<!--                                                                <mat-checkbox color="primary"-->
+<!--                                                                              formControlName="roomWardrobe">{{"facilities.Wardrobe" | translate}}</mat-checkbox>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="row">-->
+<!--                                                            <div class="col">-->
+<!--                                                                <mat-checkbox color="primary"-->
+<!--                                                                              formControlName="roomDryer">{{"facilities.Dryer" | translate}}</mat-checkbox>-->
+<!--                                                            </div>-->
+<!--                                                            <div class="col">-->
+<!--                                                                <mat-checkbox color="primary"-->
+<!--                                                                              formControlName="roomIroningMachine">{{"facilities.ironingMachine" | translate}}-->
+<!--                                                                </mat-checkbox>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="row">-->
+<!--                                                            <div class="col">-->
+<!--                                                                <mat-checkbox color="primary"-->
+<!--                                                                              formControlName="roomSmartKey">{{"facilities.smartKey"|translate}}-->
+<!--                                                                </mat-checkbox>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="row">-->
+<!--                                                            <div class="col">-->
+<!--                                                                <mat-checkbox color="primary"-->
+<!--                                                                              formControlName="roomTeaMaker">{{"facilities.teaMaker"|translate}}-->
+<!--                                                                </mat-checkbox>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="row">-->
+<!--                                                            <div class="col">-->
+<!--                                                                <mat-checkbox color="primary"-->
+<!--                                                                              formControlName="roomFreeBreakfast">{{"facilities.freeBreakfast" | translate}}-->
+<!--                                                                </mat-checkbox>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="row">-->
+<!--                                                            <div class="col">-->
+<!--                                                                <mat-checkbox color="primary"-->
+<!--                                                                              formControlName="roomPrivatePool">{{"facilities.privatePool" | translate}}-->
+<!--                                                                </mat-checkbox>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="row">-->
+<!--                                                            <div class="col">-->
+<!--                                                                <mat-checkbox color="primary"-->
+<!--                                                                              formControlName="roomWorkspace">{{"facilities.workspace" | translate}}-->
+<!--                                                                </mat-checkbox>-->
+<!--                                                            </div>-->
+
+<!--                                                        </div>-->
+<!--                                                        <div class="row">-->
+<!--                                                            <div class="col">-->
+<!--                                                                <mat-checkbox color="primary"-->
+<!--                                                                              formControlName="roomFireplace">{{"facilities.Fireplace" | translate}}-->
+<!--                                                                </mat-checkbox>-->
+<!--                                                            </div>-->
+
+<!--                                                        </div>-->
+<!--                                                        <div class="row">-->
+<!--                                                            <div class="col">-->
+<!--                                                                <mat-checkbox color="primary"-->
+<!--                                                                              formControlName="roomHotTub">{{"facilities.hotTub" | translate}}-->
+<!--                                                                </mat-checkbox>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                    </fieldset>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </mat-tab>-->
+<!--                                    </mat-tab-group>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="card-body">-->
+<!--                                <div style="display: none">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col">-->
+<!--                                            <h3><span-->
+<!--                                                    style="font-weight: bold">{{"room.HowLongCanCustomersBookYourAccommodation"|translate}}</span>-->
+<!--                                            </h3>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col">-->
+<!--                                            <mat-button-toggle-group-->
+<!--                                                    formControlName="reservationTime">-->
+<!--                                                <mat-button-toggle id="matBtn{{i}}"-->
+<!--                                                                   *ngFor="let btn of listMatButton;let i = index"-->
+<!--                                                                   [value]="btn.value">-->
+<!--                                                    {{btn.name | translate}}-->
+<!--                                                </mat-button-toggle>-->
+<!--                                            </mat-button-toggle-group>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col">-->
+<!--                                        <h3><span-->
+<!--                                                style="font-weight: bold">{{"room.CancellationPolicy"|translate}}</span>-->
+<!--                                        </h3>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <mat-radio-group formControlName="cancellationPolicy">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col">-->
+<!--                                            <div *ngFor="let op of listRadioCancel">-->
+<!--                                                <mat-radio-button color="primary"-->
+<!--                                                                  [checked]="op.checked" [value]="op.value"-->
+<!--                                                                  name="cancelPolicy">{{ op.name|translate}}</mat-radio-button>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </mat-radio-group>-->
+<!--                                <div class="row"-->
+<!--                                     style="padding-left: 1rem;padding-top: 1rem;font-size: 1rem;font-weight: 500;">-->
+<!--                                    <mat-error-->
+<!--                                            *ngIf="this.tab5 === true">-->
+<!--                                        {{this.roomTypeErr}}-->
+<!--                                    </mat-error>-->
+<!--                                </div>-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col text-right">-->
+<!--                                        <button class="prevtab btn btn-success" (click)="tabPrevios()">-->
+<!--                                            {{"common.button.back"|translate}}-->
+<!--                                        </button>-->
+<!--                                        <button class="nexttab btn btn-success" (click)="tabNext()">-->
+<!--                                            {{"common.button.next"|translate}}-->
+<!--                                        </button>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </mat-tab>-->
+<!--        <mat-tab [disabled]="this.tab5">-->
+<!--            <ng-template mat-tab-label>-->
+<!--                <mat-icon>bubble_chart</mat-icon>-->
+<!--                {{"post.post"|translate}}-->
+<!--            </ng-template>-->
+<!--            <div class="main-content">-->
+<!--                <div class="container-fluid">-->
+<!--                    <div class="row">-->
+<!--                        <div class="card">-->
+<!--                            <div class="card-header card-header-info">-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col">-->
+<!--                                        <h4 class="card-title">{{"post.SignAcontract"|translate}}-->
+<!--                                        </h4>-->
+<!--                                        <p class="card-category">{{"post.JustAfewMoreDetails"|translate}}-->
+<!--                                        </p>-->
+<!--                                    </div>-->
+<!--                                    <div class="col">-->
+<!--                                        <img src="assets/booking/chapnhandkphong.png"-->
+<!--                                             class="img-thumbnail  img-fluid"-->
+<!--                                             style="height:auto;width: 50%;"/>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+
+<!--                            <div class="card-body">-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col">-->
+<!--                                        <h3><span-->
+<!--                                                style="font-weight: bold">{{"post.ruler1"|translate}}-->
+<!--</span>-->
+<!--                                        </h3>-->
+<!--                                        <label>{{"post.ruler2"|translate}}<br>-->
+<!--                                            <br>-->
+<!--                                            {{"post.ruler3"|translate}}-->
+<!--                                        </label>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+
+<!--                            <div class="card-body">-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col">-->
+<!--                                        <h3><span-->
+<!--                                                style="font-weight: bold">{{"post.accept"|translate}}-->
+<!--</span>-->
+<!--                                        </h3>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col">-->
+<!--                                        <mat-checkbox color="primary"-->
+<!--                                                      (click)="changeValueAccept(checked)">{{"post.acceptWithBooking"|translate}}-->
+<!--                                        </mat-checkbox>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col">-->
+<!--                                        <mat-error *ngIf="this.isSubmitted">-->
+<!--                                            {{"post.acceptEroor"|translate}}-->
+<!--                                        </mat-error>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col" style="margin-top: 2%">-->
+<!--                                        <button *ngIf="!isEdited" [disabled]="this.checkSubmit"-->
+<!--                                                style="padding: 15px 20px;background-image: linear-gradient(to right, #3cc603 0%, #3cc908  51%, #32a103  100%); cursor: pointer;color: white ; border-radius: 5px; margin-left: 40%; margin-top: 5% "-->
+<!--                                                (click)="onSubmit()">{{"post.introMyHotel"|translate}}</button>-->
+<!--                                        <button *ngIf="isEdited" [disabled]="this.checkSubmit"-->
+<!--                                                style="padding: 15px 20px;background-image: linear-gradient(to right, #3cc603 0%, #3cc908  51%, #32a103  100%); cursor: pointer;color: white ;border-radius: 5px; margin-left: 40%; margin-top: 5% "-->
+<!--                                                (click)="onSubmit()">{{"post.editMyHotel"|translate}}</button>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col">-->
+<!--                                        <button class="prevtab btn btn-success" (click)="tabPrevios()">-->
+<!--                                            {{"common.button.back"|translate}}-->
+<!--                                        </button>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </mat-tab>-->
+<!--    </mat-tab-group>-->
+<!--</form>-->
+<!--<button type="button" class="btn btn-primary" hidden="true" data-toggle="modal" data-target="#exampleModalCenter"-->
+<!--        id="modal-button">-->
+<!--    Launch demo modal-->
+<!--</button>-->
+
+<!--&lt;!&ndash; Modal &ndash;&gt;-->
+<!--<div class="modal fade" id="exampleModalCenter" role="dialog" aria-labelledby="exampleModalCenterTitle"-->
+<!--     aria-hidden="true">-->
+<!--    <div class="modal-dialog modal-dialog-centered" role="document">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header" style="background:  #00a5d7;">-->
+<!--                <h5 class="modal-title" id="exampleModalLongTitle" style="color: white;">Thông báo</h5>-->
+<!--                <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                    <span aria-hidden="true">&times;</span>-->
+<!--                </button>-->
+<!--            </div>-->
+<!--            <div class="modal-body" style="color: red;">-->
+<!--                <a> {{successMessage}}</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<app-scroll-top></app-scroll-top>-->

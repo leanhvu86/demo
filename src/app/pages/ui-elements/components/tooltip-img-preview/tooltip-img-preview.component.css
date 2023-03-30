@@ -1,0 +1,14 @@
+:host {
+    display: block
+}
+
+.tooltipImg {
+    color: white;
+    padding: 0 1rem;
+    /*border-radius: 4px;*/
+    width: 400px;
+    height: 320px;
+    position: absolute;
+    bottom: 120px;
+    left: -50px;
+}

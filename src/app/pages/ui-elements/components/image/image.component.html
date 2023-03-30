@@ -1,0 +1,106 @@
+<!--&lt;!&ndash; hotel-access &ndash;&gt;-->
+<!--&lt;!&ndash; image hotel&ndash;&gt;-->
+<!--<div class="wrapper" *ngIf="imageProp == 'hotelAccess'">-->
+<!--    <div class="row">-->
+<!--        <div class="col">-->
+<!--            <div class="file-upload">-->
+<!--                <input type="file" name="image" ng2FileSelect [uploader]="uploader"-->
+<!--                       accept="image/x-png,image/gif,image/jpeg" [multiple]="multiple"/>-->
+<!--                <button type="button" (click)="uploader.uploadAll()"-->
+<!--                        [disabled]="!uploader.getNotUploadedItems().length">-->
+<!--                    Upload-->
+<!--                </button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="row">-->
+<!--        <div class="col-lg-2" *ngFor="let imageCurrent of listImgCurrent; let i = index">-->
+<!--            <div class="row" *ngIf="imageCurrent">-->
+<!--                <div class="col">-->
+<!--                    <div style="position: relative">-->
+<!--                        <img [src]="'http://localhost:8000/api/images/'+imageCurrent"-->
+<!--                             style="max-width:100%; height: auto;"/>-->
+<!--                        <button mat-icon-button (click)="removeImageCurrent(i)"-->
+<!--                                style="position: absolute;bottom: 0.1px !important;right: 1px !important;color: white;font-size: 15px;">-->
+<!--                            <mat-icon>delete</mat-icon>-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-lg-2" *ngFor="let imagePre of listImgPreview; let i = index">-->
+<!--            <div class="row">-->
+<!--                <div class="col">-->
+<!--                    <div tyle="position: relative">-->
+<!--                        <img [src]="imagePre" style="max-width:100%; height: auto;"/>-->
+<!--                        <button mat-icon-button (click)="removeSelectedFile(i)"-->
+<!--                                style="position: absolute;bottom: 0.1px !important;right: 1px !important;color: white;font-size: 15px;">-->
+<!--                            <mat-icon style="color: red">delete</mat-icon>-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--&lt;!&ndash; image room&ndash;&gt;-->
+<!--<div class="wrapper" *ngIf="imageRoomProp === 'roomDetail'">-->
+<!--    <div class="row">-->
+<!--        <div class="col">-->
+<!--            <div class="file-upload">-->
+<!--                <input type="file" name="image" ng2FileSelect [uploader]="uploader"-->
+<!--                       accept="image/x-png,image/gif,image/jpeg" [multiple]="multiple"/>-->
+<!--                <button type="button" (click)="uploader.uploadAll()"-->
+<!--                        [disabled]="!uploader.getNotUploadedItems().length">-->
+<!--                    Upload-->
+<!--                </button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="row">-->
+<!--        <div class="col-lg-2" *ngFor="let imageCurrent of listRoomImgCurrent[index]; let i = index">-->
+<!--            <div class="row" *ngIf="imageCurrent">-->
+<!--                <div class="col">-->
+<!--                    <div style="position: relative">-->
+<!--                        <img [src]="BASE_URL+imageCurrent" style="max-width:100%; height: auto;"/>-->
+<!--                        <button mat-icon-button (click)="removeImageRoomCurrent(i)"-->
+<!--                                style="position: absolute;bottom: 0.1px !important;right: 1px !important;color: white;font-size: 15px;">-->
+<!--                            <mat-icon>delete</mat-icon>-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-lg-2" *ngFor="let imagePre of listImgPreview; let i = index">-->
+<!--            <div class="row">-->
+<!--                <div class="col">-->
+<!--                    <div tyle="position: relative">-->
+<!--                        <img [src]="imagePre" style="max-width:100%; height: auto;"/>-->
+<!--                        <button mat-icon-button (click)="removeSelectedFile(i)"-->
+<!--                                style="position: absolute;bottom: 0.1px !important;right: 1px !important;color: white;font-size: 15px;">-->
+<!--                            <mat-icon style="color: red">delete</mat-icon>-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--</div>-->
+<!--&lt;!&ndash; user-profile &ndash;&gt;-->
+<!--<div *ngIf="imageProp == 'profile'">-->
+<!--    <label class="hoverablee" for="fileInput" style="height: 200px;-->
+<!--    width: 200px; margin: 30px auto">-->
+<!--        &lt;!&ndash; <img [src]=" 'https://www.w3schools.com/howto/img_avatar.png'" style="border: 1px solid #ffffff;"> &ndash;&gt;-->
+<!--        <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'"-->
+<!--             style="border: 1px solid #ffffff;height: 100%;width: 100%;border-radius: 50%;">-->
+<!--    </label>-->
+<!--    <br/>-->
+<!--    <input id="fileInput" type='file' (change)="onSelectFile($event)" ng2FileSelect [uploader]="uploader">-->
+<!--    <div>-->
+<!--    </div>-->
+<!--    <div class="card-body" style="text-align: center; padding: 0">-->
+<!--        <h6>Nhấn để cập nhật ảnh diện</h6>-->
+<!--        &lt;!&ndash; <button type="button" (click)="uploader.uploadAll()">Cap nhat</button> .&ndash;&gt;-->
+<!--    </div>-->
+<!--</div>-->

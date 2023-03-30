@@ -1,0 +1,8 @@
+:host {
+    display: block
+}
+
+div {
+    background-color: white;
+    border: 1px solid #00acc1;
+}
