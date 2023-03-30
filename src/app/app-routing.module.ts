@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { DashboardPageComponent } from './pages/dashboard/containers';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import {AuthGuard} from './pages/auth/guards';
+import { CreateGameComponent } from './pages/games/components/create-game/create-game.component';
 
 const routes: Routes = [
   {
@@ -11,12 +12,12 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     component: DashboardPageComponent
   },
-  {
-    path: 'typography',
-    pathMatch: 'full',
-    canActivate: [AuthGuard],
-    loadChildren: () => import('./pages/typography/typography.module').then(m => m.TypographyModule)
-  },
+  // {
+  //   path: 'typography',
+  //   pathMatch: 'full',
+  //   canActivate: [AuthGuard],
+  //   loadChildren: () => import('./pages/typography/typography.module').then(m => m.TypographyModule)
+  // },
   {
     path: 'tables',
     pathMatch: 'full',
@@ -24,11 +25,21 @@ const routes: Routes = [
     loadChildren: () => import('./pages/tables/tables.module').then(m => m.TablesModule)
   },
   {
-    path: 'notification',
+    path: 'games',
     pathMatch: 'full',
     canActivate: [AuthGuard],
-    loadChildren: () => import('./pages/notification/notification.module').then(m => m.NotificationModule)
+    loadChildren: () => import('./pages/games/games.module').then(m => m.GamesModule)
   },
+  {
+    path: 'games/create',
+    component: CreateGameComponent
+  },
+  // {
+  //   path: 'notification',
+  //   pathMatch: 'full',
+  //   canActivate: [AuthGuard],
+  //   loadChildren: () => import('./pages/notification/notification.module').then(m => m.NotificationModule)
+  // },
   {
     path: 'ui',
     canActivate: [AuthGuard],
