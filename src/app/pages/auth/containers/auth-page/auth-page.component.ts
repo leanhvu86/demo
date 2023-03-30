@@ -21,12 +21,12 @@ export class AuthPageComponent {
   public sendLoginForm(): void {
     this.service.login();
 
-    this.router.navigate([this.routers.DASHBOARD]).then();
+    this.router.navigate([this.routers.TABLES]).then();
   }
 
   public sendSignForm(): void {
     this.service.sign();
 
-    this.router.navigate([this.routers.DASHBOARD]).then();
+    this.router.navigate([this.routers.TABLES]).then();
   }
 }

@@ -40,8 +40,6 @@ export class CreateGameComponent implements OnInit {
     const formData = new FormData();
     formData.append('file', this.files);
     formData.append('type', 'banner');
-    console.log(formData.get("type"))
-    console.log(formData.get("file"))
     this.gameService.uploadFile(formData).subscribe(data => {
       console.log(data['data']['id'])
     })
