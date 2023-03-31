@@ -10,23 +10,23 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
-import { TablesPageComponent } from './containers';
-import { TablesRoutingModule } from './tables-routing.module';
+import { GamesPageComponent } from './containers';
+import { GamesRoutingModule } from './games-routing.module';
 import { SharedModule } from '../../shared/shared.module';
-import { EmployeeTableComponent, MaterialTableComponent } from './components';
-import { TablesService } from './services';
-import { UserTableComponent } from './components/user-table/user-table.component';
+import { GamesService } from './services';
+import { ListGameComponent } from './components/list-game/list-game.component';
+import { CreateGameComponent } from './components/create-game/create-game.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    TablesPageComponent,
-    MaterialTableComponent,
-    EmployeeTableComponent,
-    UserTableComponent
+    GamesPageComponent,
+    ListGameComponent,
+    CreateGameComponent
   ],
   imports: [
     CommonModule,
-    TablesRoutingModule,
+    GamesRoutingModule,
     MatCardModule,
     MatIconModule,
     MatMenuModule,
@@ -36,10 +36,11 @@ import { UserTableComponent } from './components/user-table/user-table.component
     MatToolbarModule,
     MatPaginatorModule,
     MatFormFieldModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ],
   providers: [
-    TablesService
+    GamesService
   ]
 })
-export class TablesModule { }
+export class GamesModule { }

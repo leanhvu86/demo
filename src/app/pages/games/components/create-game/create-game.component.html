@@ -1,0 +1,67 @@
+<app-layout>
+    <mat-toolbar class="page-header" role="heading">
+        <h1>Games</h1>
+    </mat-toolbar>
+
+    <div class="tables-wrapper">
+        <mat-card class="list-game-wrapper">
+            <mat-card-title class="list-game-wrapper__header">
+                <p class="list-game-wrapper__title">Thêm mới</p>
+            </mat-card-title>
+            <mat-card-content class="list-game__content">
+                <form style="margin-left: 50px;" [formGroup]="gameForm" action="" method="POST" (ngSubmit)="onCreateGame()">
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label for="name">Tên</label>
+                                    <input type="text" class="form-control" formControlName="name" placeholder="Tên game">
+                                </div>
+                                <div class="form-group">
+                                    <label for="category">Danh mục</label>
+                                    <br>
+                                    <select formControlName="categoryId" class="form-control">
+                                        <option *ngFor="let category of categories" [value]="category.id">
+                                            {{ category.name }}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="price">Giá</label>
+                                    <input type="text" class="form-control" formControlName="price" placeholder="Giá">
+                                </div>
+                                <div class="form-group">
+                                    <label for="quantity">Số lượng</label>
+                                    <input type="text" class="form-control" formControlName="quantity" placeholder="Số lượng">
+                                </div>
+                                <!-- <div class="form-group">
+                                    <label for="thumbnail">Thumnail</label>
+                                    <input type="text" class="form-control" formControlName="thumbnail" placeholder="Thumnail">
+                                </div> -->
+                                <div class="form-group">
+                                    <label for="type">Loại</label>
+                                    <input type="text" class="form-control" formControlName="type" placeholder="Loại">
+                                </div>
+                                <div class="form-group">
+                                    <label for="description">Mô tả</label>
+                                    <input type="text" class="form-control" formControlName="description" placeholder="Mô tả">
+                                </div>
+                            </td>
+                            <td class="image">
+                                <div class="form-group">
+                                    <label for="imageId">Ảnh</label>
+                                    <img [src]="url" style="max-width: 300px; margin: 20px;" alt="">
+                                    <input type="file" class="form-control-file" formControlName="imageId" (change)="onFileChanged($event)">
+                                    <button type="button" class="btn btn-primary" (click)="onUpload()">Upload</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <button type="submit" class="btn btn-primary">Thêm mới</button>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <app-footer></app-footer>
+</app-layout>

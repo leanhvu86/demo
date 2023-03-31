@@ -1,11 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -20,6 +21,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
     NotFoundComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     SharedModule,
     AuthModule,
@@ -30,6 +32,8 @@ import { NgxEchartsModule } from 'ngx-echarts';
     ToastrModule.forRoot(),
     MatCardModule,
     MatButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts')
     })
