@@ -32,7 +32,6 @@ export class ListGameComponent implements OnInit {
     // this.dataSource = new MatTableDataSource<Users>(this.userTableData);
     this.getGame()
     this.dataSource.paginator = this.paginator;
-    console.log(routes.CREATE_GAMES)
   }
 
   getGame() {

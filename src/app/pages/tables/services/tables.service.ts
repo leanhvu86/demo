@@ -11,7 +11,7 @@ import { Users } from '../models/users';
 export class TablesService {
 
   constructor(private http: HttpClient) { };
-  api_key = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4MDE0NTExNCwiZXhwIjoxNjgwMjMxNTE0fQ.qRlKAic6DvKn69nW-DpqSAOGTze6XQUBT2LwourGAKP3O1h6ySbZYRsqEMQcs3Mc8FduSfILk-CW9rnWD33OvA";
+  api_key = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4MDIzMTgzMCwiZXhwIjoxNjgwMzE4MjMwfQ.Q3R5cnkF0iOeSt06_gUslDIQgjtQJ2JE6TtxKZ9k34OE0uwjrrT6h29rtsMQuL03pVH5exMdnEk35rX-1jNFbA";
   headers = new HttpHeaders({
     'Access-Control-Allow-Origin': '*',
     'Content-Type': 'application/json',
@@ -20,8 +20,11 @@ export class TablesService {
   requestOptions = { headers: this.headers };
 
   getListUser(): Observable<Users[]> {
-    // return this.http.get<Users[]>('http://localhost:3002/users');
     return this.http.get<Users[]>('http://52.41.255.157:8080/trunggame-0.0.1/api/user', this.requestOptions);
+  }
+
+  updateUser(data: any): Observable<Users[]> {
+    return this.http.post<Users[]>('http://52.41.255.157:8080/trunggame-0.0.1/api/user/update', data, this.requestOptions);
   }
 
   deleteUser(id:any): Observable<Users[]> {

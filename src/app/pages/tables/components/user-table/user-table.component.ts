@@ -2,7 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
-// import { Users } from '../../models/users';
+import { routes } from '../../../../consts';
 import { TablesService } from '../../services';
 
 @Component({
@@ -12,10 +12,10 @@ import { TablesService } from '../../services';
 })
 export class UserTableComponent implements OnInit {
 
+  public routes: typeof routes = routes;
+
   constructor(private tableService: TablesService) {
   }
-
-  // user: Users[] = [];
 
   @Input() userTableData: [];
   public displayedColumns: string[] = ['select', 'username', 'email', 'fullName', 'address', 'phoneNumber', 'roles', 'status', 'action'];
@@ -35,10 +35,33 @@ export class UserTableComponent implements OnInit {
 
   getUser() {
     this.tableService.getListUser().subscribe( data => {
-      this.dataSource.data = data['data']['content']
-      console.log(this.dataSource.data)
+      this.dataSource.data = data['data']['content'].filter(item => item['status'] !== "DELETED")
     })
   }
+
+  getAllUser() {
+    this.tableService.getListUser().subscribe( data => {
+      this.dataSource.data = data['data']['content']
+    })
+  }
+
+  getDeletedUser() {
+    this.tableService.getListUser().subscribe( data => {
+      this.dataSource.data = data['data']['content'].filter(item => item['status'] === "DELETED")
+    })
+  }
+
+  // changeColor(btn:string) {
+  //   let button = document.getElementById(btn)
+  //   let id = ["active", "all", "deleted"]
+  //   for (let i in id) {
+  //     if (i == btn) {
+  //       button.style.color = 'red'
+  //     } else {
+  //       document.getElementById(i).style.color = 'black'
+  //     }
+  //   }
+  // }
 
   onDelete(id:number){
     
@@ -46,9 +69,7 @@ export class UserTableComponent implements OnInit {
       this.tableService.deleteUser(({
         ids: [id]
       })).subscribe(data => {
-        this.tableService.getListUser().subscribe(data => {
-          this.dataSource.data = data['data']['content']
-        })
+        this.getUser()
       })
     }
     console.log(({

@@ -16,13 +16,16 @@ import { SharedModule } from '../../shared/shared.module';
 import { EmployeeTableComponent, MaterialTableComponent } from './components';
 import { TablesService } from './services';
 import { UserTableComponent } from './components/user-table/user-table.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     TablesPageComponent,
     MaterialTableComponent,
     EmployeeTableComponent,
-    UserTableComponent
+    UserTableComponent,
+    EditUserComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +39,8 @@ import { UserTableComponent } from './components/user-table/user-table.component
     MatToolbarModule,
     MatPaginatorModule,
     MatFormFieldModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ],
   providers: [
     TablesService

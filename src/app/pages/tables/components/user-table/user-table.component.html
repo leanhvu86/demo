@@ -1,7 +1,7 @@
 <mat-card class="user-table-wrapper">
     <mat-card-title class="user-table-wrapper__header">
         <p *ngIf="!isShowFilterInput" class="user-table-wrapper__title">Danh sách User</p>
-        <p *ngIf="!isShowFilterInput"><span class="user-table-wrapper__q-span">Tất cả</span> | <span class="user-table-wrapper__q-span">Hoạt động</span> | <span class="user-table-wrapper__q-span">Tạm dừng</span></p>
+        <p *ngIf="!isShowFilterInput"><span class="user-table-wrapper__q-span"><button class="ds_list" id="all" (click)="getAllUser()">Tất cả</button></span> | <span class="user-table-wrapper__q-span"><button class="ds_list" id="active" (click)="getUser()">Hoạt động</button></span>            | <span class="user-table-wrapper__q-span"><button class="ds_list" id="deleted" (click)="getDeletedUser()">Tạm dừng</button></span></p>
         <div *ngIf="isShowFilterInput" class="user-table-wrapper__search">
             <div class="user-table-wrapper__icon-wrapper">
                 <mat-icon class="user-table-wrapper__icon">search</mat-icon>
@@ -17,7 +17,6 @@
     </mat-card-title>
     <mat-card-content class="user-table__content">
         <table class="user-table__table" mat-table [dataSource]="dataSource">
-
             <!-- Checkbox Column -->
             <ng-container matColumnDef="select">
                 <th class="user-table__table-checkbox" mat-header-cell *matHeaderCellDef>
@@ -74,7 +73,7 @@
                 <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Hành động </th>
                 <td class="user-table__table-body" mat-cell *matCellDef="let element">
                     <!-- <i class="fa-solid fa-user-pen"></i> | <i class="fa-solid fa-trash"></i> -->
-                    <button class="user-table-wrapper__button" mat-mini-fab>
+                    <button class="user-table-wrapper__button" routerLink="{{routes.EDIT_USER}}/{{element.id}}" routerLinkActive="active" mat-mini-fab>
                         <mat-icon class="user-table-wrapper__q-icon">edit</mat-icon>
                       </button>|<button class="user-table-wrapper__button" (click)="onDelete(element.id)" mat-mini-fab>
                         <mat-icon class="user-table-wrapper__q-icon">delete</mat-icon>
@@ -83,7 +82,7 @@
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;" [hidden]="row.status !== 'ACTIVE'">
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
             </tr>
         </table>
     </mat-card-content>

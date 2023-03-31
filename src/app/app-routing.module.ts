@@ -4,6 +4,7 @@ import { DashboardPageComponent } from './pages/dashboard/containers';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import {AuthGuard} from './pages/auth/guards';
 import { CreateGameComponent } from './pages/games/components/create-game/create-game.component';
+import { EditUserComponent } from './pages/tables/components/edit-user/edit-user.component';
 
 const routes: Routes = [
   {
@@ -19,10 +20,16 @@ const routes: Routes = [
   //   loadChildren: () => import('./pages/typography/typography.module').then(m => m.TypographyModule)
   // },
   {
-    path: 'tables',
+    path: 'users',
     pathMatch: 'full',
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/tables/tables.module').then(m => m.TablesModule)
+  },
+  {
+    path: 'users/edit/:id',
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
+    component: EditUserComponent
   },
   {
     path: 'games',
@@ -32,6 +39,8 @@ const routes: Routes = [
   },
   {
     path: 'games/create',
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
     component: CreateGameComponent
   },
   // {

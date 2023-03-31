@@ -1,6 +1,15 @@
 @import 'src/app/styles/colors';
 @import 'src/app/styles/font';
 @import 'src/app/styles/variables';
+.ds_list {
+    background-color: #fff;
+    border: 0px;
+}
+
+.ds_list:hover {
+    color: red;
+}
+
 .user-table-wrapper {
     padding-left: 0;
     padding-right: 0;
