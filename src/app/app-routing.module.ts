@@ -4,7 +4,7 @@ import { DashboardPageComponent } from './pages/dashboard/containers';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import {AuthGuard} from './pages/auth/guards';
 import { CreateGameComponent } from './pages/games/components/create-game/create-game.component';
-import { EditUserComponent } from './pages/tables/components/edit-user/edit-user.component';
+import { EditUserComponent } from './pages/users/components/edit-user/edit-user.component';
 
 const routes: Routes = [
   {
@@ -23,7 +23,7 @@ const routes: Routes = [
     path: 'users',
     pathMatch: 'full',
     canActivate: [AuthGuard],
-    loadChildren: () => import('./pages/tables/tables.module').then(m => m.TablesModule)
+    loadChildren: () => import('./pages/users/users.module').then(m => m.UsersModule)
   },
   {
     path: 'users/edit/:id',

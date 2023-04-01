@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { TablesService } from '../../services';
+import { UsersService } from '../../services';
 import { routes } from '../../../../consts';
 
 @Component({
@@ -12,7 +12,7 @@ import { routes } from '../../../../consts';
 export class EditUserComponent implements OnInit {
   id: number = 0;
   public routes: typeof routes = routes;
-  constructor(private tableService: TablesService, private _route: ActivatedRoute) { }
+  constructor(private tableService: UsersService, private _route: ActivatedRoute) { }
 
   userForm: FormGroup = new FormGroup({
     id: new FormControl(),

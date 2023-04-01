@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable, Subscription  } from 'rxjs';
 
-import { TablesService } from '../../services';
+import { UsersService } from '../../services';
 import { Customer, Employee } from '../../models';
 import { Users } from '../../models/users';
 
@@ -18,7 +18,7 @@ export class TablesPageComponent {
   public materialTableData$: Observable<Customer[]>
   // public userTableData$: Observable<Users[]>
 
-  constructor(private service: TablesService) {
+  constructor(private service: UsersService) {
     this.employeeTableData$ = service.loadEmployeeTableData();
     this.materialTableData$ = service.loadMaterialTableData();
     // this.userTableData$ = service.getListUser();

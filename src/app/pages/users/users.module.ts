@@ -11,10 +11,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { TablesPageComponent } from './containers';
-import { TablesRoutingModule } from './tables-routing.module';
+import { UsersRoutingModule } from './users-routing.module';
 import { SharedModule } from '../../shared/shared.module';
 import { EmployeeTableComponent, MaterialTableComponent } from './components';
-import { TablesService } from './services';
+import { UsersService } from './services';
 import { UserTableComponent } from './components/user-table/user-table.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -29,7 +29,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    TablesRoutingModule,
+    UsersRoutingModule,
     MatCardModule,
     MatIconModule,
     MatMenuModule,
@@ -43,7 +43,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
   ],
   providers: [
-    TablesService
+    UsersService
   ]
 })
-export class TablesModule { }
+export class UsersModule { }
