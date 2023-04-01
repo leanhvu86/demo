@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -14,6 +14,9 @@ import { DashboardModule } from './pages/dashboard/dashboard.module';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { AuthModule } from './pages/auth/auth.module';
 import { NgxEchartsModule } from 'ngx-echarts';
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {JwtInterceptor} from "./shared/helper/jwt.interceptor";
 
 @NgModule({
   declarations: [
@@ -33,12 +36,14 @@ import { NgxEchartsModule } from 'ngx-echarts';
     MatCardModule,
     MatButtonModule,
     FormsModule,
+    MatAutocompleteModule,
     ReactiveFormsModule,
+    MatSnackBarModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts')
     })
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,66 +2,152 @@
     <mat-toolbar class="page-header" role="heading">
         <h1>Games</h1>
     </mat-toolbar>
-
-    <div class="tables-wrapper">
-        <mat-card class="list-game-wrapper">
-            <mat-card-title class="list-game-wrapper__header">
-                <p class="list-game-wrapper__title">Thêm mới</p>
-            </mat-card-title>
-            <mat-card-content class="list-game__content">
-                <form style="margin-left: 50px;" [formGroup]="gameForm" action="" method="POST" (ngSubmit)="onCreateGame()">
+    <br/>
+    <mat-card-title class="list-game-wrapper__header">
+        <p class="list-game-wrapper__title">Thêm mới</p>
+    </mat-card-title>
+    <form [formGroup]="gameForm" class="form-signin" style="width: 98%;margin-top: 20px; background-color: white;padding: 20px 20px;margin-left: auto;margin-right: auto;">
+        <mat-tab-group
+                >
+<!--            [(selectedIndex)]="TabIndex" (selectedTabChange)="changeTabValid($event)"-->
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    Thông tin cơ bản
+                </ng-template>
+                <div class="tables-wrapper">
                     <table>
                         <tr>
-                            <td>
+                            <td class="image">
                                 <div class="form-group">
-                                    <label for="name">Tên</label>
-                                    <input type="text" class="form-control" formControlName="name" placeholder="Tên game">
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label>Tên Game</mat-label>
+                                        <input type="text"
+                                               placeholder="Tên Game"
+                                               matInput
+                                               formControlName="name">
+                                    </mat-form-field>
                                 </div>
                                 <div class="form-group">
-                                    <label for="category">Danh mục</label>
-                                    <br>
-                                    <select formControlName="categoryId" class="form-control">
-                                        <option *ngFor="let category of categories" [value]="category.id">
-                                            {{ category.name }}
-                                        </option>
-                                    </select>
+                                    <mat-form-field class="example-full-width" appearance="fill" >
+                                        <mat-label>Vui lòng chọn thể loại game</mat-label>
+                                        <mat-select formControlName="categoryId">
+                                            <mat-option *ngFor="let category of categories" [value]="category.id">
+                                                {{ category.name }}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label>Công ty phát hành</mat-label>
+                                        <input type="text"
+                                               placeholder="Công ty phát hành"
+                                               matInput
+                                               formControlName="companyName" (keydown)="onKeydown($event)"
+                                               [matAutocomplete]="auto">
+                                        <mat-autocomplete #auto="matAutocomplete">
+                                            <mat-option *ngFor="let option1 of filteredOptionsCompany | async" [value]="option1">
+                                                {{option1}}
+                                            </mat-option>
+                                        </mat-autocomplete>
+                                    </mat-form-field>
                                 </div>
                                 <div class="form-group">
-                                    <label for="price">Giá</label>
-                                    <input type="text" class="form-control" formControlName="price" placeholder="Giá">
+                                    <mat-label>Mô tả ngắn </mat-label>
+                                    <ckeditor data="<p>Mô tả Ngắn </p>" formControlName="description">
+
+                                    </ckeditor>
                                 </div>
                                 <div class="form-group">
-                                    <label for="quantity">Số lượng</label>
-                                    <input type="text" class="form-control" formControlName="quantity" placeholder="Số lượng">
-                                </div>
-                                <!-- <div class="form-group">
-                                    <label for="thumbnail">Thumnail</label>
-                                    <input type="text" class="form-control" formControlName="thumbnail" placeholder="Thumnail">
-                                </div> -->
-                                <div class="form-group">
-                                    <label for="type">Loại</label>
-                                    <input type="text" class="form-control" formControlName="type" placeholder="Loại">
-                                </div>
-                                <div class="form-group">
-                                    <label for="description">Mô tả</label>
-                                    <input type="text" class="form-control" formControlName="description" placeholder="Mô tả">
+                                    <label for="thumbnail">Ảnh slide</label>
+                                    <img [src]="thumbnailUrl" style="max-width: 300px; margin: 20px;" alt="">
+                                    <input type="file" class="form-control-file" formControlName="thumbnail"
+                                           (change)="onFileChanged($event,2)">
+                                    <button type="button" class="btn btn-primary" (click)="onUpload()">Upload</button>
                                 </div>
                             </td>
                             <td class="image">
                                 <div class="form-group">
-                                    <label for="imageId">Ảnh</label>
-                                    <img [src]="url" style="max-width: 300px; margin: 20px;" alt="">
-                                    <input type="file" class="form-control-file" formControlName="imageId" (change)="onFileChanged($event)">
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label>Thị Trường Game</mat-label>
+                                        <input type="text"
+                                               placeholder="Thị Trường Game"
+                                               matInput
+                                               formControlName="marketType"
+                                               (keydown)="onKeydown($event)"
+                                               [matAutocomplete]="autoNationality">
+                                        <mat-autocomplete #autoNationality="matAutocomplete" >
+                                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                                {{option}}
+                                            </mat-option>
+                                        </mat-autocomplete>
+                                    </mat-form-field>
+                                </div>
+                                <br/>
+                                <div class="form-group">
+<!--                                    <label for="type">Nền tảng</label>-->
+<!--                                    <br/>-->
+<!--                                    <mat-form-field class="example-full-width" appearance="fill">-->
+
+                                    <mat-radio-group aria-label="Select an option" formControlName="type">
+                                        <mat-radio-button value="Mobile">Mobile</mat-radio-button>
+                                        <mat-radio-button value="Desktop">Desktop</mat-radio-button>
+                                        <mat-radio-button value="Multiple-Platform">Multiple-Platform</mat-radio-button>
+                                    </mat-radio-group>
+<!--                                    </mat-form-field>-->
+                                </div>
+                                <br/>
+                                <div class="form-group">
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label>Link youtube</mat-label>
+                                        <input type="text"
+                                               placeholder="Công ty phát hành"
+                                               matInput
+                                               formControlName="youtubeLink">
+                                    </mat-form-field>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <mat-label>Mô tả Tiếng Anh</mat-label>
+                                    <ckeditor data="<p>Mô tả Tiếng Anh</p>" formControlName="descriptionEn">
+
+                                    </ckeditor>
+                                </div>
+                                <div class="form-group">
+                                    <label for="imageId">Ảnh nhỏ</label>
+                                    <img [src]="thumbnailUrl" style="max-width: 300px; margin: 20px;" alt="">
+                                    <input type="file" class="form-control-file" formControlName="thumbnail"
+                                           (change)="onFileChanged($event,1)">
                                     <button type="button" class="btn btn-primary" (click)="onUpload()">Upload</button>
                                 </div>
+
                             </td>
                         </tr>
+
                     </table>
-                    <button type="submit" class="btn btn-primary">Thêm mới</button>
-                </form>
-            </mat-card-content>
-        </mat-card>
-    </div>
+                    <button type="submit"  class="submitButton" mat-raised-button color="primary" (click)="onCreateGame()">Primary</button>
+                </div>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    Thông tin giới thiệu
+                </ng-template>
+                <div class="content">
+                    <label for="contentVi">Nội dung chi tiết game</label>
+
+                    <ckeditor data="<p>Nội dung chi tiết game</p>" formControlName="contentVi"></ckeditor>
+                </div>
+                <div class="content">
+                    <label for="contentEn">Nội dung chi tiết Tiếng Anh</label>
+
+                    <ckeditor data="<p>Nội dung chi tiết Tiếng Anh</p>" formControlName="contentEn"></ckeditor>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </form>
 
     <app-footer></app-footer>
 </app-layout>

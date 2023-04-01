@@ -304,3 +304,13 @@ div.apexcharts-xaxistooltip-bottom:after {
 ::-webkit-resizer {
     background-color: $dark-grey;
 }
+::ng-deep snack-bar-container.success-green{
+    padding: 20px;
+    background-color: greenyellow;
+    color: white;
+}
+::ng-deep snack-bar-container.alert-red{
+    padding: 20px;
+    background-color: red;
+    color: white;
+}

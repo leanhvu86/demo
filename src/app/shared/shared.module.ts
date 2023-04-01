@@ -12,9 +12,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { HeaderModule } from './header/header.module';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { FooterComponent } from './footer/footer.component';
-import { SettingsMenuComponent } from './ui-elements/settings-menu/settings-menu.component';
-import { DateMenuComponent } from './ui-elements/date-menu/date-menu.component';
+import { SettingsMenuComponent } from './ui-elements';
+import { DateMenuComponent } from './ui-elements';
 import { LayoutComponent } from './layout/layout.component';
+import {AlertDialog, ConfirmationDialog} from "./service/system.service";
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { LayoutComponent } from './layout/layout.component';
     FooterComponent,
     SettingsMenuComponent,
     DateMenuComponent,
-    LayoutComponent
+    LayoutComponent,
+    ConfirmationDialog,
+    AlertDialog
   ],
   imports: [
     HeaderModule,
@@ -35,7 +39,8 @@ import { LayoutComponent } from './layout/layout.component';
     MatMenuModule,
     MatSelectModule,
     FormsModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatDialogModule
   ],
   exports: [
     HeaderModule,
@@ -43,7 +48,9 @@ import { LayoutComponent } from './layout/layout.component';
     FooterComponent,
     SettingsMenuComponent,
     DateMenuComponent,
-    LayoutComponent
+    LayoutComponent,
+    ConfirmationDialog,
+    AlertDialog
   ]
 })
 export class SharedModule { }

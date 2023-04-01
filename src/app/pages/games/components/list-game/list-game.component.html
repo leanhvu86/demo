@@ -1,20 +1,43 @@
 <mat-card class="list-game-wrapper">
     <mat-card-title class="list-game-wrapper__header">
-        <p *ngIf="!isShowFilterInput" class="list-game-wrapper__title">Game List
-            <button routerLink="{{routes.CREATE_GAMES}}" routerLinkActive="active" class="fa-solid fa-circle-plus" style="margin-left: 10px;"></button>
-        </p>
-        <div *ngIf="isShowFilterInput" class="list-game-wrapper__search">
+        <div  class="list-game-wrapper__search">
             <div class="list-game-wrapper__icon-wrapper">
                 <mat-icon class="list-game-wrapper__icon">search</mat-icon>
             </div>
-            <input matInput class="list-game-wrapper__search-input" (keyup)="applyFilter($event)">
-            <button class="list-game-wrapper__button" mat-mini-fab (click)="showFilterInput()">
-          <mat-icon class="list-game-wrapper__icon">close</mat-icon>
-        </button>
+            <input matInput class="list-game-wrapper__search-input" (keyup.enter)="applyFilter($event)"
+                   placeholder="Pick one"
+                   aria-label="Number"
+                   [matAutocomplete]="auto"
+            >
+            <mat-autocomplete #auto="matAutocomplete" (change)="applyFilter($event)" >
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option" >
+                    {{option}}
+                </mat-option>
+            </mat-autocomplete>
+<!--            <button class="list-game-wrapper__button" mat-mini-fab (click)="showFilterInput()">-->
+<!--                <mat-icon class="list-game-wrapper__icon">close</mat-icon>-->
+<!--            </button>-->
+
         </div>
-        <button class="list-game-wrapper__button" mat-mini-fab (click)="showFilterInput()">
-        <mat-icon class="list-game-wrapper__icon">search</mat-icon>
-      </button>
+<!--        <form class="example-form">-->
+<!--            <mat-form-field class="example-full-width" appearance="fill">-->
+<!--                <mat-label>Number</mat-label>-->
+<!--                <input type="text"-->
+<!--                       placeholder="Pick one"-->
+<!--                       aria-label="Number"-->
+<!--                       matInput-->
+<!--                       [formControl]="myControl"-->
+<!--                       (keyup)="applyFilter($event)"-->
+<!--                       [matAutocomplete]="auto">-->
+
+<!--            </mat-form-field>-->
+<!--        </form>-->
+<!--        <button class="list-game-wrapper__button" mat-mini-fab (click)="showFilterInput()">-->
+<!--            <mat-icon class="list-game-wrapper__icon">search</mat-icon>-->
+<!--        </button>-->
+        <button mat-flat-button color="primary" routerLink="{{routes.CREATE_GAMES}}" routerLinkActive="active">
+            <mat-icon>add</mat-icon>
+        </button>
     </mat-card-title>
     <mat-card-content class="list-game__content">
         <table class="list-game__table" mat-table [dataSource]="dataSource">
@@ -22,29 +45,34 @@
             <!-- Checkbox Column -->
             <ng-container matColumnDef="select">
                 <th class="list-game__table-checkbox" mat-header-cell *matHeaderCellDef>
-                    <mat-checkbox color="primary" (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                    <mat-checkbox color="primary" (change)="$event ? masterToggle() : null"
+                                  [checked]="selection.hasValue() && isAllSelected()"
+                                  [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                  [aria-label]="checkboxLabel()">
                     </mat-checkbox>
                 </th>
                 <td class="list-game__table-checkbox" mat-cell *matCellDef="let row">
-                    <mat-checkbox color="primary" (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+                    <mat-checkbox color="primary" (click)="$event.stopPropagation()"
+                                  (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
+                                  [aria-label]="checkboxLabel(row)">
                     </mat-checkbox>
                 </td>
             </ng-container>
 
             <!-- Name Column -->
             <ng-container matColumnDef="name">
-                <th class="list-game__table-header" mat-header-cell *matHeaderCellDef> Name </th>
+                <th class="list-game__table-header" mat-header-cell *matHeaderCellDef> Name</th>
                 <td class="list-game__table-body" mat-cell *matCellDef="let element"> {{element.name}} </td>
             </ng-container>
 
             <ng-container matColumnDef="price">
-                <th class="list-game__table-header" mat-header-cell *matHeaderCellDef> Giá </th>
+                <th class="list-game__table-header" mat-header-cell *matHeaderCellDef> Giá</th>
                 <td class="list-game__table-body" mat-cell *matCellDef="let element"> {{element.price}} </td>
             </ng-container>
 
             <!-- Company Column -->
             <ng-container matColumnDef="promotionPercent">
-                <th class="list-game__table-header" mat-header-cell *matHeaderCellDef> Khuyến mãi </th>
+                <th class="list-game__table-header" mat-header-cell *matHeaderCellDef> Khuyến mãi</th>
                 <td class="list-game__table-body" mat-cell *matCellDef="let element">
                     {{element.promotionPercent}} %
                 </td>
@@ -54,31 +82,37 @@
 
             <!-- State Column -->
             <ng-container matColumnDef="thumbnail">
-                <th class="list-game__table-header" mat-header-cell *matHeaderCellDef> Thumbnail </th>
+                <th class="list-game__table-header" mat-header-cell *matHeaderCellDef> Thumbnail</th>
                 <td class="list-game__table-body" mat-cell *matCellDef="let element">
                     <img src="{{element.imageUrl}}" style="max-width: 50px;" alt="element.imageUrl">
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="type">
-                <th class="list-game__table-header" mat-header-cell *matHeaderCellDef> Type </th>
+                <th class="list-game__table-header" mat-header-cell *matHeaderCellDef> Type</th>
                 <td class="list-game__table-body" mat-cell *matCellDef="let element"> {{element.type}} </td>
             </ng-container>
 
             <ng-container matColumnDef="categoryName">
-                <th class="list-game__table-header" mat-header-cell *matHeaderCellDef> Danh mục </th>
+                <th class="list-game__table-header" mat-header-cell *matHeaderCellDef> Danh mục</th>
                 <td class="list-game__table-body" mat-cell *matCellDef="let element"> {{element.categoryName}} </td>
             </ng-container>
 
             <ng-container matColumnDef="status">
-                <th class="list-game__table-header" mat-header-cell *matHeaderCellDef> Status </th>
-                <td class="list-game__table-body list-game__content-badge" mat-cell *matCellDef="let element"> <span [ngClass]="element.status">{{element.status}}</span></td>
+                <th class="list-game__table-header" mat-header-cell *matHeaderCellDef> Status</th>
+                <td class="list-game__table-body list-game__content-badge" mat-cell *matCellDef="let element"><span
+                        [ngClass]="element.status">{{element.status}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="action">
-                <th class="list-game__table-header" mat-header-cell *matHeaderCellDef> Action </th>
+                <th class="list-game__table-header" mat-header-cell *matHeaderCellDef> Action</th>
                 <td class="list-game__table-body" mat-cell *matCellDef="let element">
-                    <i class="fa-solid fa-pen-to-square"></i> | <i class="fa-solid fa-trash"></i>
+                    <button mat-flat-button color="primary" >
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-flat-button color="warn" >
+                        <mat-icon>delete</mat-icon>
+                    </button>
                 </td>
             </ng-container>
 

@@ -4,31 +4,33 @@ import { Observable, of } from 'rxjs';
 
 import { Customer, Employee } from '../models';
 import { Users } from '../models/users';
+import {AppSetting} from "../../../appsetting";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TablesService {
+  BASE_SERVER_URL= AppSetting.BASE_SERVER_URL;
 
   constructor(private http: HttpClient) { };
-  api_key = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4MDIzMTgzMCwiZXhwIjoxNjgwMzE4MjMwfQ.Q3R5cnkF0iOeSt06_gUslDIQgjtQJ2JE6TtxKZ9k34OE0uwjrrT6h29rtsMQuL03pVH5exMdnEk35rX-1jNFbA";
-  headers = new HttpHeaders({
-    'Access-Control-Allow-Origin': '*',
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${this.api_key}`
-  });
-  requestOptions = { headers: this.headers };
+  // api_key = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4MDIzMTgzMCwiZXhwIjoxNjgwMzE4MjMwfQ.Q3R5cnkF0iOeSt06_gUslDIQgjtQJ2JE6TtxKZ9k34OE0uwjrrT6h29rtsMQuL03pVH5exMdnEk35rX-1jNFbA";
+  // headers = new HttpHeaders({
+  //   'Access-Control-Allow-Origin': '*',
+  //   'Content-Type': 'application/json',
+  //   'Authorization': `Bearer ${this.api_key}`
+  // });
+  // requestOptions = { headers: this.headers };
 
   getListUser(): Observable<Users[]> {
-    return this.http.get<Users[]>('http://52.41.255.157:8080/trunggame-0.0.1/api/user', this.requestOptions);
+    return this.http.get<Users[]>(this.BASE_SERVER_URL+'/api/user');
   }
 
   updateUser(data: any): Observable<Users[]> {
-    return this.http.post<Users[]>('http://52.41.255.157:8080/trunggame-0.0.1/api/user/update', data, this.requestOptions);
+    return this.http.post<Users[]>(this.BASE_SERVER_URL+'/api/user/update', data);
   }
 
   deleteUser(id:any): Observable<Users[]> {
-    return this.http.post<Users[]>('http://52.41.255.157:8080/trunggame-0.0.1/api/user/delete', id, this.requestOptions);
+    return this.http.post<Users[]>(this.BASE_SERVER_URL+'/api/user/delete', id);
   }
 
   // ================================

@@ -4,6 +4,9 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { routes } from '../../../../consts';
 import { GamesService } from '../../services';
+import {map, startWith} from "rxjs/operators";
+import {Observable} from "rxjs/dist/types";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-list-game',
@@ -13,12 +16,9 @@ import { GamesService } from '../../services';
 export class ListGameComponent implements OnInit {
 
   public routes: typeof routes = routes;
-
-  constructor(private gameService: GamesService) {
-  }
-
-  // user: Users[] = [];
-
+  myControl = new FormControl('');
+  options: string[] = ['One', 'Two', 'Three'];
+  filteredOptions: Observable<string[]>;
   @Input() userTableData: [];
   public displayedColumns: string[] = ['select', 'name', 'price', 'promotionPercent', 'thumbnail', 'type', 'categoryName', 'status', 'action'];
   public dataSource = new MatTableDataSource<any>();
@@ -27,6 +27,22 @@ export class ListGameComponent implements OnInit {
   public isShowFilterInput = false;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+
+  constructor(private gameService: GamesService) {
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+        startWith(''),
+        map(value => this._filter(value || '')),
+    );
+  }
+
+  private _filter(value): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  }
+  // user: Users[] = [];
+
+
 
   public ngOnInit(): void {
     // this.dataSource = new MatTableDataSource<Users>(this.userTableData);
