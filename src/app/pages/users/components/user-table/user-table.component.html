@@ -1,7 +1,16 @@
 <mat-card class="user-table-wrapper">
     <mat-card-title class="user-table-wrapper__header">
         <!--        <p *ngIf="!isShowFilterInput" class="user-table-wrapper__title">Danh sách User</p>-->
-        <p>
+        <div class="user-table-wrapper__search">
+            <div class="user-table-wrapper__icon-wrapper">
+                <mat-icon class="user-table-wrapper__icon">search</mat-icon>
+            </div>
+            <input matInput class="user-table-wrapper__search-input" placeholder="Tìm kiếm" (keyup)="applyFilter($event)" autocomplete="on">
+            <!-- <button class="user-table-wrapper__button" mat-mini-fab (click)="showFilterInput()">
+                <mat-icon class="user-table-wrapper__icon">close</mat-icon>
+            </button> -->
+        </div>
+        <p *ngIf="!isShowFilterInput">
             <span class="user-table-wrapper__q-span">
                 <button class="ds_list" id="all" (click)="getAllUser()">Tất cả</button>
             </span> | <span class="user-table-wrapper__q-span">
@@ -10,35 +19,20 @@
             <button class="ds_list" id="deleted" (click)="getDeletedUser()">Tạm dừng</button>
         </span>
         </p>
-
-        <div *ngIf="isShowFilterInput" class="user-table-wrapper__search">
-            <div class="user-table-wrapper__icon-wrapper">
-                <mat-icon class="user-table-wrapper__icon">search</mat-icon>
-            </div>
-            <input matInput class="user-table-wrapper__search-input" (keyup)="applyFilter($event)">
-            <button class="user-table-wrapper__button" mat-mini-fab (click)="showFilterInput()">
-                <mat-icon class="user-table-wrapper__icon">close</mat-icon>
-            </button>
-        </div>
-        <button class="user-table-wrapper__button" mat-mini-fab (click)="showFilterInput()">
+        <!-- <button class="user-table-wrapper__button" mat-mini-fab (click)="showFilterInput()">
             <mat-icon class="user-table-wrapper__icon">search</mat-icon>
-        </button>
+        </button> -->
     </mat-card-title>
     <mat-card-content class="user-table__content">
         <table class="user-table__table" mat-table [dataSource]="dataSource">
             <!-- Checkbox Column -->
             <ng-container matColumnDef="select">
                 <th class="user-table__table-checkbox" mat-header-cell *matHeaderCellDef>
-                    <mat-checkbox color="primary" (change)="$event ? masterToggle() : null"
-                                  [checked]="selection.hasValue() && isAllSelected()"
-                                  [indeterminate]="selection.hasValue() && !isAllSelected()"
-                                  [aria-label]="checkboxLabel()">
+                    <mat-checkbox color="primary" (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
                     </mat-checkbox>
                 </th>
                 <td class="user-table__table-checkbox" mat-cell *matCellDef="let row">
-                    <mat-checkbox color="primary" (click)="$event.stopPropagation()"
-                                  (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
-                                  [aria-label]="checkboxLabel(row)">
+                    <mat-checkbox color="primary" (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
                     </mat-checkbox>
                 </td>
             </ng-container>
@@ -80,19 +74,16 @@
 
             <ng-container matColumnDef="status">
                 <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Trạng thái</th>
-                <td class="user-table__table-body user-table__content-badge" mat-cell *matCellDef="let element"><span
-                        [ngClass]="element.status">{{element.status}}</span></td>
+                <td class="user-table__table-body user-table__content-badge" mat-cell *matCellDef="let element"><span [ngClass]="element.status">{{element.status}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="action">
                 <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Hành động</th>
                 <td class="user-table__table-body" mat-cell *matCellDef="let element">
                     <!-- <i class="fa-solid fa-user-pen"></i> | <i class="fa-solid fa-trash"></i> -->
-                    <button class="user-table-wrapper__button" routerLink="{{routes.EDIT_USER}}/{{element.id}}"
-                            routerLinkActive="active" mat-mini-fab>
+                    <button class="user-table-wrapper__button" routerLink="{{routes.EDIT_USER}}/{{element.id}}" routerLinkActive="active" mat-mini-fab>
                         <mat-icon class="user-table-wrapper__q-icon">edit</mat-icon>
-                    </button>
-                    |
+                    </button> |
                     <button class="user-table-wrapper__button" (click)="onDelete(element.id)" mat-mini-fab>
                         <mat-icon class="user-table-wrapper__q-icon">delete</mat-icon>
                     </button>

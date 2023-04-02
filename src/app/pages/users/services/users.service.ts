@@ -13,24 +13,24 @@ export class UsersService {
   BASE_SERVER_URL= AppSetting.BASE_SERVER_URL;
 
   constructor(private http: HttpClient) { };
-  // api_key = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4MDIzMTgzMCwiZXhwIjoxNjgwMzE4MjMwfQ.Q3R5cnkF0iOeSt06_gUslDIQgjtQJ2JE6TtxKZ9k34OE0uwjrrT6h29rtsMQuL03pVH5exMdnEk35rX-1jNFbA";
-  // headers = new HttpHeaders({
-  //   'Access-Control-Allow-Origin': '*',
-  //   'Content-Type': 'application/json',
-  //   'Authorization': `Bearer ${this.api_key}`
-  // });
-  // requestOptions = { headers: this.headers };
+  api_key = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbjEyMyIsImlhdCI6MTY4MDM1NzQyMiwiZXhwIjoxNjgwNDQzODIyfQ.eeRrMbearD3XA3OM63aI1ZcC0jCZAUEPGnofdrwLkJAFGvUSRgV1EjkI9cCfrLvo3wn9YrM0iG2088eQh0AJaw";
+  headers = new HttpHeaders({
+    'Access-Control-Allow-Origin': '*',
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${this.api_key}`
+  });
+  requestOptions = { headers: this.headers };
 
   getListUser(): Observable<Users[]> {
-    return this.http.get<Users[]>(this.BASE_SERVER_URL+'/api/user');
+    return this.http.get<Users[]>(this.BASE_SERVER_URL+'/api/user', this.requestOptions);
   }
 
   updateUser(data: any): Observable<Users[]> {
-    return this.http.post<Users[]>(this.BASE_SERVER_URL+'/api/user/update', data);
+    return this.http.post<Users[]>(this.BASE_SERVER_URL+'/api/user/update', data, this.requestOptions);
   }
 
   deleteUser(id:any): Observable<Users[]> {
-    return this.http.post<Users[]>(this.BASE_SERVER_URL+'/api/user/delete', id);
+    return this.http.post<Users[]>(this.BASE_SERVER_URL+'/api/user/delete', id, this.requestOptions);
   }
 
   // ================================

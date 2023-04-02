@@ -12,17 +12,17 @@ export class GamesService {
 
   constructor(private http: HttpClient) { };
   // Add Authentication to Header
-  // api_key = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4MDE0NTExNCwiZXhwIjoxNjgwMjMxNTE0fQ.qRlKAic6DvKn69nW-DpqSAOGTze6XQUBT2LwourGAKP3O1h6ySbZYRsqEMQcs3Mc8FduSfILk-CW9rnWD33OvA";
-  // headers = new HttpHeaders({
-  //   'Content-Type': 'application/json',
-  //   'Authorization': `Bearer ${this.api_key}`,
-  //   "Access-Control-Allow-Origin": '*'
-  // });
-  // requestOptions = { headers: this.headers };
+  api_key = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbjEyMyIsImlhdCI6MTY4MDM1NzQyMiwiZXhwIjoxNjgwNDQzODIyfQ.eeRrMbearD3XA3OM63aI1ZcC0jCZAUEPGnofdrwLkJAFGvUSRgV1EjkI9cCfrLvo3wn9YrM0iG2088eQh0AJaw";
+  headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${this.api_key}`,
+    "Access-Control-Allow-Origin": '*'
+  });
+  requestOptions = { headers: this.headers };
   BASE_SERVER_URL= AppSetting.BASE_SERVER_URL;
 
   uploadFile(data:any): Observable<any> {
-    return this.http.post<any>(this.BASE_SERVER_URL+'/api/file/upload', data);
+    return this.http.post<any>(this.BASE_SERVER_URL+'/api/file/upload', data, this.requestOptions);
   }
 
   getListGame(): Observable<Games[]> {

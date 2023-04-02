@@ -38,14 +38,11 @@ export class EditUserComponent implements OnInit {
         address: new FormControl(res[0].address),
         phoneNumber: new FormControl(res[0].phoneNumber)
       })
-      console.log("aaaa")
-      console.log(res[0])
     })
   }
 
   ngOnInit(): void {
     this.id = this._route.snapshot.params["id"];
-    console.log(this.id)
     this.findUser(this.id)
   }
 

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {GamesService} from '../../services';
-import {Observable} from "rxjs/dist/types";
+import {Observable} from "rxjs";
 import {map, startWith} from "rxjs/operators";
 import {NotificationService} from "../../../../shared/service/system.service";
 import {ToastrService} from "ngx-toastr";
@@ -85,6 +85,7 @@ export class CreateGameComponent implements OnInit {
         formData.append('file', this.files);
         formData.append('type', 'banner');
         this.gameService.uploadFile(formData).subscribe(data => {
+            console.log("abc")
             console.log(data['data']['id'])
         })
     }

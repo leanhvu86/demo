@@ -7,9 +7,8 @@
         <p class="list-game-wrapper__title">Thêm mới</p>
     </mat-card-title>
     <form [formGroup]="gameForm" class="form-signin" style="width: 98%;margin-top: 20px; background-color: white;padding: 20px 20px;margin-left: auto;margin-right: auto;">
-        <mat-tab-group
-                >
-<!--            [(selectedIndex)]="TabIndex" (selectedTabChange)="changeTabValid($event)"-->
+        <mat-tab-group>
+            [(selectedIndex)]="TabIndex" (selectedTabChange)="changeTabValid($event)"
             <mat-tab>
                 <ng-template mat-tab-label>
                     Thông tin cơ bản
@@ -17,18 +16,15 @@
                 <div class="tables-wrapper">
                     <table>
                         <tr>
-                            <td class="image">
+                            <td>
                                 <div class="form-group">
                                     <mat-form-field class="example-full-width" appearance="fill">
                                         <mat-label>Tên Game</mat-label>
-                                        <input type="text"
-                                               placeholder="Tên Game"
-                                               matInput
-                                               formControlName="name">
+                                        <input type="text" placeholder="Tên Game" matInput formControlName="name">
                                     </mat-form-field>
                                 </div>
                                 <div class="form-group">
-                                    <mat-form-field class="example-full-width" appearance="fill" >
+                                    <mat-form-field class="example-full-width" appearance="fill">
                                         <mat-label>Vui lòng chọn thể loại game</mat-label>
                                         <mat-select formControlName="categoryId">
                                             <mat-option *ngFor="let category of categories" [value]="category.id">
@@ -41,11 +37,7 @@
                                 <div class="form-group">
                                     <mat-form-field class="example-full-width" appearance="fill">
                                         <mat-label>Công ty phát hành</mat-label>
-                                        <input type="text"
-                                               placeholder="Công ty phát hành"
-                                               matInput
-                                               formControlName="companyName" (keydown)="onKeydown($event)"
-                                               [matAutocomplete]="auto">
+                                        <input type="text" placeholder="Công ty phát hành" matInput formControlName="companyName" (keydown)="onKeydown($event)" [matAutocomplete]="auto">
                                         <mat-autocomplete #auto="matAutocomplete">
                                             <mat-option *ngFor="let option1 of filteredOptionsCompany | async" [value]="option1">
                                                 {{option1}}
@@ -62,22 +54,16 @@
                                 <div class="form-group">
                                     <label for="thumbnail">Ảnh slide</label>
                                     <img [src]="thumbnailUrl" style="max-width: 300px; margin: 20px;" alt="">
-                                    <input type="file" class="form-control-file" formControlName="thumbnail"
-                                           (change)="onFileChanged($event,2)">
+                                    <input type="file" class="form-control-file" formControlName="thumbnail" (change)="onFileChanged($event,2)">
                                     <button type="button" class="btn btn-primary" (click)="onUpload()">Upload</button>
                                 </div>
                             </td>
-                            <td class="image">
+                            <td>
                                 <div class="form-group">
                                     <mat-form-field class="example-full-width" appearance="fill">
                                         <mat-label>Thị Trường Game</mat-label>
-                                        <input type="text"
-                                               placeholder="Thị Trường Game"
-                                               matInput
-                                               formControlName="marketType"
-                                               (keydown)="onKeydown($event)"
-                                               [matAutocomplete]="autoNationality">
-                                        <mat-autocomplete #autoNationality="matAutocomplete" >
+                                        <input type="text" placeholder="Thị Trường Game" matInput formControlName="marketType" (keydown)="onKeydown($event)" [matAutocomplete]="autoNationality">
+                                        <mat-autocomplete #autoNationality="matAutocomplete">
                                             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
                                                 {{option}}
                                             </mat-option>
@@ -86,25 +72,22 @@
                                 </div>
                                 <br/>
                                 <div class="form-group">
-<!--                                    <label for="type">Nền tảng</label>-->
-<!--                                    <br/>-->
-<!--                                    <mat-form-field class="example-full-width" appearance="fill">-->
+                                    <!--                                    <label for="type">Nền tảng</label>-->
+                                    <!--                                    <br/>-->
+                                    <!--                                    <mat-form-field class="example-full-width" appearance="fill">-->
 
                                     <mat-radio-group aria-label="Select an option" formControlName="type">
                                         <mat-radio-button value="Mobile">Mobile</mat-radio-button>
                                         <mat-radio-button value="Desktop">Desktop</mat-radio-button>
                                         <mat-radio-button value="Multiple-Platform">Multiple-Platform</mat-radio-button>
                                     </mat-radio-group>
-<!--                                    </mat-form-field>-->
+                                    <!--                                    </mat-form-field>-->
                                 </div>
                                 <br/>
                                 <div class="form-group">
                                     <mat-form-field class="example-full-width" appearance="fill">
                                         <mat-label>Link youtube</mat-label>
-                                        <input type="text"
-                                               placeholder="Công ty phát hành"
-                                               matInput
-                                               formControlName="youtubeLink">
+                                        <input type="text" placeholder="Công ty phát hành" matInput formControlName="youtubeLink">
                                     </mat-form-field>
                                 </div>
 
@@ -119,8 +102,7 @@
                                 <div class="form-group">
                                     <label for="imageId">Ảnh nhỏ</label>
                                     <img [src]="thumbnailUrl" style="max-width: 300px; margin: 20px;" alt="">
-                                    <input type="file" class="form-control-file" formControlName="thumbnail"
-                                           (change)="onFileChanged($event,1)">
+                                    <input type="file" class="form-control-file" formControlName="thumbnail" (change)="onFileChanged($event,1)">
                                     <button type="button" class="btn btn-primary" (click)="onUpload()">Upload</button>
                                 </div>
 
@@ -128,7 +110,7 @@
                         </tr>
 
                     </table>
-                    <button type="submit"  class="submitButton" mat-raised-button color="primary" (click)="onCreateGame()">Primary</button>
+                    <button type="submit" class="submitButton" mat-raised-button color="primary" (click)="onCreateGame()">Primary</button>
                 </div>
             </mat-tab>
             <mat-tab>
