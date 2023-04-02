@@ -17,9 +17,9 @@ export class CreateGameComponent implements OnInit {
 
     selectedValue: string;
     categories: any = [
-        {ìd:1,name:'Platform games'},
-        {ìd:2,name:'Shooter games'},
-        {ìd:1,name:'Fighting games'}]
+        {ìd: 1, name: 'Platform games'},
+        {ìd: 2, name: 'Shooter games'},
+        {ìd: 1, name: 'Fighting games'}]
     options: string[] = ['Global', 'America', 'Europe'];
     optionsCompany: string[] = ['VinaGame', 'Unit', 'Soha'];
     filteredOptions: Observable<string[]>;
@@ -62,15 +62,15 @@ export class CreateGameComponent implements OnInit {
         );
     }
 
-    onFileChanged(event: any,type) {
+    onFileChanged(event: any, type) {
         if (event.target.files) {
             let reader = new FileReader()
             reader.readAsDataURL(event.target.files[0])
             reader.onload = (event: any) => {
-                if (type==1){
+                if (type == 1) {
                     this.url = event.target.result
 
-                }else{
+                } else {
                     this.thumbnailUrl = event.target.result
 
                 }
@@ -95,11 +95,8 @@ export class CreateGameComponent implements OnInit {
             if (data['data'] !== undefined) {
                 this.categories = data['data'];
             }
-            console.log(this.categories)
         })
     }
-
-
 
 
     private _filterCompany(value): string[] {
@@ -117,15 +114,13 @@ export class CreateGameComponent implements OnInit {
 
         return this.options.filter(option => option.toLowerCase().includes(filterValue));
     }
-    onKeydown(e){
-        e.preventDefault();
-    }
+
     onCreateGame() {
         console.log(this.gameForm.value
         );
         this.toastrService.success('Chúc mừng bạn', 'Thêm mới thành công');
 
-        if(this.gameForm.valid==false){
+        if (this.gameForm.valid == false) {
             return;
         }
 
