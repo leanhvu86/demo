@@ -9,7 +9,7 @@ import {AppSetting} from "../../../appsetting";
 @Injectable({
   providedIn: 'root'
 })
-export class UsersService {
+export class TablesService {
   BASE_SERVER_URL= AppSetting.BASE_SERVER_URL;
 
   constructor(private http: HttpClient) { };

@@ -3,7 +3,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {SelectionModel} from '@angular/cdk/collections';
 import {MatPaginator} from '@angular/material/paginator';
 import {routes} from '../../../../consts';
-import {UsersService} from '../../services';
+import {TablesService} from '../../services';
 
 @Component({
     selector: 'app-user-table',
@@ -24,7 +24,7 @@ export class UserTableComponent implements OnInit {
 
     @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-    constructor(private tableService: UsersService) {
+    constructor(private tableService: TablesService) {
     }
 
     public ngOnInit(): void {

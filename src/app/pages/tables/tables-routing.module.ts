@@ -17,5 +17,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 
-export class UsersRoutingModule {
+export class TablesRoutingModule {
 }
