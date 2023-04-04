@@ -38,6 +38,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/games/games.module').then(m => m.GamesModule)
   },
   {
+    path: 'packages',
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/packages/package.module').then(m => m.PackageModule)
+  },
+  {
     path: 'games/create',
     pathMatch: 'full',
     canActivate: [AuthGuard],

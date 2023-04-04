@@ -4,6 +4,7 @@ export enum routes {
   TABLES = '/users',
   EDIT_USER = '/users/edit',
   GAMES = '/games',
+  PACKAGES = '/packages',
   CREATE_GAMES = '/games/create',
   NOTIFICATION = '/notification',
   UI_ELEMENTS_ICONS = '/ui/icons',
