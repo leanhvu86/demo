@@ -1,5 +1,5 @@
-<!--&lt;!&ndash; hotel-access &ndash;&gt;-->
-<!--&lt;!&ndash; image hotel&ndash;&gt;-->
+<!-- hotel-access -->
+<!-- image hotel-->
 <!--<div class="wrapper" *ngIf="imageProp == 'hotelAccess'">-->
 <!--    <div class="row">-->
 <!--        <div class="col">-->
@@ -87,20 +87,20 @@
 <!--    </div>-->
 
 <!--</div>-->
-<!--&lt;!&ndash; user-profile &ndash;&gt;-->
-<!--<div *ngIf="imageProp == 'profile'">-->
-<!--    <label class="hoverablee" for="fileInput" style="height: 200px;-->
-<!--    width: 200px; margin: 30px auto">-->
-<!--        &lt;!&ndash; <img [src]=" 'https://www.w3schools.com/howto/img_avatar.png'" style="border: 1px solid #ffffff;"> &ndash;&gt;-->
-<!--        <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'"-->
-<!--             style="border: 1px solid #ffffff;height: 100%;width: 100%;border-radius: 50%;">-->
-<!--    </label>-->
-<!--    <br/>-->
-<!--    <input id="fileInput" type='file' (change)="onSelectFile($event)" ng2FileSelect [uploader]="uploader">-->
-<!--    <div>-->
-<!--    </div>-->
-<!--    <div class="card-body" style="text-align: center; padding: 0">-->
-<!--        <h6>Nhấn để cập nhật ảnh diện</h6>-->
-<!--        &lt;!&ndash; <button type="button" (click)="uploader.uploadAll()">Cap nhat</button> .&ndash;&gt;-->
-<!--    </div>-->
-<!--</div>-->
+<!-- user-profile -->
+<div *ngIf="imageProp == 'profile'">
+    <label class="hoverablee" for="fileInput" style="height: 200px;
+    width: 200px; margin: 30px auto">
+        <!-- <img [src]=" 'https://www.w3schools.com/howto/img_avatar.png'" style="border: 1px solid #ffffff;"> -->
+        <img [src]="url ? url :  '../../../../../assets/image/no-image.jpg'"
+             style="height: 100%;width: 100%;" alt="">
+    </label>
+    <br/>
+    <input id="fileInput" type='file' (change)="onSelectFile($event)" ng2FileSelect [uploader]="uploader">
+    <div>
+    </div>
+    <div class="card-body" style="text-align: center; padding: 0">
+        <h6>Nhấn để cập nhật ảnh</h6>
+        <!-- <button type="button" (click)="uploader.uploadAll()">Cap nhat</button> .-->
+    </div>
+</div>

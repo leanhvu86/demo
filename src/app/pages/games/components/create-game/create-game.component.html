@@ -9,11 +9,12 @@
     <form [formGroup]="gameForm" class="form-signin"
           style="width: 98%;margin-top: 20px; background-color: white;padding: 20px 20px;margin-left: auto;margin-right: auto;">
         <mat-tab-group>
-<!--            [(selectedIndex)]="TabIndex" (selectedTabChange)="changeTabValid($event)"-->
+            <!--            [(selectedIndex)]="TabIndex" (selectedTabChange)="changeTabValid($event)"-->
             <mat-tab>
                 <ng-template mat-tab-label>
                     Thông tin cơ bản
                 </ng-template>
+                <br/>
                 <div class="tables-wrapper">
                     <table>
                         <tr>
@@ -56,11 +57,13 @@
                                     </ckeditor>
                                 </div>
                                 <div class="form-group">
-                                    <label for="thumbnail">Ảnh slide</label>
-                                    <img [src]="thumbnailUrl" style="max-width: 300px; margin: 20px;" alt="">
-                                    <input type="file" class="form-control-file" formControlName="thumbnail"
-                                           (change)="onFileChanged($event,2)">
-                                    <button type="button" class="btn btn-primary" (click)="onUpload()">Upload</button>
+                                    <label for="url">Ảnh slide</label>
+                                    <app-image [imageProp]="imageProp" [url]="url"
+                                               (imageSrcUrl)="getImageSrc($event)"></app-image>
+                                    <!--                                    <img [src]="thumbnailUrl" style="max-width: 300px; margin: 20px;" alt="">-->
+                                    <!--                                    <input type="file" class="form-control-file" formControlName="thumbnail"-->
+                                    <!--                                           (change)="onFileChanged($event,2)">-->
+                                    <!--                                    <button type="button" class="btn btn-primary" (click)="onUpload()">Upload</button>-->
                                 </div>
                             </td>
                             <td>
@@ -107,11 +110,15 @@
                                     </ckeditor>
                                 </div>
                                 <div class="form-group">
-                                    <label for="imageId">Ảnh nhỏ</label>
-                                    <img [src]="thumbnailUrl" style="max-width: 300px; margin: 20px;" alt="">
-                                    <input type="file" class="form-control-file" formControlName="thumbnail"
-                                           (change)="onFileChanged($event,1)">
-                                    <button type="button" class="btn btn-primary" (click)="onUpload()">Upload</button>
+                                    <label for="thumbnail">Ảnh nhỏ</label>
+
+                                    <app-image [imageProp]="imageProp" [url]="thumbnailUrl"
+                                               (imageSrcUrl)="getImageThumbnailSrc($event)"></app-image>
+
+                                    <!--                                    <img [src]="thumbnailUrl" style="max-width: 300px; margin: 20px;" alt="">-->
+                                    <!--                                    <input type="file" class="form-control-file" formControlName="thumbnail"-->
+                                    <!--                                           (change)="onFileChanged($event,1)">-->
+                                    <!--                                    <button type="button" class="btn btn-primary" (click)="onUpload()">Upload</button>-->
                                 </div>
 
                             </td>
@@ -119,7 +126,7 @@
 
                     </table>
                     <button type="submit" class="submitButton" mat-raised-button color="primary"
-                            (click)="onCreateGame()">Primary
+                            (click)="onCreateGame()">Tạo game
                     </button>
                 </div>
             </mat-tab>

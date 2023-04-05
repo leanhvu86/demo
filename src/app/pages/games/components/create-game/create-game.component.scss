@@ -76,11 +76,11 @@
     padding: 0 20px;
 }
 
-.example-full-width {
-    width: 100%;
-    background: white;
-    height: fit-content;
-}
+//.example-full-width {
+//    width: 100%;
+//    background: white;
+//    height: fit-content;
+//}
 
 .textarea {
     resize: none;
@@ -99,6 +99,7 @@
 }
 
 ::ng-deep .mat-form-field {
+    width: 100%;
     .mat-input-element {
         color: slategray;
     }
@@ -125,7 +126,9 @@ mat-select {
 }
 
 ::ng-deep .mat-select-panel-wrap {
+    width: 100% !important;
     .mat-select-panel {
+
         .box-search {
             margin: 8px;
             border-radius: 2px;
@@ -211,3 +214,4 @@ mat-select {
 .submitButton {
     margin-left: 90%;
 }
+

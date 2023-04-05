@@ -28,6 +28,9 @@ export class CreateGameComponent implements OnInit {
     gameForm: FormGroup;
     url = '../../../../../assets/image/no-image.jpg';
     thumbnailUrl = '../../../../../assets/image/no-image.jpg';
+    arrayImage = '';
+    imageProp = 'profile';
+    listImgCurrent = [];
 
     constructor(private gameService: GamesService,
                 private formbuilder: FormBuilder,
@@ -113,6 +116,15 @@ export class CreateGameComponent implements OnInit {
         console.log(this.options)
 
         return this.options.filter(option => option.toLowerCase().includes(filterValue));
+    }
+
+    getImageSrc(event: any) {
+        const imageRes = JSON.parse(event)
+        this.url=imageRes.filePath;
+    }
+    getImageThumbnailSrc(event: any) {
+        const imageRes = JSON.parse(event)
+        this.url=imageRes.filePath;
     }
 
     onCreateGame() {

@@ -24,6 +24,7 @@ import {CKEditorModule} from "ckeditor4-angular";
 import {MatOptionModule} from "@angular/material/core";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatSelectModule} from "@angular/material/select";
+import {UiElementsModule} from "../ui-elements/ui-elements.module";
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import {MatSelectModule} from "@angular/material/select";
         MatOptionModule,
         MatAutocompleteModule,
         MatSelectModule,
-        FormsModule
+        FormsModule,
+        UiElementsModule
     ],
   providers: [
     GamesService,

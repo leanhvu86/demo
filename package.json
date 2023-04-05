@@ -24,6 +24,7 @@
     "apexcharts": "3.26.2",
     "ckeditor4-angular": "^3.3.0",
     "echarts": "5.1.1",
+    "ng2-file-upload": "^1.4.0",
     "font-awesome": "^4.7.0",
     "ng-apexcharts": "1.5.9",
     "ngx-echarts": "6.0.1",
