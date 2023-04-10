@@ -4,6 +4,7 @@ import {Observable, of} from 'rxjs';
 
 import {Router} from '@angular/router';
 import {catchError} from 'rxjs/operators';
+import { LoginFormComponent } from 'src/app/pages/auth/components/login-form/login-form.component';
 
 /*
 The JWT interceptor intercepts the incoming requests from the application/user and adds JWT token to the request's
@@ -17,7 +18,10 @@ export class JwtInterceptor implements HttpInterceptor {
     }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbjEyMyIsImlhdCI6MTY4MDM1NzQyMiwiZXhwIjoxNjgwNDQzODIyfQ.eeRrMbearD3XA3OM63aI1ZcC0jCZAUEPGnofdrwLkJAFGvUSRgV1EjkI9cCfrLvo3wn9YrM0iG2088eQh0AJaw';
+        const token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbjEyMyIsImlhdCI6MTY4MDc3MjQ3NywiZXhwIjoxNjgwODU4ODc3fQ.jM3DZttzDtgnezCrTdZT9zZlBaTqsI372FBM60CDeJTuHEW56TesWcNdRLMjMaawC6VGTiGbXPpsG5Ad4tF8og';
+        // const token = localStorage.getItem('token');
+        // console.log('aaaaa' + token)
+        // request = request.clone({headers: request.headers.set('Bearer', token)});
         request = request.clone({
             setHeaders: {
                 Authorization: `Bearer ${token}`

@@ -13,8 +13,7 @@ import {
   HeatmapChartComponent,
   IconsPageComponent,
   LineChartComponent,
-  PieChartComponent,
-  ImageComponent
+  PieChartComponent
 } from './components';
 import {
   ChartsPageComponent,
@@ -25,7 +24,6 @@ import { SharedModule } from '../../shared/shared.module';
 import { ChartsService } from './services';
 import { DashboardModule } from '../dashboard/dashboard.module';
 import { googleMapKey } from './consts';
-import {FileUploadModule} from "ng2-file-upload";
 
 @NgModule({
   declarations: [
@@ -35,8 +33,7 @@ import {FileUploadModule} from "ng2-file-upload";
     LineChartComponent,
     DashedLineChartComponent,
     PieChartComponent,
-    HeatmapChartComponent,
-    ImageComponent
+    HeatmapChartComponent
   ],
   imports: [
     CommonModule,
@@ -53,10 +50,6 @@ import {FileUploadModule} from "ng2-file-upload";
     MatToolbarModule,
     SharedModule,
     DashboardModule,
-    FileUploadModule,
-  ],
-  exports: [
-    ImageComponent
   ],
   providers: [
     ChartsService

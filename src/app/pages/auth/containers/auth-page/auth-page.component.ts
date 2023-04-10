@@ -10,6 +10,7 @@ import { routes } from '../../../../consts';
   styleUrls: ['./auth-page.component.scss']
 })
 export class AuthPageComponent {
+  data : any
   public todayDate: Date = new Date();
   public routers: typeof routes = routes;
 
@@ -19,8 +20,7 @@ export class AuthPageComponent {
   ) { }
 
   public sendLoginForm(): void {
-    this.service.login();
-
+    // this.service.login();
     this.router.navigate([this.routers.TABLES]).then();
   }
 

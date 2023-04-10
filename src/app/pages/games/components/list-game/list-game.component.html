@@ -7,16 +7,16 @@
             <input matInput class="list-game-wrapper__search-input" (keyup.enter)="applyFilter($event)"
                    placeholder="Pick one"
                    aria-label="Number"
-                   [matAutocomplete]="auto2"
+                   [matAutocomplete]="auto"
             >
-            <mat-autocomplete #auto2="matAutocomplete" (change)="applyFilter($event)" >
+            <mat-autocomplete #auto="matAutocomplete" (change)="applyFilter($event)" >
                 <mat-option *ngFor="let option of filteredOptions | async" [value]="option" >
                     {{option}}
                 </mat-option>
             </mat-autocomplete>
-            <button class="list-game-wrapper__button" mat-mini-fab (click)="showFilterInput()">
-                <mat-icon class="list-game-wrapper__icon">close</mat-icon>
-            </button>
+<!--            <button class="list-game-wrapper__button" mat-mini-fab (click)="showFilterInput()">-->
+<!--                <mat-icon class="list-game-wrapper__icon">close</mat-icon>-->
+<!--            </button>-->
 
         </div>
 <!--        <form class="example-form">-->

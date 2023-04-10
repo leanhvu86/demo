@@ -6,15 +6,13 @@
     <mat-card-title class="list-game-wrapper__header">
         <p class="list-game-wrapper__title">Thêm mới</p>
     </mat-card-title>
-    <form [formGroup]="gameForm" class="form-signin"
-          style="width: 98%;margin-top: 20px; background-color: white;padding: 20px 20px;margin-left: auto;margin-right: auto;">
+    <form [formGroup]="gameForm" class="form-signin" style="width: 98%;margin-top: 20px; background-color: white;padding: 20px 20px;margin-left: auto;margin-right: auto;">
         <mat-tab-group>
-            <!--            [(selectedIndex)]="TabIndex" (selectedTabChange)="changeTabValid($event)"-->
+            [(selectedIndex)]="TabIndex" (selectedTabChange)="changeTabValid($event)"
             <mat-tab>
                 <ng-template mat-tab-label>
                     Thông tin cơ bản
                 </ng-template>
-                <br/>
                 <div class="tables-wrapper">
                     <table>
                         <tr>
@@ -39,40 +37,32 @@
                                 <div class="form-group">
                                     <mat-form-field class="example-full-width" appearance="fill">
                                         <mat-label>Công ty phát hành</mat-label>
-                                        <input type="text" placeholder="Công ty phát hành" matInput
-                                               formControlName="companyName"
-                                               [matAutocomplete]="auto">
+                                        <input type="text" placeholder="Công ty phát hành" matInput formControlName="companyName" (keydown)="onKeydown($event)" [matAutocomplete]="auto">
                                         <mat-autocomplete #auto="matAutocomplete">
-                                            <mat-option *ngFor="let option1 of filteredOptionsCompany | async"
-                                                        [value]="option1">
+                                            <mat-option *ngFor="let option1 of filteredOptionsCompany | async" [value]="option1">
                                                 {{option1}}
                                             </mat-option>
                                         </mat-autocomplete>
                                     </mat-form-field>
                                 </div>
                                 <div class="form-group">
-                                    <mat-label>Mô tả ngắn</mat-label>
+                                    <mat-label>Mô tả ngắn </mat-label>
                                     <ckeditor data="<p>Mô tả Ngắn </p>" formControlName="description">
 
                                     </ckeditor>
                                 </div>
                                 <div class="form-group">
-                                    <label for="url">Ảnh slide</label>
-                                    <app-image [imageProp]="imageProp" [url]="url"
-                                               (imageSrcUrl)="getImageSrc($event)"></app-image>
-                                    <!--                                    <img [src]="thumbnailUrl" style="max-width: 300px; margin: 20px;" alt="">-->
-                                    <!--                                    <input type="file" class="form-control-file" formControlName="thumbnail"-->
-                                    <!--                                           (change)="onFileChanged($event,2)">-->
-                                    <!--                                    <button type="button" class="btn btn-primary" (click)="onUpload()">Upload</button>-->
+                                    <label for="thumbnail">Ảnh slide</label>
+                                    <img [src]="thumbnailUrl" style="max-width: 300px; margin: 20px;" alt="">
+                                    <input type="file" class="form-control-file" formControlName="thumbnail" (change)="onFileChanged($event,2)">
+                                    <button type="button" class="btn btn-primary" (click)="onUpload()">Upload</button>
                                 </div>
                             </td>
                             <td>
                                 <div class="form-group">
                                     <mat-form-field class="example-full-width" appearance="fill">
                                         <mat-label>Thị Trường Game</mat-label>
-                                        <input type="text" placeholder="Thị Trường Game" matInput
-                                               formControlName="marketType"
-                                               [matAutocomplete]="autoNationality">
+                                        <input type="text" placeholder="Thị Trường Game" matInput formControlName="marketType" (keydown)="onKeydown($event)" [matAutocomplete]="autoNationality">
                                         <mat-autocomplete #autoNationality="matAutocomplete">
                                             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
                                                 {{option}}
@@ -97,10 +87,10 @@
                                 <div class="form-group">
                                     <mat-form-field class="example-full-width" appearance="fill">
                                         <mat-label>Link youtube</mat-label>
-                                        <input type="text" placeholder="Công ty phát hành" matInput
-                                               formControlName="youtubeLink">
+                                        <input type="text" placeholder="Công ty phát hành" matInput formControlName="youtubeLink">
                                     </mat-form-field>
                                 </div>
+
 
 
                                 <div class="form-group">
@@ -110,24 +100,17 @@
                                     </ckeditor>
                                 </div>
                                 <div class="form-group">
-                                    <label for="thumbnail">Ảnh nhỏ</label>
-
-                                    <app-image [imageProp]="imageProp" [url]="thumbnailUrl"
-                                               (imageSrcUrl)="getImageThumbnailSrc($event)"></app-image>
-
-                                    <!--                                    <img [src]="thumbnailUrl" style="max-width: 300px; margin: 20px;" alt="">-->
-                                    <!--                                    <input type="file" class="form-control-file" formControlName="thumbnail"-->
-                                    <!--                                           (change)="onFileChanged($event,1)">-->
-                                    <!--                                    <button type="button" class="btn btn-primary" (click)="onUpload()">Upload</button>-->
+                                    <label for="imageId">Ảnh nhỏ</label>
+                                    <img [src]="thumbnailUrl" style="max-width: 300px; margin: 20px;" alt="">
+                                    <input type="file" class="form-control-file" formControlName="thumbnail" (change)="onFileChanged($event,1)">
+                                    <button type="button" class="btn btn-primary" (click)="onUpload()">Upload</button>
                                 </div>
 
                             </td>
                         </tr>
 
                     </table>
-                    <button type="submit" class="submitButton" mat-raised-button color="primary"
-                            (click)="onCreateGame()">Tạo game
-                    </button>
+                    <button type="submit" class="submitButton" mat-raised-button color="primary" (click)="onCreateGame()">Primary</button>
                 </div>
             </mat-tab>
             <mat-tab>

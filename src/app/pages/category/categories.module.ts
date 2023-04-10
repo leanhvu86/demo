@@ -10,13 +10,11 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatFormFieldModule} from '@angular/material/form-field';
 
-import {GamesPageComponent} from './containers';
-import {GamesRoutingModule} from './games-routing.module';
+import {CategoriesPageComponent} from './containers';
+import {CategoriesRoutingModule} from './categories-routing.module';
 import {SharedModule} from '../../shared/shared.module';
-import {GamesService} from './services';
-import {ListGameComponent} from './components/list-game/list-game.component';
-import {CreateGameComponent} from './components/create-game/create-game.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog'
 import {MatInputModule} from "@angular/material/input";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatRadioModule} from "@angular/material/radio";
@@ -24,16 +22,19 @@ import {CKEditorModule} from "ckeditor4-angular";
 import {MatOptionModule} from "@angular/material/core";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatSelectModule} from "@angular/material/select";
+import { CategoriesService } from './services';
+import { ListCategoryComponent } from './component/list-category/list-category.component';
+import { CreateCategoryComponent } from './component/create-category/create-category.component';
 
 @NgModule({
   declarations: [
-    GamesPageComponent,
-    ListGameComponent,
-    CreateGameComponent
+    CategoriesPageComponent,
+    ListCategoryComponent,
+    CreateCategoryComponent
   ],
     imports: [
         CommonModule,
-        GamesRoutingModule,
+        CategoriesRoutingModule,
         MatCardModule,
         MatIconModule,
         MatMenuModule,
@@ -52,11 +53,12 @@ import {MatSelectModule} from "@angular/material/select";
         MatOptionModule,
         MatAutocompleteModule,
         MatSelectModule,
-        FormsModule
+        FormsModule,
+        MatDialogModule
     ],
   providers: [
-    GamesService,
+    CategoriesService,
 
 ]
 })
-export class GamesModule { }
+export class CategoriesModule { }

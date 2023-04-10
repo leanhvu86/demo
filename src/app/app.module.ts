@@ -21,7 +21,7 @@ import {JwtInterceptor} from "./shared/helper/jwt.interceptor";
 @NgModule({
   declarations: [
     AppComponent,
-    NotFoundComponent
+    NotFoundComponent,
   ],
   imports: [
     HttpClientModule,

@@ -5,7 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { routes } from '../../../../consts';
 import { GamesService } from '../../services';
 import {map, startWith} from "rxjs/operators";
-import {Observable} from "rxjs/dist/types";
+import {Observable} from "rxjs";
 import {FormControl} from "@angular/forms";
 
 @Component({

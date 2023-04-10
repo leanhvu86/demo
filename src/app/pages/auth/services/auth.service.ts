@@ -1,15 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+import { routes } from '../../../consts';
+import { Router } from '@angular/router';
 
 import { User } from '../models';
+import { AppSetting } from 'src/app/appsetting';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  a = '1'
+  public routers: typeof routes = routes;
+  constructor(private http: HttpClient, private router: Router) { };
 
-  constructor(private http: HttpClient) { };
+  BASE_SERVER_URL= AppSetting.BASE_SERVER_URL;
 
   headers = new HttpHeaders({
     'Access-Control-Allow-Origin': '*',
@@ -17,8 +23,8 @@ export class AuthService {
     'Authorization': 'Basic ' + btoa('')
   });
 
-  public login(): void {
-    localStorage.setItem('token', 'token');
+  public login(data: any): Observable<any> {
+    return this.http.post<any>(this.BASE_SERVER_URL+'/api/auth/signin', data);
   }
 
   public sign(): void {
@@ -27,6 +33,7 @@ export class AuthService {
 
   public signOut(): void {
     localStorage.removeItem('token');
+    console.log(localStorage.getItem('token'))
   }
 
   public getUser(): Observable<User> {
