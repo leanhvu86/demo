@@ -13,6 +13,7 @@ import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 })
 export class CreateCategoryComponent implements OnInit {
 
+  res : any
   categories: any = []
   id: number = 0;
   public routes: typeof routes = routes;

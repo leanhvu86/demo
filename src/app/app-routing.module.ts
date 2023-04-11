@@ -4,6 +4,7 @@ import { DashboardPageComponent } from './pages/dashboard/containers';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import {AuthGuard} from './pages/auth/guards';
 import { CreateGameComponent } from './pages/games/components/create-game/create-game.component';
+
 import { EditUserComponent } from './pages/users/components/edit-user/edit-user.component';
 import { CreateCategoryComponent } from './pages/category/component/create-category/create-category.component';
 
@@ -38,6 +39,12 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/games/games.module').then(m => m.GamesModule)
   },
+  // {
+  //   path: 'packages',
+  //   pathMatch: 'full',
+  //   canActivate: [AuthGuard],
+  //   loadChildren: () => import('./pages/packages/package.module').then(m => m.PackageModule)
+  // },
   {
     path: 'games/create',
     pathMatch: 'full',
@@ -62,6 +69,25 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     component: CreateCategoryComponent
   },
+  {
+    path: 'package',
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/package/package.module').then(m => m.PackageModule)
+  },
+  {
+    path: 'package/create',
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
+    component: CreateCategoryComponent
+  },
+  {
+    path: 'package/edit/:id',
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
+    component: CreateCategoryComponent
+  },
+  
   // {
   //   path: 'notification',
   //   pathMatch: 'full',

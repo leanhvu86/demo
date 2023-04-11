@@ -38,8 +38,8 @@ export class AuthService {
 
   public getUser(): Observable<User> {
     return of({
-      name: 'Trung',
-      lastName: 'Bẹt'
+      name: 'Trung Game',
+      lastName: ''
     });
   }
 }

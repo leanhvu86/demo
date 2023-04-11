@@ -18,15 +18,20 @@ export class JwtInterceptor implements HttpInterceptor {
     }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbjEyMyIsImlhdCI6MTY4MDc3MjQ3NywiZXhwIjoxNjgwODU4ODc3fQ.jM3DZttzDtgnezCrTdZT9zZlBaTqsI372FBM60CDeJTuHEW56TesWcNdRLMjMaawC6VGTiGbXPpsG5Ad4tF8og';
-        // const token = localStorage.getItem('token');
-        // console.log('aaaaa' + token)
-        // request = request.clone({headers: request.headers.set('Bearer', token)});
-        request = request.clone({
-            setHeaders: {
-                Authorization: `Bearer ${token}`
-            }
-        });
+        const token = 'token';
+        if (localStorage.getItem('token') == null || localStorage.getItem('token') == undefined) {
+            request = request.clone({
+                setHeaders: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+        } else {
+            request = request.clone({
+                setHeaders: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+        }
 
         if (!request.headers.has('Content-Type')) {
             request = request.clone({headers: request.headers.set('Content-Type', 'application/json')});
