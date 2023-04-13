@@ -76,17 +76,21 @@ export class CreateGameComponent implements OnInit {
                 }
             }
             this.files = event.target.files[0];
-            console.log(this.files)
         }
     }
 
-    onUpload() {
+    onUpload(type) {
         const formData = new FormData();
         formData.append('file', this.files);
         formData.append('type', 'banner');
         this.gameService.uploadFile(formData).subscribe(data => {
-            console.log("abc")
-            console.log(data['data']['id'])
+            let imageId =data['data']['id']
+            if(type===1){
+                this.gameForm.get('imageId').patchValue(imageId);
+            }else{
+                this.gameForm.get('thumbnail').patchValue(imageId);
+
+            }
         })
     }
 

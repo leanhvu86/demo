@@ -1,6 +1,6 @@
 <app-layout>
     <mat-toolbar class="page-header" role="heading">
-        <h1>Games</h1>
+        <h1>Sản phẩm</h1>
     </mat-toolbar>
     <br/>
     <mat-card-title class="list-game-wrapper__header">
@@ -54,8 +54,8 @@
                                 <div class="form-group">
                                     <label for="thumbnail">Ảnh slide</label>
                                     <img [src]="thumbnailUrl" style="max-width: 300px; margin: 20px;" alt="">
-                                    <input type="file" class="form-control-file" formControlName="thumbnail" (change)="onFileChanged($event,2)">
-                                    <button type="button" class="btn btn-primary" (click)="onUpload()">Upload</button>
+                                    <input type="file" class="form-control-file" (change)="onFileChanged($event,2)">
+                                    <button type="button" class="btn btn-primary" (click)="onUpload(2)">Upload</button>
                                 </div>
                             </td>
                             <td>
@@ -101,9 +101,9 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="imageId">Ảnh nhỏ</label>
-                                    <img [src]="thumbnailUrl" style="max-width: 300px; margin: 20px;" alt="">
-                                    <input type="file" class="form-control-file" formControlName="thumbnail" (change)="onFileChanged($event,1)">
-                                    <button type="button" class="btn btn-primary" (click)="onUpload()">Upload</button>
+                                    <img [src]="url" style="max-width: 300px; margin: 20px;" alt="">
+                                    <input type="file" class="form-control-file"  (change)="onFileChanged($event,1)">
+                                    <button type="button" class="btn btn-primary" (click)="onUpload(1)">Upload</button>
                                 </div>
 
                             </td>
