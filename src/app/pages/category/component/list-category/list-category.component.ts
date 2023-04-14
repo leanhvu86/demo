@@ -59,13 +59,22 @@ export class ListCategoryComponent implements OnInit {
       width: '550px',
       height: '500px'
     })
+    .afterClosed()
+    .subscribe(shouldReload => {
+      window.location.reload()
+    });
   }
 
   openEditDialog(id : number) {
     this.matDialog.open(CreateCategoryComponent, {
       width: '550px',
+      height: '500px',
       data: id
     })
+    .afterClosed()
+    .subscribe(shouldReload => {
+      window.location.reload()
+    });
   }
 
   /** Whether the number of selected elements matches the total number of rows. */

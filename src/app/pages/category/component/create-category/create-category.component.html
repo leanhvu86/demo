@@ -30,7 +30,7 @@
     </form>
     <div class="q-btn">
         <button *ngIf="id != 0" type="submit" class="btn btn-primary btn-edit" (click)="onUpdateCategory()">Sửa</button>
-        <button *ngIf="id == 0" type="submit" class="btn btn-primary btn-edit" (click)="onUpdateCategory()">Thêm</button>
+        <button *ngIf="id == 0 || id == undefined" type="submit" class="btn btn-primary btn-edit" (click)="onUpdateCategory()">Thêm</button>
         <button class="btn btn-primary btn-back" matDialogClose>Trở về</button>
     </div>
 </mat-card-content>

@@ -1,0 +1,86 @@
+<mat-card-title class="list-game-wrapper__header">
+    <p *ngIf="id != 0" class="list-game-wrapper__title">Sửa gói nạp</p>
+    <p *ngIf="id == 0" class="list-game-wrapper__title">Thêm gói nạp</p>
+</mat-card-title>
+<mat-card-content>
+    <form style="margin-left: 50px;" [formGroup]="packageForm" action="" method="POST">
+        <div class="form-group">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Tên danh mục</mat-label>
+                <input type="text" matInput formControlName="name">
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Giá</mat-label>
+                <input type="text" matInput formControlName="price">
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Đơn vị</mat-label>
+                <input type="text" matInput formControlName="unit">
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Đánh giá</mat-label>
+                <input type="text" matInput formControlName="rating">
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Khu vực</mat-label>
+                <input type="text" matInput formControlName="server_group">
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Máy chủ</mat-label>
+                <input type="text" matInput formControlName="server">
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Thuộc tính</mat-label>
+                <input type="text" matInput formControlName="attribute">
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Số lượng</mat-label>
+                <input type="text" matInput formControlName="warehouse_quantity">
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Lượt bán</mat-label>
+                <input type="text" matInput formControlName="trade_count">
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Mô tả (VI)</mat-label>
+                <input type="text" matInput formControlName="description_vi">
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Mô tả (EN)</mat-label>
+                <input type="text" matInput formControlName="description_en">
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Thời gian</mat-label>
+                <input type="text" matInput formControlName="delivery_time">
+            </mat-form-field>
+        </div>
+
+    </form>
+    <div class="q-btn">
+        <button *ngIf="id != 0" type="submit" class="btn btn-primary btn-edit" (click)="onUpdateCategory()">Sửa</button>
+        <button *ngIf="id == 0 || id == undefined" type="submit" class="btn btn-primary btn-edit" (click)="onUpdateCategory()">Thêm</button>
+        <button class="btn btn-primary btn-back" matDialogClose>Trở về</button>
+    </div>
+</mat-card-content>

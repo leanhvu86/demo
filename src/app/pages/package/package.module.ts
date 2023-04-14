@@ -24,11 +24,13 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatSelectModule} from "@angular/material/select";
 import { PackageService } from './services';
 import { ListPackageComponent } from './component/list-package/list-package.component';
+import { CreatePackageComponent } from './component/create-package/create-package.component';
 
 @NgModule({
   declarations: [
     PackagePageComponent,
-    ListPackageComponent
+    ListPackageComponent,
+    CreatePackageComponent
   ],
     imports: [
         CommonModule,

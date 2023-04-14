@@ -54,7 +54,7 @@ export class CreateCategoryComponent implements OnInit {
   }
 
   findCategory() {
-    if (this.id !== 0) {
+    if (this.id !== 0 && this.id !== null) {
       let res: any;
       this.categoriesService.getListCategory().subscribe(data => {
         res = data['data'].filter(item => item['id'] == this.id)
@@ -65,6 +65,8 @@ export class CreateCategoryComponent implements OnInit {
           parentCategoryId: new FormControl(res[0].parentId)
         })
       })
+    } else {
+      this.id = 0;
     }
   }
 
