@@ -8,7 +8,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import {MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule} from '@angular/material/form-field';
 
 import {GamesPageComponent} from './containers';
 import {GamesRoutingModule} from './games-routing.module';
@@ -26,11 +26,11 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
-  declarations: [
-    GamesPageComponent,
-    ListGameComponent,
-    CreateGameComponent
-  ],
+    declarations: [
+        GamesPageComponent,
+        ListGameComponent,
+        CreateGameComponent
+    ],
     imports: [
         CommonModule,
         GamesRoutingModule,
@@ -54,9 +54,13 @@ import {MatSelectModule} from "@angular/material/select";
         MatSelectModule,
         FormsModule
     ],
-  providers: [
-    GamesService,
-
-]
+    providers: [
+        GamesService,
+        {
+            provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+            useValue: {floatLabel: 'always'},
+        }
+    ]
 })
-export class GamesModule { }
+export class GamesModule {
+}

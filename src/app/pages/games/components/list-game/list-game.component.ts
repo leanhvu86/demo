@@ -20,7 +20,7 @@ export class ListGameComponent implements OnInit {
   options: string[] = ['One', 'Two', 'Three'];
   filteredOptions: Observable<string[]>;
   @Input() userTableData: [];
-  public displayedColumns: string[] = ['select', 'name', 'price', 'promotionPercent', 'thumbnail', 'type', 'categoryName', 'status', 'action'];
+  public displayedColumns: string[] = ['select', 'name', 'thumbnail','type', 'categoryName', 'marketType','companyName', 'status', 'action'];
   public dataSource = new MatTableDataSource<any>();
   public selection = new SelectionModel<any>(true, []);
 

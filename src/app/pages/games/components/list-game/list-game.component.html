@@ -36,18 +36,6 @@
                 <td class="list-game__table-body" mat-cell *matCellDef="let element"> {{element.name}} </td>
             </ng-container>
 
-            <ng-container matColumnDef="price">
-                <th class="list-game__table-header" mat-header-cell *matHeaderCellDef> Giá</th>
-                <td class="list-game__table-body" mat-cell *matCellDef="let element"> {{element.price}} </td>
-            </ng-container>
-
-            <!-- Company Column -->
-            <ng-container matColumnDef="promotionPercent">
-                <th class="list-game__table-header" mat-header-cell *matHeaderCellDef> Khuyến mãi</th>
-                <td class="list-game__table-body" mat-cell *matCellDef="let element">
-                    {{element.promotionPercent}} %
-                </td>
-            </ng-container>
 
             <!-- State Column -->
             <ng-container matColumnDef="thumbnail">
@@ -65,6 +53,14 @@
             <ng-container matColumnDef="categoryName">
                 <th class="list-game__table-header" mat-header-cell *matHeaderCellDef> Danh mục</th>
                 <td class="list-game__table-body" mat-cell *matCellDef="let element"> {{element.categoryName}} </td>
+            </ng-container>
+            <ng-container matColumnDef="marketType">
+                <th class="list-game__table-header" mat-header-cell *matHeaderCellDef> Thị trường</th>
+                <td class="list-game__table-body" mat-cell *matCellDef="let element"> {{element.marketType}} </td>
+            </ng-container>
+            <ng-container matColumnDef="companyName">
+                <th class="list-game__table-header" mat-header-cell *matHeaderCellDef> Công ty</th>
+                <td class="list-game__table-body" mat-cell *matCellDef="let element"> {{element.companyName}} </td>
             </ng-container>
 
             <ng-container matColumnDef="status">
