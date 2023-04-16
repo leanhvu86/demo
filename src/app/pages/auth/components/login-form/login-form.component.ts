@@ -34,13 +34,11 @@ export class LoginFormComponent implements OnInit {
     if (this.form.valid) {
       this.authService.login(this.form.value).subscribe( data => {
         if(data['data']['roles'][0] == 'ROLE_ADMIN') {
-          console.log('before: ' + localStorage.getItem('token'))
           localStorage.setItem('token', data['data']['token']);
+          localStorage.setItem('cGFzc3dvcmQ', btoa("ADMIN TRUNG BET"));
           this.router.navigate([this.routers.TABLES]).then();
-          console.log('after:' + localStorage.getItem('token'))
         }
         else {
-          // this.toastrService.success('Xin lỗi', 'Sai tài khoản hoặc mật khẩu');
           localStorage.setItem('token', null);
         }
       })

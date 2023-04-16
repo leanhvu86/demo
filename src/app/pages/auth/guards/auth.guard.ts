@@ -1,22 +1,23 @@
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
-import { Injectable } from '@angular/core';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
+import {Injectable} from '@angular/core';
 
-import { routes } from '../../../consts';
+import {routes} from '../../../consts';
 
 @Injectable()
-export class AuthGuard implements CanActivate{
-  public routers: typeof routes = routes;
+export class AuthGuard implements CanActivate {
+    public routers: typeof routes = routes;
 
-  constructor(private router: Router) {
-  }
-
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    const token = localStorage.getItem('token');
-
-    if (token) {
-      return true;
-    } else {
-      this.router.navigate([this.routers.LOGIN]);
+    constructor(private router: Router) {
     }
-  }
+
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+        const token = localStorage.getItem('token');
+        const role = localStorage.getItem('cGFzc3dvcmQ');
+
+        if (token !== null && atob(role) === 'ADMIN TRUNG BET') {
+            return true;
+        } else {
+            this.router.navigate([this.routers.LOGIN]);
+        }
+    }
 }
