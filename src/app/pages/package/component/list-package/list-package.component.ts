@@ -5,7 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { routes } from '../../../../consts';
 import { PackageService } from '../../services';
 import { MatDialog } from '@angular/material/dialog';
-// import { CreateCategoryComponent } from '../create-category/create-category.component';
+import { CreatePackageComponent } from '../create-package/create-package.component';
 
 @Component({
   selector: 'app-list-package',
@@ -37,6 +37,37 @@ export class ListPackageComponent implements OnInit {
       this.dataSource.data = data
       console.log(this.dataSource.data)
     })
+  }
+
+  openCreateDialog() {
+    this.matDialog.open(CreatePackageComponent, {
+      width: '550px',
+      height: '500px'
+    })
+    .afterClosed()
+    .subscribe(shouldReload => {
+      window.location.reload()
+    });
+  }
+
+  openEditDialog(id : number) {
+    const dialogRef = this.matDialog.open(CreatePackageComponent, {
+      width: '550px',
+      height: '500px',
+      data: id
+    })
+    .afterClosed()
+    .subscribe(shouldReload => {
+      window.location.reload()
+    });
+  }
+
+  onDelete(id: number) {
+    if (confirm("Xac nhan xoa")) {
+      this.packageService.deletePackage(id).subscribe(data => {
+        this.getAllPackage()
+      })
+    }
   }
 
   /** Whether the number of selected elements matches the total number of rows. */

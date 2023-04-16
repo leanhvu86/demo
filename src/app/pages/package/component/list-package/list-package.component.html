@@ -9,9 +9,9 @@
         <!-- <button mat-flat-button color="primary" routerLink="{{routes.CREATE_CATEGORY}}" routerLinkActive="active">
             <mat-icon>add</mat-icon>
         </button> -->
-        <!-- <button mat-flat-button (click)="openCreateDialog()">
+        <button mat-flat-button (click)="openCreateDialog()">
             <mat-icon>add</mat-icon>
-        </button> -->
+        </button>
     </mat-card-title>
     <mat-card-content class="user-table__content">
         <table class="user-table__table" mat-table [dataSource]="dataSource">
@@ -86,29 +86,14 @@
                 <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.delivery_time}} </td>
             </ng-container>
 
-            <!-- <ng-container matColumnDef="description">
-                <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Mô tả</th>
-                <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.description}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="parentName">
-                <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Danh mục cha</th>
-                <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.parentName}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="status">
-                <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Trạng thái</th>
-                <td class="user-table__table-body user-table__content-badge" mat-cell *matCellDef="let element"><span [ngClass]="element.status">{{element.status}}</span></td>
-            </ng-container> -->
-
             <ng-container matColumnDef="action">
                 <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Hành động</th>
                 <td class="user-table__table-body" mat-cell *matCellDef="let element">
                     <button class="user-table-wrapper__button" mat-mini-fab>
-                        <mat-icon class="user-table-wrapper__q-icon">edit</mat-icon>
+                        <mat-icon class="user-table-wrapper__q-icon" (click)="openEditDialog(element.id)">edit</mat-icon>
                     </button> |
                     <button class="user-table-wrapper__button" mat-mini-fab>
-                        <mat-icon class="user-table-wrapper__q-icon">delete</mat-icon>
+                        <mat-icon class="user-table-wrapper__q-icon" (click)="onDelete(element.id)">delete</mat-icon>
                     </button>
                 </td>
             </ng-container>
