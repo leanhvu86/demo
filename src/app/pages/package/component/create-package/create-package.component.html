@@ -4,78 +4,86 @@
 </mat-card-title>
 <mat-card-content>
     <form style="margin-left: 50px;" [formGroup]="packageForm" action="" method="POST">
-        <div class="form-group">
-            <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Tên danh mục</mat-label>
-                <input type="text" matInput formControlName="name">
-            </mat-form-field>
-        </div>
-        <div class="form-group">
-            <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Giá</mat-label>
-                <input type="text" matInput formControlName="price">
-            </mat-form-field>
-        </div>
-        <div class="form-group">
-            <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Đơn vị</mat-label>
-                <input type="text" matInput formControlName="unit">
-            </mat-form-field>
-        </div>
-        <div class="form-group">
-            <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Đánh giá</mat-label>
-                <input type="text" matInput formControlName="rating">
-            </mat-form-field>
-        </div>
-        <div class="form-group">
-            <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Khu vực</mat-label>
-                <input type="text" matInput formControlName="server_group">
-            </mat-form-field>
-        </div>
-        <div class="form-group">
-            <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Máy chủ</mat-label>
-                <input type="text" matInput formControlName="server">
-            </mat-form-field>
-        </div>
-        <div class="form-group">
-            <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Thuộc tính</mat-label>
-                <input type="text" matInput formControlName="attribute">
-            </mat-form-field>
-        </div>
-        <div class="form-group">
-            <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Số lượng</mat-label>
-                <input type="text" matInput formControlName="warehouse_quantity">
-            </mat-form-field>
-        </div>
-        <div class="form-group">
-            <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Lượt bán</mat-label>
-                <input type="text" matInput formControlName="trade_count">
-            </mat-form-field>
-        </div>
-        <div class="form-group">
-            <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Mô tả (VI)</mat-label>
-                <input type="text" matInput formControlName="description_vi">
-            </mat-form-field>
-        </div>
-        <div class="form-group">
-            <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Mô tả (EN)</mat-label>
-                <input type="text" matInput formControlName="description_en">
-            </mat-form-field>
-        </div>
-        <div class="form-group">
-            <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Thời gian</mat-label>
-                <input type="text" matInput formControlName="delivery_time">
-            </mat-form-field>
-        </div>
+        <table>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Tên gói</mat-label>
+                            <input type="text" matInput formControlName="name">
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Khu vực</mat-label>
+                            <input type="text" matInput formControlName="server_group">
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Máy chủ</mat-label>
+                            <input type="text" matInput formControlName="server">
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Thuộc tính</mat-label>
+                            <input type="text" matInput formControlName="attribute">
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Thời gian</mat-label>
+                            <input type="text" matInput formControlName="delivery_time">
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Mô tả (VI)</mat-label>
+                            <textarea rows="5" matInput formControlName="description_vi"></textarea>
+                        </mat-form-field>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Giá</mat-label>
+                            <input type="text" matInput formControlName="price">
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Đơn vị</mat-label>
+                            <input type="text" matInput formControlName="unit">
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Đánh giá</mat-label>
+                            <input type="text" matInput formControlName="rating">
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Số lượng</mat-label>
+                            <input type="text" matInput formControlName="warehouse_quantity">
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Lượt bán</mat-label>
+                            <input type="text" matInput formControlName="trade_count">
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Mô tả (EN)</mat-label>
+                            <textarea rows="5" matInput formControlName="description_en"></textarea>
+                        </mat-form-field>
+                    </div>
+                </td>
+            </tr>
+        </table>
 
     </form>
     <div class="q-btn">

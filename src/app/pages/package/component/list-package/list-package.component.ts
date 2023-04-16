@@ -41,7 +41,7 @@ export class ListPackageComponent implements OnInit {
 
   openCreateDialog() {
     this.matDialog.open(CreatePackageComponent, {
-      width: '550px',
+      width: '1000px',
       height: '500px'
     })
     .afterClosed()
@@ -52,7 +52,7 @@ export class ListPackageComponent implements OnInit {
 
   openEditDialog(id : number) {
     const dialogRef = this.matDialog.open(CreatePackageComponent, {
-      width: '550px',
+      width: '1000px',
       height: '500px',
       data: id
     })

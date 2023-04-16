@@ -11,14 +11,7 @@ import {AppSetting} from "../../../appsetting";
 export class GamesService {
 
   constructor(private http: HttpClient) { };
-  // Add Authentication to Header
-  // api_key = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbjEyMyIsImlhdCI6MTY4MDM1NzQyMiwiZXhwIjoxNjgwNDQzODIyfQ.eeRrMbearD3XA3OM63aI1ZcC0jCZAUEPGnofdrwLkJAFGvUSRgV1EjkI9cCfrLvo3wn9YrM0iG2088eQh0AJaw";
-  // headers = new HttpHeaders({
-  //   'Content-Type': 'application/json',
-  //   'Authorization': `Bearer ${this.api_key}`,
-  //   "Access-Control-Allow-Origin": '*'
-  // });
-  // requestOptions = { headers: this.headers };
+  
   BASE_SERVER_URL= AppSetting.BASE_SERVER_URL;
 
   uploadFile(data:any): Observable<any> {

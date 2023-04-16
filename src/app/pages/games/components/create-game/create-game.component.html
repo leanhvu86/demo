@@ -23,7 +23,7 @@
                                         <input type="text" placeholder="Tên Game" matInput formControlName="name">
                                     </mat-form-field>
                                 </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <mat-form-field class="example-full-width" appearance="fill">
                                         <mat-label>Vui lòng chọn thể loại game</mat-label>
                                         <mat-select formControlName="categoryId">
@@ -32,6 +32,17 @@
                                         </mat-select>
                                     </mat-form-field>
 
+                                </div> -->
+                                <div class="form-group">
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <!-- <mat-label>Vui lòng chọn thể loại game</mat-label> -->
+                                        <select formControlName="categoryId" matNativeControl>
+                                            <option value="0" selected>Vui lòng chọn thể loại game</option>
+                                            <option *ngFor="let category of categories" [value]="category.id">
+                                                {{ category.name }} ({{category.description}})
+                                            </option>
+                                        </select>
+                                    </mat-form-field>
                                 </div>
 
                                 <div class="form-group">
@@ -102,7 +113,7 @@
                                 <div class="form-group">
                                     <label for="imageId">Ảnh nhỏ</label>
                                     <img [src]="url" style="max-width: 300px; margin: 20px;" alt="">
-                                    <input type="file" class="form-control-file"  (change)="onFileChanged($event,1)">
+                                    <input type="file" class="form-control-file" (change)="onFileChanged($event,1)">
                                     <button type="button" class="btn btn-primary" (click)="onUpload(1)">Upload</button>
                                 </div>
 

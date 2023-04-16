@@ -36,8 +36,8 @@ export class CreateGameComponent implements OnInit {
         this.gameForm = this.formbuilder.group({
             name: ['', [Validators.required]],
             categoryId: ['', [Validators.required]],
-            imageId: ['2e2c8cd9-04ca-4384-9dd4-2bfc5efcfbaa', [Validators.required]],
-            thumbnail: ["2e2c8cd9-04ca-4384-9dd4-2bfc5efcfbaa", [Validators.required]],
+            imageId: ['9113b340-408e-42d6-bde0-3000a37b78b0', [Validators.required]],
+            thumbnail: ["9113b340-408e-42d6-bde0-3000a37b78b0", [Validators.required]],
             type: ['', [Validators.required]],
             description: ['', [Validators.required]],
             descriptionEn: ['', [Validators.required]],
@@ -89,17 +89,13 @@ export class CreateGameComponent implements OnInit {
                 this.gameForm.get('imageId').patchValue(imageId);
             }else{
                 this.gameForm.get('thumbnail').patchValue(imageId);
-
             }
         })
     }
 
     getCategory() {
         this.gameService.getListCategory().pipe().subscribe(data => {
-            if (data['data'] !== undefined) {
-                this.categories = data['data'];
-            }
-            console.log(this.categories)
+            this.categories = data['data'].filter(item => item['parentId'] == 0)
         })
     }
 
@@ -135,10 +131,11 @@ export class CreateGameComponent implements OnInit {
 
         // this.gameForm.value['imageId'] = '2e2c8cd9-04ca-4384-9dd4-2bfc5efcfbaa';
         // this.gameForm.value['thumbnail'] = '1';
-        // this.gameService.createGame(this.gameForm.value).subscribe(data => {
-        //   console.log(this.gameForm.value['imageId'])
-        //     this.notificationService.success("thêm mới thành công");
-        // })
+        this.gameService.createGame(this.gameForm.value).subscribe(data => {
+          console.log(this.gameForm.value['imageId'])
+          console.log(data)
+            // this.notificationService.success("thêm mới thành công");
+        })
     }
 
 }
