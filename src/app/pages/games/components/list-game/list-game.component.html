@@ -1,15 +1,12 @@
 <mat-card class="list-game-wrapper">
     <mat-card-title class="list-game-wrapper__header">
         <div class="list-game-wrapper__search">
-            <div class="list-game-wrapper__icon-wrapper">
-                <mat-icon class="list-game-wrapper__icon">search</mat-icon>
+            <div class="list-game-wrapper__search">
+                <div class="list-game-wrapper__icon-wrapper">
+                    <mat-icon class="list-game-wrapper__icon">search</mat-icon>
+                </div>
+                <input matInput class="list-game-wrapper__search-input" placeholder="Tìm kiếm" (keyup)="applyFilter($event)" autocomplete="on">
             </div>
-            <input matInput class="list-game-wrapper__search-input" (keyup.enter)="applyFilter($event)" placeholder="Pick one" aria-label="Number" [matAutocomplete]="auto">
-            <mat-autocomplete #auto="matAutocomplete" (change)="applyFilter($event)">
-                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                    {{option}}
-                </mat-option>
-            </mat-autocomplete>
         </div>
         <button mat-flat-button routerLink="{{routes.CREATE_GAMES}}" routerLinkActive="active">
             <mat-icon>add</mat-icon>
@@ -67,19 +64,17 @@
                 <th class="list-game__table-header" mat-header-cell *matHeaderCellDef> Status</th>
                 <td class="list-game__table-body list-game__content-badge" mat-cell *matCellDef="let element"><span [ngClass]="element.status">{{element.status}}</span></td>
             </ng-container>
-
             <ng-container matColumnDef="action">
-                <th class="list-game__table-header" mat-header-cell *matHeaderCellDef> Action</th>
+                <th class="list-game__table-header" mat-header-cell *matHeaderCellDef> Hành động</th>
                 <td class="list-game__table-body" mat-cell *matCellDef="let element">
-                    <button mat-flat-button color="primary">
-                        <mat-icon>edit</mat-icon>
-                    </button>
-                    <button mat-flat-button color="warn">
-                        <mat-icon>delete</mat-icon>
+                    <button class="list-game-wrapper__button" routerLink="{{routes.EDIT_GAMES}}/{{element.id}}" routerLinkActive="active" mat-mini-fab>
+                        <mat-icon class="list-game-wrapper__q-icon">edit</mat-icon>
+                    </button> |
+                    <button class="list-game-wrapper__button" (click)="onDelete(element.id)" mat-mini-fab>
+                        <mat-icon class="list-game-wrapper__q-icon">delete</mat-icon>
                     </button>
                 </td>
             </ng-container>
-
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;">
             </tr>

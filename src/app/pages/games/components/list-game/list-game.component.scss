@@ -15,6 +15,10 @@
             padding: 0 16px;
         }
     }
+    &__q-icon {
+        color: inherit;
+        font-size: 25px;
+    }
     &__title {
         margin: 0;
     }
@@ -48,8 +52,8 @@
     &__button {
         box-shadow: none;
         background-color: inherit;
-        width: 46px;
-        height: 46px;
+        width: 30px;
+        height: 30px;
         color: $grey;
         &:hover {
             background-color: $black-08;
@@ -109,6 +113,7 @@
     padding: 5px 10px;
     background-color: $red;
 }
-.example-full-width{
-    height:30px;
+
+.example-full-width {
+    height: 30px;
 }

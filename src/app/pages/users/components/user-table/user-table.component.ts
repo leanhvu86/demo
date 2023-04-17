@@ -48,18 +48,6 @@ export class UserTableComponent implements OnInit {
         })
     }
 
-    // changeColor(btn:string) {
-    //   let button = document.getElementById(btn)
-    //   let id = ["active", "all", "deleted"]
-    //   for (let i in id) {
-    //     if (i == btn) {
-    //       button.style.color = 'red'
-    //     } else {
-    //       document.getElementById(i).style.color = 'black'
-    //     }
-    //   }
-    // }
-
     onDelete(id: number) {
 
         if (confirm("Xac nhan xoa")) {

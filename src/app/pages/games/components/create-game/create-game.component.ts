@@ -1,10 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {GamesService} from '../../services';
-import {Observable} from "rxjs";
-import {map, startWith} from "rxjs/operators";
-import {NotificationService} from "../../../../shared/service/system.service";
-import {ToastrService} from "ngx-toastr";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { GamesService } from '../../services';
+import { Observable } from "rxjs";
+import { map, startWith } from "rxjs/operators";
+import { ToastrService } from "ngx-toastr";
+import { routes } from '../../../../consts';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-create-game',
@@ -14,30 +15,31 @@ import {ToastrService} from "ngx-toastr";
 export class CreateGameComponent implements OnInit {
 
     public files: File;
-
     selectedValue: string;
-    categories: any = [
-        {ìd:1,name:'Platform games'},
-        {ìd:2,name:'Shooter games'},
-        {ìd:1,name:'Fighting games'}]
+    categories: any = []
     options: string[] = ['Global', 'America', 'Europe'];
     optionsCompany: string[] = ['VinaGame', 'Unit', 'Soha'];
     filteredOptions: Observable<string[]>;
     filteredOptionsCompany: Observable<string[]>;
+    getImageId = '';
     selected = '';
     gameForm: FormGroup;
     url = '../../../../../assets/image/no-image.jpg';
     thumbnailUrl = '../../../../../assets/image/no-image.jpg';
 
+    id: number = 0;
+    public routes: typeof routes = routes;
+
     constructor(private gameService: GamesService,
-                private formbuilder: FormBuilder,
-                protected toastrService: ToastrService,
+        private formbuilder: FormBuilder,
+        protected toastrService: ToastrService,
+        private _route: ActivatedRoute
     ) {
         this.gameForm = this.formbuilder.group({
             name: ['', [Validators.required]],
-            categoryId: ['', [Validators.required]],
-            imageId: ['9113b340-408e-42d6-bde0-3000a37b78b0', [Validators.required]],
-            thumbnail: ["9113b340-408e-42d6-bde0-3000a37b78b0", [Validators.required]],
+            categoryId: [0, [Validators.required]],
+            imageId: ['', [Validators.required]],
+            thumbnail: ['', [Validators.required]],
             type: ['', [Validators.required]],
             description: ['', [Validators.required]],
             descriptionEn: ['', [Validators.required]],
@@ -47,10 +49,16 @@ export class CreateGameComponent implements OnInit {
             contentVi: ['', [Validators.required]],
             contentEn: ['', [Validators.required]],
             gamePriority: ['', [Validators.required]],
+            price: [0],
+            promotionPercent: [0],
+            promotionPrice: [0],
+            quantity: [0],
         })
     }
 
     ngOnInit(): void {
+        this.id = this._route.snapshot.params["id"];
+        this.findGame(this.id);
         this.getCategory();
         this.filteredOptions = this.gameForm.get("marketType").valueChanges.pipe(
             startWith(''),
@@ -62,34 +70,24 @@ export class CreateGameComponent implements OnInit {
         );
     }
 
-    onFileChanged(event: any,type) {
+    onFileChanged(event: any) {
         if (event.target.files) {
             let reader = new FileReader()
             reader.readAsDataURL(event.target.files[0])
             reader.onload = (event: any) => {
-                if (type==1){
-                    this.url = event.target.result
-
-                }else{
-                    this.thumbnailUrl = event.target.result
-
-                }
+                this.url = event.target.result
             }
             this.files = event.target.files[0];
         }
+        this.onUpload()
     }
 
-    onUpload(type) {
+    onUpload() {
         const formData = new FormData();
         formData.append('file', this.files);
         formData.append('type', 'banner');
         this.gameService.uploadFile(formData).subscribe(data => {
-            let imageId =data['data']['id']
-            if(type===1){
-                this.gameForm.get('imageId').patchValue(imageId);
-            }else{
-                this.gameForm.get('thumbnail').patchValue(imageId);
-            }
+            this.getImageId = data['data']['id']
         })
     }
 
@@ -99,44 +97,62 @@ export class CreateGameComponent implements OnInit {
         })
     }
 
-
-
-
     private _filterCompany(value): string[] {
         const filterValue = value.toLowerCase();
-        console.log(value)
-        console.log(this.optionsCompany)
-
         return this.optionsCompany.filter(option1 => option1.toLowerCase().includes(filterValue));
     }
 
     private _filter(value): string[] {
         const filterValue = value.toLowerCase();
-        console.log(value)
-        console.log(this.options)
-
         return this.options.filter(option => option.toLowerCase().includes(filterValue));
     }
-    onKeydown(e){
+    onKeydown(e) {
         e.preventDefault();
     }
     onCreateGame() {
-        console.log(this.gameForm.value
-        );
-        this.toastrService.success('Chúc mừng bạn', 'Thêm mới thành công');
-
-        if(this.gameForm.valid==false){
-            return;
-        }
-
-        // this.gameForm.value['imageId'] = '2e2c8cd9-04ca-4384-9dd4-2bfc5efcfbaa';
-        // this.gameForm.value['thumbnail'] = '1';
+        this.gameForm.value['imageId'] = this.getImageId;
+        this.gameForm.value['thumbnail'] = this.getImageId;
         this.gameService.createGame(this.gameForm.value).subscribe(data => {
-          console.log(this.gameForm.value['imageId'])
-          console.log(data)
-            // this.notificationService.success("thêm mới thành công");
+            this.toastrService.success('Chúc mừng bạn', 'Thêm mới thành công');
+            console.log(data)
         })
     }
 
+    onUpdateGame() {
+        this.gameForm.value['imageId'] = this.getImageId;
+        this.gameForm.value['thumbnail'] = this.getImageId;
+        this.gameService.updateGame(this.gameForm.value).subscribe(data => {
+            this.toastrService.success('Chúc mừng bạn', 'Sửa thành công');
+            console.log(data)
+        })
+    }
+
+    findGame(idFind:number) {
+        let res: any;
+        this.gameService.getListGame().subscribe(data => {
+            res = data['data'].filter(item => item['id'] == idFind)
+            this.gameForm = this.formbuilder.group({
+                id: [res[0].id, [Validators.required]],
+                name: [res[0].name, [Validators.required]],
+                categoryId: [res[0].categoryId, [Validators.required]],
+                imageId: [res[0].imageId, [Validators.required]],
+                thumbnail: [res[0].thumbnail, [Validators.required]],
+                type: [res[0].type, [Validators.required]],
+                description: [res[0].description, [Validators.required]],
+                descriptionEn: [res[0].descriptionEn, [Validators.required]],
+                youtubeLink: [res[0].youtubeLink],
+                companyName: [res[0].companyName, [Validators.required]],
+                marketType: [res[0].marketType, [Validators.required]],
+                contentVi: [res[0].contentVi, [Validators.required]],
+                contentEn: [res[0].contentEn, [Validators.required]],
+                gamePriority: [res[0].gamePriority, [Validators.required]],
+                price: [res[0].price],
+                promotionPercent: [res[0].promotionPercent],
+                promotionPrice: [res[0].promotionPrice],
+                quantity: [res[0].quantity]
+            })
+            this.url = res[0].imageUrl
+        })
+    }
 }
 

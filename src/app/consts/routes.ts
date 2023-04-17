@@ -5,6 +5,7 @@ export enum routes {
   EDIT_USER = '/users/edit',
   GAMES = '/games',
   CREATE_GAMES = '/games/create',
+  EDIT_GAMES = '/games/edit',
   CATEGORIES = '/categories',
   CREATE_CATEGORY = '/categories/create',
   EDIT_CATEGORY = '/categories/edit',

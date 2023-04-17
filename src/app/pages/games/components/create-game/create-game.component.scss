@@ -188,9 +188,6 @@ mat-select {
     .mat-form-field-required-marker {
         color: #ff884d;
     }
-    .mat-input-element {
-        color: #ff884d;
-    }
 }
 
 ::ng-deep .mat-form-field.mat-form-field-invalid {
@@ -209,5 +206,17 @@ mat-select {
 }
 
 .submitButton {
-    margin-left: 90%;
+    display: flex;
+    justify-content: center;
+}
+
+.submitButton .btn {
+    width: 80px;
+    margin: 20px;
+}
+
+.form-signin {
+    width: 98%;
+    margin-top: 20px;
+    background-color: white;
 }

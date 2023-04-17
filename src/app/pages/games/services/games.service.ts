@@ -30,4 +30,12 @@ export class GamesService {
     return this.http.get<any>(this.BASE_SERVER_URL+'/api/category/list');
   }
 
+  getGame(id:number): Observable<any> {
+    return this.http.get<Games[]>(this.BASE_SERVER_URL+'/api/games/' + id);
+  }
+
+  updateGame(data:Games[]): Observable<Games[]> {
+    return this.http.post<Games[]>(this. BASE_SERVER_URL+'/api/games/update', data);
+  }
+
 }

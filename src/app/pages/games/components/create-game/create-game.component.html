@@ -4,124 +4,108 @@
     </mat-toolbar>
     <br/>
     <mat-card-title class="list-game-wrapper__header">
-        <p class="list-game-wrapper__title">Thêm mới</p>
+        <p *ngIf="id == undefined" class="list-game-wrapper__title">Thêm mới</p>
+        <p *ngIf="id != undefined" class="list-game-wrapper__title">Sửa</p>
     </mat-card-title>
-    <form [formGroup]="gameForm" class="form-signin" style="width: 98%;margin-top: 20px; background-color: white;padding: 20px 20px;margin-left: auto;margin-right: auto;">
+    <form [formGroup]="gameForm" class="form-signin">
         <mat-tab-group>
             [(selectedIndex)]="TabIndex" (selectedTabChange)="changeTabValid($event)"
             <mat-tab>
                 <ng-template mat-tab-label>
                     Thông tin cơ bản
                 </ng-template>
-                <div class="tables-wrapper">
-                    <table>
-                        <tr>
-                            <td>
-                                <div class="form-group">
-                                    <mat-form-field class="example-full-width" appearance="fill">
-                                        <mat-label>Tên Game</mat-label>
-                                        <input type="text" placeholder="Tên Game" matInput formControlName="name">
-                                    </mat-form-field>
-                                </div>
-                                <!-- <div class="form-group">
-                                    <mat-form-field class="example-full-width" appearance="fill">
-                                        <mat-label>Vui lòng chọn thể loại game</mat-label>
-                                        <mat-select formControlName="categoryId">
-                                            <mat-option *ngFor="let category of categories" [value]="category.id">
-                                                {{ category.name }}</mat-option>
-                                        </mat-select>
-                                    </mat-form-field>
-
-                                </div> -->
-                                <div class="form-group">
-                                    <mat-form-field class="example-full-width" appearance="fill">
-                                        <!-- <mat-label>Vui lòng chọn thể loại game</mat-label> -->
-                                        <select formControlName="categoryId" matNativeControl>
-                                            <option value="0" selected>Vui lòng chọn thể loại game</option>
-                                            <option *ngFor="let category of categories" [value]="category.id">
-                                                {{ category.name }} ({{category.description}})
-                                            </option>
-                                        </select>
-                                    </mat-form-field>
-                                </div>
-
-                                <div class="form-group">
-                                    <mat-form-field class="example-full-width" appearance="fill">
-                                        <mat-label>Công ty phát hành</mat-label>
-                                        <input type="text" placeholder="Công ty phát hành" matInput formControlName="companyName" (keydown)="onKeydown($event)" [matAutocomplete]="auto">
-                                        <mat-autocomplete #auto="matAutocomplete">
-                                            <mat-option *ngFor="let option1 of filteredOptionsCompany | async" [value]="option1">
-                                                {{option1}}
-                                            </mat-option>
-                                        </mat-autocomplete>
-                                    </mat-form-field>
-                                </div>
-                                <div class="form-group">
-                                    <mat-label>Mô tả ngắn </mat-label>
-                                    <ckeditor data="<p>Mô tả Ngắn </p>" formControlName="description">
-
-                                    </ckeditor>
-                                </div>
-                                <div class="form-group">
-                                    <label for="thumbnail">Ảnh slide</label>
-                                    <img [src]="thumbnailUrl" style="max-width: 300px; margin: 20px;" alt="">
-                                    <input type="file" class="form-control-file" (change)="onFileChanged($event,2)">
-                                    <button type="button" class="btn btn-primary" (click)="onUpload(2)">Upload</button>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-group">
-                                    <mat-form-field class="example-full-width" appearance="fill">
-                                        <mat-label>Thị Trường Game</mat-label>
-                                        <input type="text" placeholder="Thị Trường Game" matInput formControlName="marketType" (keydown)="onKeydown($event)" [matAutocomplete]="autoNationality">
-                                        <mat-autocomplete #autoNationality="matAutocomplete">
-                                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                                                {{option}}
-                                            </mat-option>
-                                        </mat-autocomplete>
-                                    </mat-form-field>
-                                </div>
-                                <br/>
-                                <div class="form-group">
-                                    <!--                                    <label for="type">Nền tảng</label>-->
-                                    <!--                                    <br/>-->
-                                    <!--                                    <mat-form-field class="example-full-width" appearance="fill">-->
-
-                                    <mat-radio-group aria-label="Select an option" formControlName="type">
-                                        <mat-radio-button value="Mobile">Mobile</mat-radio-button>
-                                        <mat-radio-button value="Desktop">Desktop</mat-radio-button>
-                                        <mat-radio-button value="Multiple-Platform">Multiple-Platform</mat-radio-button>
-                                    </mat-radio-group>
-                                    <!--                                    </mat-form-field>-->
-                                </div>
-                                <br/>
-                                <div class="form-group">
-                                    <mat-form-field class="example-full-width" appearance="fill">
-                                        <mat-label>Link youtube</mat-label>
-                                        <input type="text" placeholder="Công ty phát hành" matInput formControlName="youtubeLink">
-                                    </mat-form-field>
-                                </div>
-
-
-
-                                <div class="form-group">
-                                    <mat-label>Mô tả Tiếng Anh</mat-label>
-                                    <ckeditor data="<p>Mô tả Tiếng Anh</p>" formControlName="descriptionEn">
-
-                                    </ckeditor>
-                                </div>
-                                <div class="form-group">
-                                    <label for="imageId">Ảnh nhỏ</label>
-                                    <img [src]="url" style="max-width: 300px; margin: 20px;" alt="">
-                                    <input type="file" class="form-control-file" (change)="onFileChanged($event,1)">
-                                    <button type="button" class="btn btn-primary" (click)="onUpload(1)">Upload</button>
-                                </div>
-
-                            </td>
-                        </tr>
-
-                    </table>
-                    <button type="submit" class="submitButton" mat-raised-button color="primary" (click)="onCreateGame()">Primary</button>
+                <div class="container" style="margin-top: 10px;">
+                    <div class="row">
+                        <div class="col-sm-6 left-col q-col">
+                            <div class="form-group">
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <mat-label>Tên Game</mat-label>
+                                    <input type="text" placeholder="Tên Game" matInput formControlName="name">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 right-col q-col">
+                            <div class="form-group">
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <select formControlName="categoryId" matNativeControl>
+                                        <option value="0" selected>Vui lòng chọn thể loại game</option>
+                                        <option *ngFor="let category of categories" [value]="category.id">
+                                            {{ category.name }} ({{category.description}})
+                                        </option>
+                                    </select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 left-col q-col">
+                            <div class="form-group">
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <mat-label>Công ty phát hành</mat-label>
+                                    <input type="text" placeholder="Công ty phát hành" matInput formControlName="companyName" (keydown)="onKeydown($event)" [matAutocomplete]="auto">
+                                    <mat-autocomplete #auto="matAutocomplete">
+                                        <mat-option *ngFor="let option1 of filteredOptionsCompany | async" [value]="option1">
+                                            {{option1}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 right-col q-col">
+                            <div class="form-group">
+                                <mat-radio-group aria-label="Select an option" formControlName="type">
+                                    <mat-radio-button value="Mobile">Mobile</mat-radio-button>
+                                    <mat-radio-button value="Desktop">Desktop</mat-radio-button>
+                                    <mat-radio-button value="Multiple-Platform">Multiple-Platform</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 left-col q-col">
+                            <div class="form-group">
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <mat-label>Thị Trường Game</mat-label>
+                                    <input type="text" placeholder="Thị Trường Game" matInput formControlName="marketType" (keydown)="onKeydown($event)" [matAutocomplete]="autoNationality">
+                                    <mat-autocomplete #autoNationality="matAutocomplete">
+                                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                            {{option}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <mat-label>Link youtube</mat-label>
+                                    <input type="text" placeholder="Công ty phát hành" matInput formControlName="youtubeLink">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 right-col q-col">
+                            <div class="form-group">
+                                <!-- <label for="imageId">Ảnh</label> <br> -->
+                                <input type="file" class="form-control-file" (change)="onFileChanged($event)">
+                                <img [src]="url" style="max-width: 100px; margin: 20px;" alt="">
+                                <!-- <button type="button" class="btn btn-primary" (click)="onUpload()">Upload</button> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 left-col q-col">
+                            <div class="form-group">
+                                <mat-label>Mô tả Tiếng Anh</mat-label>
+                                <ckeditor data="<p>Mô tả Tiếng Anh</p>" formControlName="descriptionEn">
+                                </ckeditor>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 right-col q-col">
+                            <div class="form-group">
+                                <mat-label>Mô tả ngắn </mat-label>
+                                <ckeditor data="<p>Mô tả Ngắn </p>" formControlName="description">
+                                </ckeditor>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </mat-tab>
             <mat-tab>
@@ -140,6 +124,11 @@
                 </div>
             </mat-tab>
         </mat-tab-group>
+        <div class="submitButton">
+            <button class="btn btn-primary" *ngIf="id == undefined" (click)="onCreateGame()">Thêm</button>
+            <button class="btn btn-primary" *ngIf="id != undefined" (click)="onUpdateGame()">Lưu</button>
+            <button class="btn btn-primary btn-back" routerLink="{{routes.GAMES}}">Trở về</button>
+        </div>
     </form>
 
     <app-footer></app-footer>

@@ -4,7 +4,6 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { routes } from '../../../../consts';
 import { GamesService } from '../../services';
-import {map, startWith} from "rxjs/operators";
 import {Observable} from "rxjs";
 import {FormControl} from "@angular/forms";
 
@@ -17,7 +16,6 @@ export class ListGameComponent implements OnInit {
 
   public routes: typeof routes = routes;
   myControl = new FormControl('');
-  options: string[] = ['One', 'Two', 'Three'];
   filteredOptions: Observable<string[]>;
   @Input() userTableData: [];
   public displayedColumns: string[] = ['select', 'name', 'thumbnail','type', 'categoryName', 'marketType','companyName', 'status', 'action'];
@@ -29,33 +27,26 @@ export class ListGameComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   constructor(private gameService: GamesService) {
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-        startWith(''),
-        map(value => this._filter(value || '')),
-    );
   }
-
-  private _filter(value): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
-  }
-  // user: Users[] = [];
-
-
 
   public ngOnInit(): void {
-    // this.dataSource = new MatTableDataSource<Users>(this.userTableData);
     this.getGame()
     this.dataSource.paginator = this.paginator;
   }
 
   getGame() {
     this.gameService.getListGame().pipe().subscribe( data => {
-      // console.log(data)
       this.dataSource.data = data['data']
       console.log(this.dataSource.data)
     })
+  }
+
+  onDelete(id: number) {
+    // if (confirm("Xac nhan xoa")) {
+    //   this.gameService.deleteGame(id).subscribe(data => {
+    //     this.getAllCategory()
+    //   })
+    // }
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
