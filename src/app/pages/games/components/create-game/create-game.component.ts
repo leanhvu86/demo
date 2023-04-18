@@ -121,6 +121,7 @@ export class CreateGameComponent implements OnInit {
     onUpdateGame() {
         this.gameForm.value['imageId'] = this.getImageId;
         this.gameForm.value['thumbnail'] = this.getImageId;
+        console.log(this.gameForm.value)
         this.gameService.updateGame(this.gameForm.value).subscribe(data => {
             this.toastrService.success('Chúc mừng bạn', 'Sửa thành công');
             console.log(data)
@@ -129,30 +130,40 @@ export class CreateGameComponent implements OnInit {
 
     findGame(idFind:number) {
         let res: any;
-        this.gameService.getListGame().subscribe(data => {
-            res = data['data'].filter(item => item['id'] == idFind)
-            this.gameForm = this.formbuilder.group({
-                id: [res[0].id, [Validators.required]],
-                name: [res[0].name, [Validators.required]],
-                categoryId: [res[0].categoryId, [Validators.required]],
-                imageId: [res[0].imageId, [Validators.required]],
-                thumbnail: [res[0].thumbnail, [Validators.required]],
-                type: [res[0].type, [Validators.required]],
-                description: [res[0].description, [Validators.required]],
-                descriptionEn: [res[0].descriptionEn, [Validators.required]],
-                youtubeLink: [res[0].youtubeLink],
-                companyName: [res[0].companyName, [Validators.required]],
-                marketType: [res[0].marketType, [Validators.required]],
-                contentVi: [res[0].contentVi, [Validators.required]],
-                contentEn: [res[0].contentEn, [Validators.required]],
-                gamePriority: [res[0].gamePriority, [Validators.required]],
-                price: [res[0].price],
-                promotionPercent: [res[0].promotionPercent],
-                promotionPrice: [res[0].promotionPrice],
-                quantity: [res[0].quantity]
+        let all: any;
+        if (idFind == 0  || idFind == undefined) {
+            return
+        }
+        else {
+            this.gameService.getGame(idFind).subscribe(data => {
+                res = data['data']
+                this.gameForm = this.formbuilder.group({
+                    id: [res.id, [Validators.required]],
+                    name: [res.name, [Validators.required]],
+                    categoryId: [res.categoryId, [Validators.required]],
+                    imageId: [res.imageId, [Validators.required]],
+                    thumbnail: [res.thumbnail, [Validators.required]],
+                    type: [res.type, [Validators.required]],
+                    description: [res.description, [Validators.required]],
+                    descriptionEn: [res.descriptionEn, [Validators.required]],
+                    youtubeLink: [res.youtubeLink],
+                    companyName: [res.companyName, [Validators.required]],
+                    marketType: [res.marketType, [Validators.required]],
+                    contentVi: [res.contentVi, [Validators.required]],
+                    contentEn: [res.contentEn, [Validators.required]],
+                    gamePriority: ['', [Validators.required]],
+                    price: [0],
+                    promotionPercent: [0],
+                    promotionPrice: [0],
+                    quantity: [0]
+                })
+                this.getImageId = res.imageId;
             })
-            this.url = res[0].imageUrl
-        })
+            this.gameService.getListGame().subscribe(data => {
+                all = data['data'].filter(item => item['id'] == idFind)
+                this.url = all[0].imageUrl
+            })
+        }
     }
 }
 

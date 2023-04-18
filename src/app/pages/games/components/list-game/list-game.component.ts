@@ -42,11 +42,11 @@ export class ListGameComponent implements OnInit {
   }
 
   onDelete(id: number) {
-    // if (confirm("Xac nhan xoa")) {
-    //   this.gameService.deleteGame(id).subscribe(data => {
-    //     this.getAllCategory()
-    //   })
-    // }
+    if (confirm("Xac nhan xoa")) {
+      this.gameService.deleteGame(id).subscribe(data => {
+        this.getGame()
+      })
+    }
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
