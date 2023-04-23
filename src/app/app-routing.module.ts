@@ -7,6 +7,7 @@ import { CreateGameComponent } from './pages/games/components/create-game/create
 
 import { EditUserComponent } from './pages/users/components/edit-user/edit-user.component';
 import { CreateCategoryComponent } from './pages/category/component/create-category/create-category.component';
+import { CreatePackageComponent } from './pages/package/component/create-package/create-package.component';
 
 const routes: Routes = [
   {
@@ -79,13 +80,13 @@ const routes: Routes = [
     path: 'package/create',
     pathMatch: 'full',
     canActivate: [AuthGuard],
-    component: CreateCategoryComponent
+    component: CreatePackageComponent
   },
   {
     path: 'package/edit/:id',
     pathMatch: 'full',
     canActivate: [AuthGuard],
-    component: CreateCategoryComponent
+    component: CreatePackageComponent
   },
   
   // {

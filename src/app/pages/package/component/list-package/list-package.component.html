@@ -6,12 +6,12 @@
             </div>
             <input matInput class="user-table-wrapper__search-input" placeholder="Tìm kiếm" (keyup)="applyFilter($event)" autocomplete="on">
         </div>
-        <!-- <button mat-flat-button color="primary" routerLink="{{routes.CREATE_CATEGORY}}" routerLinkActive="active">
-            <mat-icon>add</mat-icon>
-        </button> -->
-        <button mat-flat-button (click)="openCreateDialog()">
+        <button mat-flat-button routerLink="{{routes.CREATE_PACKAGE}}" routerLinkActive="active">
             <mat-icon>add</mat-icon>
         </button>
+        <!-- <button mat-flat-button (click)="openCreateDialog()">
+            <mat-icon>add</mat-icon>
+        </button> -->
     </mat-card-title>
     <mat-card-content class="user-table__content">
         <table class="user-table__table" mat-table [dataSource]="dataSource">
@@ -46,7 +46,7 @@
                 <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.rating}} </td>
             </ng-container>
 
-            <ng-container matColumnDef="server_group">
+            <!-- <ng-container matColumnDef="server_group">
                 <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Khu vực</th>
                 <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.server_group}} </td>
             </ng-container>
@@ -54,24 +54,24 @@
             <ng-container matColumnDef="server">
                 <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Máy chủ</th>
                 <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.server}} </td>
-            </ng-container>
+            </ng-container> -->
 
             <ng-container matColumnDef="attribute">
                 <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Thuộc tính</th>
                 <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.attribute}} </td>
             </ng-container>
 
-            <ng-container matColumnDef="warehouse_quantity">
+            <ng-container matColumnDef="warehouseQuantity">
                 <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Số lượng</th>
-                <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.warehouse_quantity}} </td>
+                <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.warehouseQuantity}} </td>
             </ng-container>
 
-            <ng-container matColumnDef="trade_count">
+            <ng-container matColumnDef="tradeCount">
                 <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Lượt bán</th>
-                <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.trade_count}} </td>
+                <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.tradeCount}} </td>
             </ng-container>
 
-            <ng-container matColumnDef="description_vi">
+            <!-- <ng-container matColumnDef="description_vi">
                 <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Mô tả (VI)</th>
                 <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.description_vi}} </td>
             </ng-container>
@@ -79,18 +79,18 @@
             <ng-container matColumnDef="description_en">
                 <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Mô tả (EN)</th>
                 <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.description_en}} </td>
-            </ng-container>
+            </ng-container> -->
 
-            <ng-container matColumnDef="delivery_time">
+            <ng-container matColumnDef="deliveryTime">
                 <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Thời gian</th>
-                <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.delivery_time}} </td>
+                <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.deliveryTime}} </td>
             </ng-container>
 
             <ng-container matColumnDef="action">
                 <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Hành động</th>
                 <td class="user-table__table-body" mat-cell *matCellDef="let element">
-                    <button class="user-table-wrapper__button" mat-mini-fab>
-                        <mat-icon class="user-table-wrapper__q-icon" (click)="openEditDialog(element.id)">edit</mat-icon>
+                    <button class="user-table-wrapper__button" routerLink="{{routes.EDIT_PACKAGE}}/{{element.id}}" routerLinkActive="active" mat-mini-fab>
+                        <mat-icon class="user-table-wrapper__q-icon">edit</mat-icon>
                     </button> |
                     <button class="user-table-wrapper__button" mat-mini-fab>
                         <mat-icon class="user-table-wrapper__q-icon" (click)="onDelete(element.id)">delete</mat-icon>

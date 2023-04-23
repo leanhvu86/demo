@@ -1,0 +1,46 @@
+<mat-card-title class="list-server-wrapper__header">
+    <p class="list-server-wrapper__title">Danh sách Server</p>
+</mat-card-title>
+<!-- <mat-card-content> -->
+<div style="display: flex; justify-content: space-between;">
+    <div class="container">
+        <p class="title-table">Server Group</p>
+        <div class="table">
+            <div class="row q-row" *ngFor="let sg of serverGroup">
+                <div class="col-sm-12 q-col" (click)="getServer(sg.id, listServer, sg.name)">
+                    {{sg.name}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12" style="text-align: center;">
+                    <button mat-flat-button ele class="btn" *ngIf="checkAdd == 0" (click)="checkAddStatus()">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                    <form [formGroup]="serverForm" *ngIf="checkAdd != 0">
+                        <input class="q-input" type="text" placeholder="Ten group" formControlName="name">
+                        <mat-icon style="cursor: pointer;" (click)="checkAddStatus()">clear</mat-icon>
+                        <input type="submit" (click)="checkAddStatus()" hidden />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <p class="title-table">Server</p>
+        <div class="table">
+            <div class="row q-row" *ngFor="let s of server">
+                <div class="col-sm-12 q-col">
+                    <span *ngIf="serverGroupName!= ''">({{serverGroupName}})</span> <span class="s-name">{{s.name}}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12" style="text-align: center;">
+                    <button mat-flat-button class="btn">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- </mat-card-content> -->

@@ -1,94 +1,104 @@
-<mat-card-title class="list-game-wrapper__header">
-    <p *ngIf="id != 0" class="list-game-wrapper__title">Sửa gói nạp</p>
-    <p *ngIf="id == 0" class="list-game-wrapper__title">Thêm gói nạp</p>
-</mat-card-title>
-<mat-card-content>
-    <form style="margin-left: 50px;" [formGroup]="packageForm" action="" method="POST">
-        <table>
-            <tr>
-                <td>
-                    <div class="form-group">
-                        <mat-form-field class="example-full-width" appearance="fill">
-                            <mat-label>Tên gói</mat-label>
-                            <input type="text" matInput formControlName="name">
-                        </mat-form-field>
-                    </div>
-                    <div class="form-group">
-                        <mat-form-field class="example-full-width" appearance="fill">
-                            <mat-label>Khu vực</mat-label>
-                            <input type="text" matInput formControlName="server_group">
-                        </mat-form-field>
-                    </div>
-                    <div class="form-group">
-                        <mat-form-field class="example-full-width" appearance="fill">
-                            <mat-label>Máy chủ</mat-label>
-                            <input type="text" matInput formControlName="server">
-                        </mat-form-field>
-                    </div>
-                    <div class="form-group">
-                        <mat-form-field class="example-full-width" appearance="fill">
-                            <mat-label>Thuộc tính</mat-label>
-                            <input type="text" matInput formControlName="attribute">
-                        </mat-form-field>
-                    </div>
-                    <div class="form-group">
-                        <mat-form-field class="example-full-width" appearance="fill">
-                            <mat-label>Thời gian</mat-label>
-                            <input type="text" matInput formControlName="delivery_time">
-                        </mat-form-field>
-                    </div>
-                    <div class="form-group">
-                        <mat-form-field class="example-full-width" appearance="fill">
-                            <mat-label>Mô tả (VI)</mat-label>
-                            <textarea rows="5" matInput formControlName="description_vi"></textarea>
-                        </mat-form-field>
-                    </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <mat-form-field class="example-full-width" appearance="fill">
-                            <mat-label>Giá</mat-label>
-                            <input type="text" matInput formControlName="price">
-                        </mat-form-field>
-                    </div>
-                    <div class="form-group">
-                        <mat-form-field class="example-full-width" appearance="fill">
-                            <mat-label>Đơn vị</mat-label>
-                            <input type="text" matInput formControlName="unit">
-                        </mat-form-field>
-                    </div>
-                    <div class="form-group">
-                        <mat-form-field class="example-full-width" appearance="fill">
-                            <mat-label>Đánh giá</mat-label>
-                            <input type="text" matInput formControlName="rating">
-                        </mat-form-field>
-                    </div>
-                    <div class="form-group">
-                        <mat-form-field class="example-full-width" appearance="fill">
-                            <mat-label>Số lượng</mat-label>
-                            <input type="text" matInput formControlName="warehouse_quantity">
-                        </mat-form-field>
-                    </div>
-                    <div class="form-group">
-                        <mat-form-field class="example-full-width" appearance="fill">
-                            <mat-label>Lượt bán</mat-label>
-                            <input type="text" matInput formControlName="trade_count">
-                        </mat-form-field>
-                    </div>
-                    <div class="form-group">
-                        <mat-form-field class="example-full-width" appearance="fill">
-                            <mat-label>Mô tả (EN)</mat-label>
-                            <textarea rows="5" matInput formControlName="description_en"></textarea>
-                        </mat-form-field>
-                    </div>
-                </td>
-            </tr>
-        </table>
+<app-layout>
+    <mat-toolbar class="page-header" role="heading">
+        <h1>Gói nạp</h1>
+    </mat-toolbar>
 
-    </form>
-    <div class="q-btn">
-        <button *ngIf="id != 0" type="submit" class="btn btn-primary btn-edit" (click)="onUpdateCategory()">Sửa</button>
-        <button *ngIf="id == 0 || id == undefined" type="submit" class="btn btn-primary btn-edit" (click)="onUpdateCategory()">Thêm</button>
-        <button class="btn btn-primary btn-back" matDialogClose>Trở về</button>
+    <div class="tables-wrapper">
+        <mat-card class="list-game-wrapper">
+            <mat-card-title class="list-game-wrapper__header">
+                <p *ngIf="id != 0" class="list-package-wrapper__title">Sửa gói nạp</p>
+                <p *ngIf="id == 0" class="list-package-wrapper__title">Thêm gói nạp</p>
+            </mat-card-title>
+            <mat-card-content class="list-game__content">
+                <form style="margin-left: 50px;" [formGroup]="packageForm" action="" method="POST">
+                    <div class="container" style="margin-top: 10px;">
+                        <div class="row">
+                            <div class="col-sm-6 left-col q-col">
+                                <div class="form-group">
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label>Tên gói</mat-label>
+                                        <input type="text" matInput formControlName="name">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 right-col q-col">
+                                <div class="form-group">
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label>Giá</mat-label>
+                                        <input type="text" matInput formControlName="price">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 left-col q-col">
+                                <div class="form-group">
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label>Thuộc tính</mat-label>
+                                        <input type="text" matInput formControlName="attribute">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 right-col q-col">
+                                <div class="form-group">
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label>Đơn vị</mat-label>
+                                        <input type="text" matInput formControlName="unit">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 left-col q-col">
+                                <div class="form-group">
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label>Thời gian</mat-label>
+                                        <input type="text" matInput formControlName="deliveryTime">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 right-col q-col">
+                                <div class="form-group">
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label>Số lượng</mat-label>
+                                        <input type="text" matInput formControlName="warehouseQuantity">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12" *ngIf="id != 0">
+                                <button class="sv-btn" (click)="openServerDialog()">Máy chủ</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 left-col q-col">
+                                <div class="form-group example-full-width">
+                                    <mat-label>Mô tả (VI)</mat-label>
+                                    <ckeditor data="<p>Mô tả (EN)</p>" formControlName="descriptionVi">
+                                    </ckeditor>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 right-col q-col">
+                                <div class="form-group example-full-width">
+                                    <mat-label>Mô tả (EN)</mat-label>
+                                    <ckeditor data="<p>Mô tả (EN)</p>" formControlName="descriptionEn">
+                                    </ckeditor>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 submitButton">
+                                <button *ngIf="id != 0" type="submit" class="btn btn-primary btn-edit" (click)="onUpdatePackage()">Sửa</button>
+                                <button *ngIf="id == 0 || id == undefined" type="submit" class="btn btn-primary btn-edit" (click)="onUpdatePackage()">Thêm</button>
+                                <button class="btn btn-primary btn-back" routerLink="{{routes.PACKAGE}}">Trở về</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
     </div>
-</mat-card-content>
+
+    <app-footer></app-footer>
+</app-layout>

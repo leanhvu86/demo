@@ -15,6 +15,7 @@ export class PackageService {
   BASE_SERVER_URL= AppSetting.BASE_SERVER_URL;
 
   url = 'http://localhost:3002/packages/'
+  url2 = 'http://localhost:3002/server/'
   getListPackage(): Observable<Package[]> {
     // return this.http.get<Package[]>(this.BASE_SERVER_URL+'/api/category/list');
     return this.http.get<Package[]>(this.url);
@@ -30,5 +31,9 @@ export class PackageService {
 
   deletePackage(id:number): Observable<any> {
     return this.http.delete<any>(this.url+id);
+  }
+
+  createServer(data : any): Observable<any> {
+    return this.http.post<any>(this.url2, data);
   }
 }

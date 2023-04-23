@@ -17,7 +17,7 @@ export class ListGameComponent implements OnInit {
   public routes: typeof routes = routes;
   myControl = new FormControl('');
   filteredOptions: Observable<string[]>;
-  @Input() userTableData: [];
+  @Input() gameData: [];
   public displayedColumns: string[] = ['select', 'name', 'thumbnail','type', 'categoryName', 'marketType','companyName', 'status', 'action'];
   public dataSource = new MatTableDataSource<any>();
   public selection = new SelectionModel<any>(true, []);
@@ -80,7 +80,7 @@ export class ListGameComponent implements OnInit {
   public showFilterInput(): void {
     this.getGame()
     this.isShowFilterInput = !this.isShowFilterInput;
-    this.dataSource = new MatTableDataSource<any>(this.userTableData);
+    this.dataSource = new MatTableDataSource<any>(this.gameData);
   }
 
 }

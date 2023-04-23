@@ -137,6 +137,7 @@ export class CreateGameComponent implements OnInit {
         else {
             this.gameService.getGame(idFind).subscribe(data => {
                 res = data['data']
+                console.log(res)
                 this.gameForm = this.formbuilder.group({
                     id: [res.id, [Validators.required]],
                     name: [res.name, [Validators.required]],

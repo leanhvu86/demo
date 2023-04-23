@@ -4,8 +4,6 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { routes } from '../../../../consts';
 import { PackageService } from '../../services';
-import { MatDialog } from '@angular/material/dialog';
-import { CreatePackageComponent } from '../create-package/create-package.component';
 
 @Component({
   selector: 'app-list-package',
@@ -17,7 +15,7 @@ export class ListPackageComponent implements OnInit {
   public routes: typeof routes = routes;
   parentCate: any = []
   @Input() categoryData: [];
-  public displayedColumns: string[] = ['select', 'name', 'price', 'unit', 'rating', 'server_group', 'server', 'attribute', 'warehouse_quantity', 'trade_count', 'description_vi', 'description_en', 'delivery_time', 'action'];
+  public displayedColumns: string[] = ['select', 'name', 'price', 'unit', 'rating', 'attribute', 'warehouseQuantity', 'tradeCount', 'deliveryTime', 'action'];
   public dataSource = new MatTableDataSource<any>();
   public selection = new SelectionModel<any>(true, []);
 
@@ -25,7 +23,7 @@ export class ListPackageComponent implements OnInit {
 
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  constructor(private packageService: PackageService, private matDialog: MatDialog) { }
+  constructor(private packageService: PackageService) { }
 
   ngOnInit(): void {
     this.getAllPackage()
@@ -35,32 +33,31 @@ export class ListPackageComponent implements OnInit {
   getAllPackage() {
     this.packageService.getListPackage().subscribe(data => {
       this.dataSource.data = data
-      console.log(this.dataSource.data)
     })
   }
 
-  openCreateDialog() {
-    this.matDialog.open(CreatePackageComponent, {
-      width: '1000px',
-      height: '500px'
-    })
-    .afterClosed()
-    .subscribe(shouldReload => {
-      window.location.reload()
-    });
-  }
+  // openCreateDialog() {
+  //   this.matDialog.open(CreatePackageComponent, {
+  //     width: '1000px',
+  //     height: '700px'
+  //   })
+  //   .afterClosed()
+  //   .subscribe(shouldReload => {
+  //     window.location.reload()
+  //   });
+  // }
 
-  openEditDialog(id : number) {
-    const dialogRef = this.matDialog.open(CreatePackageComponent, {
-      width: '1000px',
-      height: '500px',
-      data: id
-    })
-    .afterClosed()
-    .subscribe(shouldReload => {
-      window.location.reload()
-    });
-  }
+  // openEditDialog(id : number) {
+  //   const dialogRef = this.matDialog.open(CreatePackageComponent, {
+  //     width: '1000px',
+  //     height: '700px',
+  //     data: id
+  //   })
+  //   .afterClosed()
+  //   .subscribe(shouldReload => {
+  //     window.location.reload()
+  //   });
+  // }
 
   onDelete(id: number) {
     if (confirm("Xac nhan xoa")) {

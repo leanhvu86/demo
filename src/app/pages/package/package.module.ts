@@ -25,12 +25,14 @@ import {MatSelectModule} from "@angular/material/select";
 import { PackageService } from './services';
 import { ListPackageComponent } from './component/list-package/list-package.component';
 import { CreatePackageComponent } from './component/create-package/create-package.component';
+import { ServerComponent } from './component/server/server.component';
 
 @NgModule({
   declarations: [
     PackagePageComponent,
     ListPackageComponent,
-    CreatePackageComponent
+    CreatePackageComponent,
+    ServerComponent
   ],
     imports: [
         CommonModule,

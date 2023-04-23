@@ -99,6 +99,7 @@
     &__table-body {
         padding: 5px 1rem;
         font-size: $fs-small;
+        max-width: 200px;
     }
     &__content-badge {
         width: fit-content;
