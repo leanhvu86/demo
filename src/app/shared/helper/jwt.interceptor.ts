@@ -18,7 +18,7 @@ export class JwtInterceptor implements HttpInterceptor {
     }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const token = 'token';
+        const token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbjIiLCJpYXQiOjE2ODI0MDIwNzQsImV4cCI6MTY4MjQ4ODQ3NH0.dkifRE256og0CrbwPSodYLjlw2tpo9ly3vFrc-wisBeOKHkASKvtUgsCkFopz0b5rf1o87R500IHmeppNcxuvQ';
         if (localStorage.getItem('token') == null || localStorage.getItem('token') == undefined) {
             request = request.clone({
                 setHeaders: {
@@ -36,9 +36,12 @@ export class JwtInterceptor implements HttpInterceptor {
         // if (!request.headers.has('Content-Type')) {
         //     request = request.clone({headers: request.headers.set('Content-Type', 'application/json')});
         // }
-
+        
         request = request.clone({headers: request.headers.set('Accept', 'application/json')});
         request = request.clone({headers: request.headers.set('Access-Control-Allow-Origin', '*')});
+        // request = request.clone({headers: request.headers.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE')});
+        // request = request.clone({headers: request.headers.set('Access-Control-Allow-Headers', 'X-Requested-With,content-type')});
+        
         return next.handle(request).pipe(catchError((error, caught) => {
             // intercept the respons error and displace it to the console
             console.log(error);

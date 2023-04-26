@@ -1,0 +1,63 @@
+<mat-card class="user-table-wrapper">
+    <mat-card-title class="user-table-wrapper__header">
+        <div class="user-table-wrapper__search">
+            <div class="user-table-wrapper__icon-wrapper">
+                <mat-icon class="user-table-wrapper__icon">search</mat-icon>
+            </div>
+            <input matInput class="user-table-wrapper__search-input" placeholder="Tìm kiếm" (keyup)="applyFilter($event)" autocomplete="on">
+        </div>
+        <button mat-flat-button routerLink="{{routes.CREATE_BLOG}}" routerLinkActive="active">
+            <mat-icon>add</mat-icon>
+        </button>
+    </mat-card-title>
+    <mat-card-content class="user-table__content">
+        <table class="user-table__table" mat-table [dataSource]="dataSource">
+            <ng-container matColumnDef="select">
+                <th class="user-table__table-checkbox" mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox color="primary" (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                    </mat-checkbox>
+                </th>
+                <td class="user-table__table-checkbox" mat-cell *matCellDef="let row">
+                    <mat-checkbox color="primary" (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+                    </mat-checkbox>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="title">
+                <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Tiêu đề</th>
+                <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.title}} </td>
+            </ng-container>
+            <ng-container matColumnDef="author">
+                <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Tác giả</th>
+                <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.author}} </td>
+            </ng-container>
+            <ng-container matColumnDef="imageUrl">
+                <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Ảnh</th>
+                <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.imageUrl}} </td>
+            </ng-container>
+            <ng-container matColumnDef="link">
+                <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Url</th>
+                <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.link}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+                <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Hành động</th>
+                <td class="user-table__table-body" mat-cell *matCellDef="let element">
+                    <button class="user-table-wrapper__button" routerLink="{{routes.EDIT_BLOG}}/{{element.id}}" routerLinkActive="active" mat-mini-fab>
+                        <mat-icon class="user-table-wrapper__q-icon">edit</mat-icon>
+                    </button> |
+                    <button class="user-table-wrapper__button" mat-mini-fab>
+                        <mat-icon class="user-table-wrapper__q-icon" (click)="onDelete(element.id)">delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+            </tr>
+        </table>
+    </mat-card-content>
+    <div class="pagination">
+        <mat-paginator [pageSizeOptions]="[10, 15, 100]" showFirstLastButtons></mat-paginator>
+    </div>
+</mat-card>

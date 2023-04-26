@@ -8,6 +8,7 @@ import { CreateGameComponent } from './pages/games/components/create-game/create
 import { EditUserComponent } from './pages/users/components/edit-user/edit-user.component';
 import { CreateCategoryComponent } from './pages/category/component/create-category/create-category.component';
 import { CreatePackageComponent } from './pages/package/component/create-package/create-package.component';
+import { CreateBlogComponent } from './pages/blog/component/create-blog/create-blog.component';
 
 const routes: Routes = [
   {
@@ -16,12 +17,6 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     component: DashboardPageComponent
   },
-  // {
-  //   path: 'typography',
-  //   pathMatch: 'full',
-  //   canActivate: [AuthGuard],
-  //   loadChildren: () => import('./pages/typography/typography.module').then(m => m.TypographyModule)
-  // },
   {
     path: 'users',
     pathMatch: 'full',
@@ -88,13 +83,24 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     component: CreatePackageComponent
   },
-  
-  // {
-  //   path: 'notification',
-  //   pathMatch: 'full',
-  //   canActivate: [AuthGuard],
-  //   loadChildren: () => import('./pages/notification/notification.module').then(m => m.NotificationModule)
-  // },
+  {
+    path: 'blog',
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/blog/blog.module').then(m => m.BlogModule)
+  },
+  {
+    path: 'blog/create',
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
+    component: CreateBlogComponent
+  },
+  {
+    path: 'blog/edit/:id',
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
+    component: CreateBlogComponent
+  },
   {
     path: 'ui',
     canActivate: [AuthGuard],

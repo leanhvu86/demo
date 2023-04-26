@@ -35,7 +35,7 @@ export class ServerComponent implements OnInit {
   serverForm: FormGroup = this.formBuilder.group({
     packageId: [0, [Validators.required]],
     name: ['', [Validators.required]],
-    parentId: ['0', [Validators.required]]
+    parentId: [0, [Validators.required]]
   })
 
   getServerGroup(listSer1: []) {

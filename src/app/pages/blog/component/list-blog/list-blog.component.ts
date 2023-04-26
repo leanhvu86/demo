@@ -3,18 +3,18 @@ import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { routes } from '../../../../consts';
-import { PackageService } from '../../services';
+import { BlogService } from '../../services';
 
 @Component({
-  selector: 'app-list-package',
-  templateUrl: './list-package.component.html',
-  styleUrls: ['./list-package.component.scss']
+  selector: 'app-list-blog',
+  templateUrl: './list-blog.component.html',
+  styleUrls: ['./list-blog.component.scss']
 })
-export class ListPackageComponent implements OnInit {
+export class ListBlogComponent implements OnInit {
 
   public routes: typeof routes = routes;
-  @Input() packageData: [];
-  public displayedColumns: string[] = ['select', 'name', 'price', 'unit', 'rating', 'attribute', 'warehouseQuantity', 'tradeCount', 'deliveryTime', 'action'];
+  @Input() blogData: [];
+  public displayedColumns: string[] = ['select', 'title', 'author', 'imageUrl', 'link', 'action'];
   public dataSource = new MatTableDataSource<any>();
   public selection = new SelectionModel<any>(true, []);
 
@@ -22,49 +22,27 @@ export class ListPackageComponent implements OnInit {
 
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  constructor(private packageService: PackageService) { }
+  constructor(private blogService: BlogService) { }
 
   ngOnInit(): void {
-    this.getAllPackage()
+    this.getAllBlog();
     this.dataSource.paginator = this.paginator;
   }
 
-  getAllPackage() {
-    this.packageService.getListPackage().subscribe(data => {
+  getAllBlog() {
+    this.blogService.getListBlog().subscribe(data => {
       this.dataSource.data = data
     })
   }
 
-  // openCreateDialog() {
-  //   this.matDialog.open(CreatePackageComponent, {
-  //     width: '1000px',
-  //     height: '700px'
-  //   })
-  //   .afterClosed()
-  //   .subscribe(shouldReload => {
-  //     window.location.reload()
-  //   });
-  // }
-
-  // openEditDialog(id : number) {
-  //   const dialogRef = this.matDialog.open(CreatePackageComponent, {
-  //     width: '1000px',
-  //     height: '700px',
-  //     data: id
-  //   })
-  //   .afterClosed()
-  //   .subscribe(shouldReload => {
-  //     window.location.reload()
-  //   });
-  // }
-
   onDelete(id: number) {
     if (confirm("Xac nhan xoa")) {
-      this.packageService.deletePackage(id).subscribe(data => {
-        this.getAllPackage()
+      this.blogService.deleteBlog(id).subscribe(data => {
+        this.getAllBlog()
       })
     }
   }
+
 
   /** Whether the number of selected elements matches the total number of rows. */
   public isAllSelected(): boolean {
@@ -89,15 +67,15 @@ export class ListPackageComponent implements OnInit {
   }
 
   public applyFilter(event: Event): void {
-    this.getAllPackage()
+    this.getAllBlog();
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   public showFilterInput(): void {
-    this.getAllPackage()
+    this.getAllBlog();
     this.isShowFilterInput = !this.isShowFilterInput;
-    this.dataSource = new MatTableDataSource<any>(this.packageData);
+    this.dataSource = new MatTableDataSource<any>(this.blogData);
   }
 
 }
