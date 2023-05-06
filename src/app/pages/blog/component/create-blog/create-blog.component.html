@@ -6,8 +6,8 @@
     <div class="tables-wrapper">
         <mat-card class="list-game-wrapper">
             <mat-card-title class="list-game-wrapper__header">
-                <p *ngIf="id != 0" class="list-package-wrapper__title">Sửa bài viết</p>
-                <p *ngIf="id == 0" class="list-package-wrapper__title">Thêm bài viết</p>
+                <p *ngIf="id != undefined" class="list-package-wrapper__title">Sửa bài viết</p>
+                <p *ngIf="id == undefined" class="list-package-wrapper__title">Thêm bài viết</p>
             </mat-card-title>
             <mat-card-content class="list-game__content">
                 <form style="margin-left: 50px;" [formGroup]="blogForm" action="" method="POST">
@@ -62,9 +62,9 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12 submitButton">
-                                <button *ngIf="id != 0" type="submit" class="btn btn-primary btn-edit">Sửa</button>
-                                <button *ngIf="id == 0 || id == undefined" type="submit" class="btn btn-primary btn-edit">Thêm</button>
-                                <button class="btn btn-primary btn-back" routerLink="{{routes.BLOG}}">Trở về</button>
+                                <button *ngIf="id != undefined" type="submit" class="btn btn-primary btn-edit" (click)="onUpdateBlog()">Sửa</button>
+                                <button *ngIf="id == 0 || id == undefined" type="submit" class="btn btn-primary btn-edit" (click)="onCreateBlog()">Thêm</button>
+                                <button class=" btn btn-primary btn-back " routerLink="{{routes.BLOG}} ">Trở về</button>
                             </div>
                         </div>
                     </div>

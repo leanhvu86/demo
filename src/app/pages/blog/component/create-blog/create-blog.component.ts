@@ -66,6 +66,7 @@ export class CreateBlogComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this._route.snapshot.params["id"];
+    console.log(this.id);
     this.findBlog(this.id);
   }
 
