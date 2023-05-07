@@ -102,6 +102,18 @@ const routes: Routes = [
     component: CreateBlogComponent
   },
   {
+    path: 'banner',
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/banner/banner.module').then(m => m.BannerModule)
+  },
+  // {
+  //   path: 'banner/create',
+  //   pathMatch: 'full',
+  //   canActivate: [AuthGuard],
+  //   component: CreateBlogComponent
+  // },
+  {
     path: 'ui',
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/ui-elements/ui-elements.module').then(m => m.UiElementsModule)

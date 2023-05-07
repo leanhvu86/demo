@@ -16,6 +16,8 @@ export enum routes {
   EDIT_BLOG = '/blog/edit',
   CREATE_PACKAGE = '/package/create',
   EDIT_PACKAGE = '/package/edit',
+  BANNER = '/banner',
+  CREATE_BANNER = '/banner/create',
   NOTIFICATION = '/notification',
   UI_ELEMENTS_ICONS = '/ui/icons',
   UI_ELEMENTS_CHARTS = '/ui/charts',
