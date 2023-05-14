@@ -26,7 +26,7 @@ export class UserTableComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.getUser()
+        this.getAllUser()
         this.dataSource.paginator = this.paginator;
     }
 
@@ -48,19 +48,28 @@ export class UserTableComponent implements OnInit {
         })
     }
 
-    onDelete(id: number) {
+    onChangeStatus(element: any) {
 
-        if (confirm("Xac nhan xoa")) {
-            this.tableService.deleteUser(({
-                ids: [id]
+        if (confirm("Xac nhận mở khoá acount này?")) {
+            this.tableService.activeUser(({
+                ids: [element.id]
             })).subscribe(data => {
-                this.getUser()
+                this.getAllUser()
             })
         }
-        console.log(({
-            ids: [id]
-        }))
     }
+
+    onDeleteUser(element: any) {
+
+        if (confirm("Xac nhan block acount này?")) {
+            this.tableService.deleteUser(({
+                ids: [element.id]
+            })).subscribe(data => {
+                this.getAllUser()
+            })
+        }
+    }
+
 
     /** Whether the number of selected elements matches the total number of rows. */
     public isAllSelected(): boolean {

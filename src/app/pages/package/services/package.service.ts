@@ -17,20 +17,20 @@ export class PackageService {
   url = 'http://localhost:3002/packages/'
   url2 = 'http://localhost:3002/server/'
   getListPackage(): Observable<Package[]> {
-    // return this.http.get<Package[]>(this.BASE_SERVER_URL+'/api/category/list');
-    return this.http.get<Package[]>(this.url);
+    return this.http.get<Package[]>(this.BASE_SERVER_URL+'/api/category/list');
+    // return this.http.get<Package[]>(this.url);
   }
 
   createPackage(data: any): Observable<Package[]> {
-    return this.http.post<Package[]>(this.url, data);
+    return this.http.post<Package[]>(this.BASE_SERVER_URL, data);
   }
 
   updatePackage(id:number, data:any): Observable<any> {
-    return this.http.put<any>(this.url + id, data);
+    return this.http.put<any>(this.BASE_SERVER_URL + id, data);
   }
 
   deletePackage(id:number): Observable<any> {
-    return this.http.delete<any>(this.url+id);
+    return this.http.delete<any>(this.BASE_SERVER_URL+id);
   }
 
   createServer(data : any): Observable<any> {

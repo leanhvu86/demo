@@ -70,14 +70,17 @@
                 <td class="user-table__table-body user-table__content-badge" mat-cell *matCellDef="let element"><span [ngClass]="element.status">{{element.status}}</span></td>
             </ng-container>
 
-            <ng-container matColumnDef="action">
+            <ng-container matColumnDef="action" >
                 <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Hành động</th>
-                <td class="user-table__table-body" mat-cell *matCellDef="let element">
-                    <button class="user-table-wrapper__button" routerLink="{{routes.EDIT_USER}}/{{element.id}}" routerLinkActive="active" mat-mini-fab>
-                        <mat-icon class="user-table-wrapper__q-icon">edit</mat-icon>
-                    </button> |
-                    <button class="user-table-wrapper__button" (click)="onDelete(element.id)" mat-mini-fab>
-                        <mat-icon class="user-table-wrapper__q-icon">delete</mat-icon>
+                <td class="user-table__table-body" mat-cell *matCellDef="let element" >
+<!--                    <button class="user-table-wrapper__button" routerLink="{{routes.EDIT_USER}}/{{element.id}}" routerLinkActive="active" mat-mini-fab>-->
+<!--                        <mat-icon class="user-table-wrapper__q-icon">edit</mat-icon>-->
+<!--                    </button> |-->
+                    <button class="btn btn-warning " *ngIf="element.status === 'ACTIVE'" (click)="onDeleteUser(element)" >
+                        Khoá acc
+                    </button>
+                    <button class="btn btn-success " *ngIf="element.status !== 'ACTIVE'" (click)="onChangeStatus(element)" >
+                        Mở khoá
                     </button>
                 </td>
             </ng-container>

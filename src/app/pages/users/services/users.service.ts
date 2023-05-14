@@ -32,6 +32,9 @@ export class UsersService {
   deleteUser(id:any): Observable<Users[]> {
     return this.http.post<Users[]>(this.BASE_SERVER_URL+'/api/user/delete', id);
   }
+  activeUser(id:any): Observable<Users[]> {
+    return this.http.post<Users[]>(this.BASE_SERVER_URL+'/api/user/active', id);
+  }
 
   // ================================
   public loadEmployeeTableData(): Observable<Employee[]> {

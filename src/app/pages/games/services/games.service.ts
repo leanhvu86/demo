@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 
 import { Games } from '../models/games';
 import {AppSetting} from "../../../appsetting";
+import {Companies} from "../models/companies";
+import {MarketTypes} from "../models/marketTypes";
 
 @Injectable({
   providedIn: 'root'
@@ -42,4 +44,10 @@ export class GamesService {
     return this.http.get<Games[]>(this.BASE_SERVER_URL+'/api/games/delete/' + id);
   }
 
+  getCompanies(): Observable<any> {
+    return this.http.get<Companies[]>(this.BASE_SERVER_URL+'/api/companies');
+  }
+  getMarketTypes(): Observable<any> {
+    return this.http.get<MarketTypes[]>(this.BASE_SERVER_URL+'/api/marketTypes');
+  }
 }

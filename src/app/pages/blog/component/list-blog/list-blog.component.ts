@@ -31,7 +31,7 @@ export class ListBlogComponent implements OnInit {
 
   getAllBlog() {
     this.blogService.getListBlog().subscribe(data => {
-      this.dataSource.data = data
+      this.dataSource.data = data['data'];
     })
   }
 

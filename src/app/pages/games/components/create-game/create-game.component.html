@@ -42,9 +42,12 @@
                             <div class="form-group">
                                 <mat-form-field class="example-full-width" appearance="fill">
                                     <mat-label>Công ty phát hành</mat-label>
-                                    <input type="text" placeholder="Công ty phát hành" matInput formControlName="companyName" (keydown)="onKeydown($event)" [matAutocomplete]="auto">
+                                    <input type="text" placeholder="Công ty phát hành" matInput
+                                           formControlName="companyName" (keydown)="onKeydown($event)"
+                                           [matAutocomplete]="auto">
                                     <mat-autocomplete #auto="matAutocomplete">
-                                        <mat-option *ngFor="let option1 of filteredOptionsCompany | async" [value]="option1">
+                                        <mat-option *ngFor="let option1 of filteredOptionsCompany | async"
+                                                    [value]="option1">
                                             {{option1}}
                                         </mat-option>
                                     </mat-autocomplete>
@@ -66,7 +69,9 @@
                             <div class="form-group">
                                 <mat-form-field class="example-full-width" appearance="fill">
                                     <mat-label>Thị Trường Game</mat-label>
-                                    <input type="text" placeholder="Thị Trường Game" matInput formControlName="marketType" (keydown)="onKeydown($event)" [matAutocomplete]="autoNationality">
+                                    <input type="text" placeholder="Thị Trường Game" matInput
+                                           formControlName="marketType" (keydown)="onKeydown($event)"
+                                           [matAutocomplete]="autoNationality">
                                     <mat-autocomplete #autoNationality="matAutocomplete">
                                         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
                                             {{option}}
@@ -77,8 +82,23 @@
                             <div class="form-group">
                                 <mat-form-field class="example-full-width" appearance="fill">
                                     <mat-label>Link youtube</mat-label>
-                                    <input type="text" placeholder="Công ty phát hành" matInput formControlName="youtubeLink">
+                                    <input type="text" placeholder="Link youtube" matInput
+                                           formControlName="youtubeLink">
                                 </mat-form-field>
+                            </div>
+                            <div class="col-sm-6 right-col q-col">
+                                <div class="form-group">
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <mat-label>Top game</mat-label>
+                                        <select formControlName="gamePriority" matNativeControl>
+                                            <option value="0" selected>Chọn top game nếu cần</option>
+                                            <option  [value]="1">Top 1</option>
+                                            <option  [value]="2">Top 2</option>
+                                            <option  [value]="3">Top 3</option>
+                                            <option  [value]="4">Top 4</option>
+                                        </select>
+                                    </mat-form-field>
+                                </div>
                             </div>
                         </div>
                         <div class="col-sm-6 right-col q-col">
@@ -100,7 +120,7 @@
                         </div>
                         <div class="col-sm-6 right-col q-col">
                             <div class="form-group">
-                                <mat-label>Mô tả ngắn </mat-label>
+                                <mat-label>Mô tả ngắn</mat-label>
                                 <ckeditor data="<p>Mô tả Ngắn </p>" formControlName="description">
                                 </ckeditor>
                             </div>
@@ -124,12 +144,12 @@
                 </div>
             </mat-tab>
         </mat-tab-group>
-        <div class="submitButton">
-            <button class="btn btn-primary" *ngIf="id == undefined" (click)="onCreateGame()">Thêm</button>
-            <button class="btn btn-primary" *ngIf="id != undefined" (click)="onUpdateGame()">Lưu</button>
-            <button class="btn btn-primary btn-back" routerLink="{{routes.GAMES}}">Trở về</button>
-        </div>
-    </form>
 
+    </form>
+    <div class="submitButton">
+        <button class="btn btn-primary" *ngIf="id == undefined" (click)="onCreateGame()" [disabled]="createGame">Thêm</button>
+        <button class="btn btn-primary" *ngIf="id != undefined" (click)="onUpdateGame()" [disabled]="createGame">Lưu</button>
+        <button class="btn btn-warning btn-back" routerLink="{{routes.GAMES}}">Trở về</button>
+    </div>
     <app-footer></app-footer>
 </app-layout>

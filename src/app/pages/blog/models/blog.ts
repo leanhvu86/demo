@@ -1,6 +1,10 @@
 export interface Blog {
-  // id: number;
-  // name: string;
-  // description: string;
-  // status: string;
+    id: number;
+    title: string;
+    contentVI: string;
+    contentEN: string;
+    imageId: string;
+    link: string;
+    author: string;
+    postDate: any;
 }

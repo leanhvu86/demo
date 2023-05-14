@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { GamesService } from '../../services';
-import { Observable } from "rxjs";
-import { map, startWith } from "rxjs/operators";
-import { ToastrService } from "ngx-toastr";
-import { routes } from '../../../../consts';
-import { ActivatedRoute } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {GamesService} from '../../services';
+import {Observable} from "rxjs";
+import {map, startWith} from "rxjs/operators";
+import {ToastrService} from "ngx-toastr";
+import {routes} from '../../../../consts';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
     selector: 'app-create-game',
@@ -16,9 +16,9 @@ export class CreateGameComponent implements OnInit {
 
     public files: File;
     selectedValue: string;
-    categories: any = []
+    categories: any = [];
     options: string[] = ['Global', 'America', 'Europe'];
-    optionsCompany: string[] = ['VinaGame', 'Unit', 'Soha'];
+    optionsCompany: string[] = [];
     filteredOptions: Observable<string[]>;
     filteredOptionsCompany: Observable<string[]>;
     getImageId = '';
@@ -26,14 +26,14 @@ export class CreateGameComponent implements OnInit {
     gameForm: FormGroup;
     url = '../../../../../assets/image/no-image.jpg';
     thumbnailUrl = '../../../../../assets/image/no-image.jpg';
-
+    createGame: boolean = false;
     id: number = 0;
     public routes: typeof routes = routes;
 
     constructor(private gameService: GamesService,
-        private formbuilder: FormBuilder,
-        protected toastrService: ToastrService,
-        private _route: ActivatedRoute
+                private formbuilder: FormBuilder,
+                protected toastrService: ToastrService,
+                private _route: ActivatedRoute
     ) {
         this.gameForm = this.formbuilder.group({
             name: ['', [Validators.required]],
@@ -53,21 +53,16 @@ export class CreateGameComponent implements OnInit {
             promotionPercent: [0],
             promotionPrice: [0],
             quantity: [0],
-        })
+        });
+
     }
 
     ngOnInit(): void {
         this.id = this._route.snapshot.params["id"];
         this.findGame(this.id);
         this.getCategory();
-        this.filteredOptions = this.gameForm.get("marketType").valueChanges.pipe(
-            startWith(''),
-            map(value => this._filter(value || '')),
-        );
-        this.filteredOptionsCompany = this.gameForm.get("companyName").valueChanges.pipe(
-            startWith(''),
-            map(value => this._filterCompany(value || '')),
-        );
+        this.getCompanies();
+        this.getMarketTypes();
     }
 
     onFileChanged(event: any) {
@@ -97,6 +92,31 @@ export class CreateGameComponent implements OnInit {
         })
     }
 
+    getCompanies() {
+        this.gameService.getCompanies().pipe().subscribe(data => {
+            const companies = data['data'];
+            companies.forEach(company => {
+                this.optionsCompany.push(company.name);
+            });
+            this.filteredOptionsCompany = this.gameForm.get("companyName").valueChanges.pipe(
+                startWith(''),
+                map(value => this._filterCompany(value || '')),
+            );
+        })
+    }
+    getMarketTypes() {
+        this.gameService.getMarketTypes().pipe().subscribe(data => {
+            data.forEach(market => {
+                this.options.push(market.name);
+            });
+            console.log(this.options)
+            this.filteredOptions = this.gameForm.get("marketType").valueChanges.pipe(
+                startWith(''),
+                map(value => this._filter(value || '')),
+            );
+        })
+    }
+
     private _filterCompany(value): string[] {
         const filterValue = value.toLowerCase();
         return this.optionsCompany.filter(option1 => option1.toLowerCase().includes(filterValue));
@@ -106,15 +126,17 @@ export class CreateGameComponent implements OnInit {
         const filterValue = value.toLowerCase();
         return this.options.filter(option => option.toLowerCase().includes(filterValue));
     }
+
     onKeydown(e) {
-        e.preventDefault();
     }
+
     onCreateGame() {
         this.gameForm.value['imageId'] = this.getImageId;
         this.gameForm.value['thumbnail'] = this.getImageId;
         this.gameService.createGame(this.gameForm.value).subscribe(data => {
             this.toastrService.success('Chúc mừng bạn', 'Thêm mới thành công');
             console.log(data)
+            this.createGame = true;
         })
     }
 
@@ -128,13 +150,12 @@ export class CreateGameComponent implements OnInit {
         })
     }
 
-    findGame(idFind:number) {
+    findGame(idFind: number) {
         let res: any;
         let all: any;
-        if (idFind == 0  || idFind == undefined) {
+        if (idFind == 0 || idFind == undefined) {
             return
-        }
-        else {
+        } else {
             this.gameService.getGame(idFind).subscribe(data => {
                 res = data['data']
                 console.log(res)
@@ -152,7 +173,7 @@ export class CreateGameComponent implements OnInit {
                     marketType: [res.marketType, [Validators.required]],
                     contentVi: [res.contentVi, [Validators.required]],
                     contentEn: [res.contentEn, [Validators.required]],
-                    gamePriority: ['', [Validators.required]],
+                    gamePriority: [res.gamePriority, [Validators.required]],
                     price: [0],
                     promotionPercent: [0],
                     promotionPrice: [0],
