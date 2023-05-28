@@ -86,19 +86,16 @@
                                            formControlName="youtubeLink">
                                 </mat-form-field>
                             </div>
-                            <div class="col-sm-6 right-col q-col">
-                                <div class="form-group">
-                                    <mat-form-field class="example-full-width" appearance="fill">
-                                        <mat-label>Top game</mat-label>
-                                        <select formControlName="gamePriority" matNativeControl>
-                                            <option value="0" selected>Chọn top game nếu cần</option>
-                                            <option  [value]="1">Top 1</option>
-                                            <option  [value]="2">Top 2</option>
-                                            <option  [value]="3">Top 3</option>
-                                            <option  [value]="4">Top 4</option>
-                                        </select>
-                                    </mat-form-field>
-                                </div>
+                            <div class="form-group">
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <select formControlName="gamePriority" matNativeControl>
+                                        <option value="0" selected>Vui lòng chọn top game nếu cần</option>
+                                        <option [value]="1">Top 1</option>
+                                        <option [value]="2">Top 2</option>
+                                        <option [value]="3">Top 3</option>
+                                        <option [value]="4">Top 4</option>
+                                    </select>
+                                </mat-form-field>
                             </div>
                         </div>
                         <div class="col-sm-6 right-col q-col">
@@ -147,8 +144,10 @@
 
     </form>
     <div class="submitButton">
-        <button class="btn btn-primary" *ngIf="id == undefined" (click)="onCreateGame()" [disabled]="createGame">Thêm</button>
-        <button class="btn btn-primary" *ngIf="id != undefined" (click)="onUpdateGame()" [disabled]="createGame">Lưu</button>
+        <button class="btn btn-primary" *ngIf="id == undefined" (click)="onCreateGame()" [disabled]="createGame">Thêm
+        </button>
+        <button class="btn btn-primary" *ngIf="id != undefined" (click)="onUpdateGame()" [disabled]="createGame">Lưu
+        </button>
         <button class="btn btn-warning btn-back" routerLink="{{routes.GAMES}}">Trở về</button>
     </div>
     <app-footer></app-footer>

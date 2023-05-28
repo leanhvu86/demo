@@ -38,14 +38,14 @@ export class ListGameComponent implements OnInit {
     this.gameService.getListGame().pipe().subscribe( data => {
       this.dataSource.data = data['data']
       console.log(this.dataSource.data)
-    })
+    });
   }
 
   onDelete(id: number) {
     if (confirm("Xac nhan xoa")) {
       this.gameService.deleteGame(id).subscribe(data => {
-        this.getGame()
-      })
+        this.getGame();
+      });
     }
   }
 
@@ -72,7 +72,7 @@ export class ListGameComponent implements OnInit {
   }
 
   public applyFilter(event: Event): void {
-    this.getGame()
+    this.getGame();
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }

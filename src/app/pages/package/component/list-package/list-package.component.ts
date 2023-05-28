@@ -14,7 +14,7 @@ export class ListPackageComponent implements OnInit {
 
   public routes: typeof routes = routes;
   @Input() packageData: [];
-  public displayedColumns: string[] = ['select', 'name', 'price', 'unit', 'rating', 'attribute', 'warehouseQuantity', 'tradeCount', 'deliveryTime', 'action'];
+  public displayedColumns: string[] = ['select', 'name', 'price', 'unit', 'rating', 'attribute', 'warehouseQuantity', 'tradeCount', 'previewUrl', 'action'];
   public dataSource = new MatTableDataSource<any>();
   public selection = new SelectionModel<any>(true, []);
 
@@ -25,13 +25,14 @@ export class ListPackageComponent implements OnInit {
   constructor(private packageService: PackageService) { }
 
   ngOnInit(): void {
-    this.getAllPackage()
+    this.getAllPackage();
     this.dataSource.paginator = this.paginator;
   }
 
   getAllPackage() {
     this.packageService.getListPackage().subscribe(data => {
-      this.dataSource.data = data
+      this.dataSource.data = data['data'];
+      console.log(data)
     })
   }
 

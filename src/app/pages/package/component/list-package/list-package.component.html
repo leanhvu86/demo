@@ -85,7 +85,12 @@
                 <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Thời gian</th>
                 <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.deliveryTime}} </td>
             </ng-container>
-
+            <ng-container matColumnDef="previewUrl">
+                <th class="list-game__table-header" mat-header-cell *matHeaderCellDef> Thumnail</th>
+                <td class="list-game__table-body" mat-cell *matCellDef="let element">
+                    <img src="{{element.previewUrl}}" style="max-width: 50px;" alt="element.previewUrl">
+                </td>
+            </ng-container>
             <ng-container matColumnDef="action">
                 <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Hành động</th>
                 <td class="user-table__table-body" mat-cell *matCellDef="let element">

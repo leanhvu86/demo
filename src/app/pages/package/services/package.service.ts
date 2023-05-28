@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Package } from '../models/package';
 
 import {AppSetting} from "../../../appsetting";
+import {Games} from "../../games/models/games";
 
 @Injectable({
   providedIn: 'root'
@@ -12,14 +13,14 @@ export class PackageService {
 
   constructor(private http: HttpClient) { };
 
-  BASE_SERVER_URL= AppSetting.BASE_SERVER_URL;
+  BASE_SERVER_URL= AppSetting.BASE_SERVER_URL +'/api/packages';
 
   url = 'http://localhost:3002/packages/'
   url2 = 'http://localhost:3002/server/'
   getListPackage(): Observable<Package[]> {
-    return this.http.get<Package[]>(this.BASE_SERVER_URL+'/api/category/list');
-    // return this.http.get<Package[]>(this.url);
+    return this.http.get<Package[]>(this.BASE_SERVER_URL);
   }
+
 
   createPackage(data: any): Observable<Package[]> {
     return this.http.post<Package[]>(this.BASE_SERVER_URL, data);

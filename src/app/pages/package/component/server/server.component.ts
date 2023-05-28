@@ -36,7 +36,7 @@ export class ServerComponent implements OnInit {
     packageId: [0, [Validators.required]],
     name: ['', [Validators.required]],
     parentId: [0, [Validators.required]]
-  })
+  });
 
   getServerGroup(listSer1: []) {
     this.serverGroup = listSer1.filter(item => item['parentId'] == 0)
@@ -58,10 +58,7 @@ export class ServerComponent implements OnInit {
   }
 
   createServer() {
-    this.serverForm.value['packageId'] = this.id;
-    this.packageService.createServer(this.serverForm.value).subscribe( data => {
       this.serverGroup.push(this.serverForm.value)
-    })
   }
 
   ngOnInit(): void {

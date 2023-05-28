@@ -36,6 +36,7 @@ export class LoginFormComponent implements OnInit {
         if(data['data']['roles'][0] == 'ROLE_ADMIN') {
           localStorage.setItem('token', data['data']['token']);
           localStorage.setItem('cGFzc3dvcmQ', btoa("ADMIN TRUNG BET"));
+          alert("Chào mừng admin!")
           this.router.navigate([this.routers.TABLES]).then();
         }
         else {

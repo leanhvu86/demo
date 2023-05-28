@@ -26,6 +26,7 @@ import { PackageService } from './services';
 import { ListPackageComponent } from './component/list-package/list-package.component';
 import { CreatePackageComponent } from './component/create-package/create-package.component';
 import { ServerComponent } from './component/server/server.component';
+import {UiElementsModule} from "../ui-elements/ui-elements.module";
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { ServerComponent } from './component/server/server.component';
         MatAutocompleteModule,
         MatSelectModule,
         FormsModule,
-        MatDialogModule
+        MatDialogModule,
+        UiElementsModule
     ],
   providers: [
     PackageService,

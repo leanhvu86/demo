@@ -131,6 +131,10 @@ export class CreateGameComponent implements OnInit {
     }
 
     onCreateGame() {
+        if(this.gameForm.valid===false){
+            this.toastrService.error('Bạn phải điền đầy đủ thông tin game!', 'Lỗi');
+
+        }
         this.gameForm.value['imageId'] = this.getImageId;
         this.gameForm.value['thumbnail'] = this.getImageId;
         this.gameService.createGame(this.gameForm.value).subscribe(data => {
@@ -146,7 +150,8 @@ export class CreateGameComponent implements OnInit {
         console.log(this.gameForm.value)
         this.gameService.updateGame(this.gameForm.value).subscribe(data => {
             this.toastrService.success('Chúc mừng bạn', 'Sửa thành công');
-            console.log(data)
+            console.log(data);
+            this.createGame = true;
         })
     }
 
