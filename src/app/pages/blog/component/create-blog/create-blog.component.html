@@ -38,7 +38,9 @@
                                 </div>
                             </div>
                             <div class="col-sm-6 q-col">
+
                                 <div class="form-group">
+                                    Size ảnh là: 340 x 200
                                     <input type="file" class="form-control-file" (change)="onFileChanged($event)">
                                     <img [src]="url" style="max-width: 100px; margin: 20px;" alt="">
                                 </div>
@@ -58,13 +60,24 @@
                                     <ckeditor data="<p>Mô tả (EN)</p>" formControlName="contentEN">
                                     </ckeditor>
                                 </div>
+                                <div class="form-group">
+                                    <span>Trạng thái: {{status}}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-12 submitButton">
-                                <button *ngIf="id != undefined" type="submit" class="btn btn-primary btn-edit" (click)="onUpdateBlog()">Sửa</button>
-                                <button *ngIf="id == 0 || id == undefined" type="submit" class="btn btn-primary btn-edit" (click)="onCreateBlog()">Thêm</button>
-                                <button class=" btn btn-primary btn-back " routerLink="..">Trở về</button>
+                                <button *ngIf="id != undefined" type="submit" class="btn btn-primary btn-edit"
+                                        (click)="onUpdateBlog()" [disabled]="successProcess">Sửa
+                                </button>
+                                <button *ngIf="id != undefined" type="submit" class="btn btn-warning btn-edit"
+                                        (click)="onChangeStatus()" [disabled]="changeStatus">Change status
+                                </button>
+                                <button *ngIf="id == 0 || id == undefined" type="submit"
+                                        class="btn btn-primary btn-edit" (click)="onCreateBlog()"
+                                        [disabled]="successProcess">Thêm
+                                </button>
+                                <button class=" btn btn-warning btn-back " routerLink="{{routes.BLOG}}">Trở về</button>
                             </div>
                         </div>
                     </div>

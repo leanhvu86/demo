@@ -1,6 +1,6 @@
 <mat-card class="user-table-wrapper">
     <mat-card-title class="user-table-wrapper__header">
-        <div class="user-table-wrapper__search">
+        <div class="user-table-wrapper__search" style="width:70%">
             <div class="user-table-wrapper__icon-wrapper">
                 <mat-icon class="user-table-wrapper__icon">search</mat-icon>
             </div>
@@ -33,11 +33,17 @@
             </ng-container>
             <ng-container matColumnDef="imageUrl">
                 <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Ảnh</th>
-                <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.imageUrl}} </td>
+                <td class="list-game__table-body" mat-cell *matCellDef="let element">
+                    <img src="{{element.imageUrl}}" style="max-width: 50px;" alt="element.imageUrl">
+                </td>
             </ng-container>
             <ng-container matColumnDef="link">
                 <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Url</th>
                 <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.link}} </td>
+            </ng-container>
+            <ng-container matColumnDef="status">
+                <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Status</th>
+                <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.status}} </td>
             </ng-container>
 
             <ng-container matColumnDef="action">
@@ -45,10 +51,10 @@
                 <td class="user-table__table-body" mat-cell *matCellDef="let element">
                     <button class="user-table-wrapper__button" routerLink="{{routes.EDIT_BLOG}}/{{element.id}}" routerLinkActive="active" mat-mini-fab>
                         <mat-icon class="user-table-wrapper__q-icon">edit</mat-icon>
-                    </button> |
-                    <button class="user-table-wrapper__button" mat-mini-fab>
-                        <mat-icon class="user-table-wrapper__q-icon" (click)="onDelete(element.id)">delete</mat-icon>
                     </button>
+<!--                    <button class="user-table-wrapper__button" mat-mini-fab>-->
+<!--                        <mat-icon class="user-table-wrapper__q-icon" (click)="onDelete(element.id)">delete</mat-icon>-->
+<!--                    </button>-->
                 </td>
             </ng-container>
 

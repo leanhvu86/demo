@@ -1,10 +1,10 @@
 <mat-card class="user-table-wrapper">
     <mat-card-title class="user-table-wrapper__header">
-        <div class="user-table-wrapper__search">
+        <div class="user-table-wrapper__search" style="width:80%">
             <div class="user-table-wrapper__icon-wrapper">
                 <mat-icon class="user-table-wrapper__icon">search</mat-icon>
             </div>
-            <input matInput class="user-table-wrapper__search-input" placeholder="Tìm kiếm" (keyup)="applyFilter($event)" autocomplete="on">
+            <input matInput class="user-table-wrapper__search-input" placeholder="Tìm kiếm" (keyup)="applyFilter($event)" autocomplete="on" >
         </div>
         <button mat-flat-button routerLink="{{routes.CREATE_PACKAGE}}" routerLinkActive="active">
             <mat-icon>add</mat-icon>
@@ -33,7 +33,7 @@
 
             <ng-container matColumnDef="price">
                 <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Giá</th>
-                <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.price}} </td>
+                <td class="user-table__table-body" mat-cell *matCellDef="let element" > {{ element.price | currency : 'VND' : 'symbol' : '1.0-0' }}
             </ng-container>
 
             <ng-container matColumnDef="unit">
@@ -41,9 +41,9 @@
                 <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.unit}} </td>
             </ng-container>
 
-            <ng-container matColumnDef="rating">
-                <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Đánh giá</th>
-                <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.rating}} </td>
+            <ng-container matColumnDef="status">
+                <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Trạng thái</th>
+                <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.status}} </td>
             </ng-container>
 
             <!-- <ng-container matColumnDef="server_group">
@@ -96,10 +96,11 @@
                 <td class="user-table__table-body" mat-cell *matCellDef="let element">
                     <button class="user-table-wrapper__button" routerLink="{{routes.EDIT_PACKAGE}}/{{element.id}}" routerLinkActive="active" mat-mini-fab>
                         <mat-icon class="user-table-wrapper__q-icon">edit</mat-icon>
-                    </button> |
-                    <button class="user-table-wrapper__button" mat-mini-fab>
-                        <mat-icon class="user-table-wrapper__q-icon" (click)="onDelete(element.id)">delete</mat-icon>
                     </button>
+<!--                    |-->
+<!--                    <button class="user-table-wrapper__button" mat-mini-fab>-->
+<!--                        <mat-icon class="user-table-wrapper__q-icon" (click)="onDelete(element.id)">delete</mat-icon>-->
+<!--                    </button>-->
                 </td>
             </ng-container>
 

@@ -34,6 +34,7 @@
     &__search {
         display: flex;
         align-items: center;
+
     }
     &__icon-wrapper {
         height: 46px;
@@ -55,6 +56,7 @@
         border: 0;
         border-bottom: 1px solid $grey;
         outline: none;
+        width: 80%;
         @media (max-width: $small) {
             width: 150px;
         }

@@ -90,10 +90,9 @@
                                 <mat-form-field class="example-full-width" appearance="fill">
                                     <select formControlName="gamePriority" matNativeControl>
                                         <option value="0" selected>Vui lòng chọn top game nếu cần</option>
-                                        <option [value]="1">Top 1</option>
-                                        <option [value]="2">Top 2</option>
-                                        <option [value]="3">Top 3</option>
-                                        <option [value]="4">Top 4</option>
+                                        <option [value]="1">Hot</option>
+                                        <option [value]="2">Top</option>
+                                        <option [value]="3">New</option>
                                     </select>
                                 </mat-form-field>
                             </div>
@@ -101,6 +100,7 @@
                         <div class="col-sm-6 right-col q-col">
                             <div class="form-group">
                                 <!-- <label for="imageId">Ảnh</label> <br> -->
+                                Size ảnh : 160 x 220
                                 <input type="file" class="form-control-file" (change)="onFileChanged($event)">
                                 <img [src]="url" style="max-width: 100px; margin: 20px;" alt="">
                                 <!-- <button type="button" class="btn btn-primary" (click)="onUpload()">Upload</button> -->

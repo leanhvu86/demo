@@ -14,7 +14,7 @@ export class ListBlogComponent implements OnInit {
 
   public routes: typeof routes = routes;
   @Input() blogData: [];
-  public displayedColumns: string[] = ['select', 'title', 'author', 'imageUrl', 'link', 'action'];
+  public displayedColumns: string[] = ['select', 'title', 'author', 'imageUrl', 'link','status', 'action'];
   public dataSource = new MatTableDataSource<any>();
   public selection = new SelectionModel<any>(true, []);
 
@@ -35,13 +35,13 @@ export class ListBlogComponent implements OnInit {
     })
   }
 
-  onDelete(id: number) {
-    if (confirm("Xac nhan xoa")) {
-      this.blogService.deleteBlog(id).subscribe(data => {
-        this.getAllBlog()
-      })
-    }
-  }
+  // onDelete(id: number) {
+  //   if (confirm("Xac nhan xoa")) {
+  //     this.blogService.deleteBlog(id).subscribe(data => {
+  //       this.getAllBlog()
+  //     })
+  //   }
+  // }
 
 
   /** Whether the number of selected elements matches the total number of rows. */

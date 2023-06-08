@@ -1,10 +1,11 @@
 <mat-card class="user-table-wrapper">
     <mat-card-title class="user-table-wrapper__header">
-        <div class="user-table-wrapper__search">
+        <div class="user-table-wrapper__search" style="width:70%">
             <div class="user-table-wrapper__icon-wrapper">
                 <mat-icon class="user-table-wrapper__icon">search</mat-icon>
             </div>
-            <input matInput class="user-table-wrapper__search-input" placeholder="Tìm kiếm" (keyup)="applyFilter($event)" autocomplete="on">
+            <input matInput class="user-table-wrapper__search-input" placeholder="Tìm kiếm"
+                   (keyup)="applyFilter($event)" autocomplete="on">
         </div>
         <button mat-flat-button (click)="openCreateDialog()">
             <mat-icon>add</mat-icon>
@@ -15,33 +16,46 @@
             <!-- Checkbox Column -->
             <ng-container matColumnDef="select">
                 <th class="user-table__table-checkbox" mat-header-cell *matHeaderCellDef>
-                    <mat-checkbox color="primary" (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                    <mat-checkbox color="primary" (change)="$event ? masterToggle() : null"
+                                  [checked]="selection.hasValue() && isAllSelected()"
+                                  [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                  [aria-label]="checkboxLabel()">
                     </mat-checkbox>
                 </th>
                 <td class="user-table__table-checkbox" mat-cell *matCellDef="let row">
-                    <mat-checkbox color="primary" (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+                    <mat-checkbox color="primary" (click)="$event.stopPropagation()"
+                                  (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
+                                  [aria-label]="checkboxLabel(row)">
                     </mat-checkbox>
                 </td>
             </ng-container>
 
             <!-- Name Column -->
             <ng-container matColumnDef="id">
-                <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> ID </th>
+                <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> ID</th>
                 <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.id}} </td>
             </ng-container>
 
             <ng-container matColumnDef="url">
                 <th class="list-game__table-header" mat-header-cell *matHeaderCellDef> Ảnh</th>
                 <td class="list-game__table-body" mat-cell *matCellDef="let element">
-                    <img src="{{element.url}}" style="max-width: 50px;" alt="element.url">
+                    <img src="{{element.imageUrl}}" style="width: 60%; height: auto;" alt="element.url" >
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="action">
                 <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Hành động</th>
                 <td class="user-table__table-body" mat-cell *matCellDef="let element">
-                    <button class="user-table-wrapper__button" mat-mini-fab>
-                        <mat-icon class="user-table-wrapper__q-icon">delete</mat-icon>
+                    <!--                    <button class="user-table-wrapper__button" routerLink="{{routes.EDIT_USER}}/{{element.id}}" routerLinkActive="active" mat-mini-fab>-->
+                    <!--                        <mat-icon class="user-table-wrapper__q-icon">edit</mat-icon>-->
+                    <!--                    </button> |-->
+                    <button class="btn btn-warning " *ngIf="element.status === 'ACTIVE'"
+                            (click)="onChangeStatus(0,element)">
+                        Khoá
+                    </button>
+                    <button class="btn btn-success " *ngIf="element.status !== 'ACTIVE'"
+                            (click)="onChangeStatus(1,element)">
+                        Mở
                     </button>
                 </td>
             </ng-container>

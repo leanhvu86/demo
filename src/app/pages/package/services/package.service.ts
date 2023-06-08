@@ -27,15 +27,17 @@ export class PackageService {
   }
 
   updatePackage(id:number, data:any): Observable<any> {
-    return this.http.put<any>(this.BASE_SERVER_URL + id, data);
+    return this.http.put<any>(this.BASE_SERVER_URL +'/'+ id, data);
   }
 
   deletePackage(id:number): Observable<any> {
-    return this.http.delete<any>(this.BASE_SERVER_URL+id);
+    return this.http.delete<any>(this.BASE_SERVER_URL+'/'+id);
   }
 
   createServer(data : any): Observable<any> {
     return this.http.post<any>(this.url2, data);
   }
-
+  getPackage(id:number): Observable<any> {
+    return this.http.get<Games[]>(this.BASE_SERVER_URL+'/' + id);
+  }
 }

@@ -17,7 +17,7 @@ export class ListBannerComponent implements OnInit {
   public routes: typeof routes = routes;
   parentCate: any = []
   @Input() bannerData: [];
-  public displayedColumns: string[] = ['select', 'id', 'url', 'action'];
+  public displayedColumns: string[] = ['id', 'url', 'action'];
   public dataSource = new MatTableDataSource<any>();
   public selection = new SelectionModel<any>(true, []);
 
@@ -41,7 +41,7 @@ export class ListBannerComponent implements OnInit {
 
   openCreateDialog() {
     this.matDialog.open(CreateBannerComponent, {
-      width: '550px',
+      width: '1550px',
       height: '500px'
     })
     .afterClosed()
@@ -83,5 +83,10 @@ export class ListBannerComponent implements OnInit {
     this.isShowFilterInput = !this.isShowFilterInput;
     this.dataSource = new MatTableDataSource<any>(this.bannerData);
   }
-
+  onChangeStatus(type,banner){
+    this.bannerService.updateBanner(type,banner).subscribe(data => {
+      console.log(data)
+      this.getAllBanner();
+    })
+  }
 }

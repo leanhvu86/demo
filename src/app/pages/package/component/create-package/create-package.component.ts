@@ -18,12 +18,15 @@ export class CreatePackageComponent implements OnInit {
 
     public routes: typeof routes = routes;
     games: any = [];
-    res: any
-    listServer: any = []
-    server: any = []
-    serverGroup: any = []
+    res: any;
+    listServer: any = [];
+    server: any = [];
+    serverGroup: any = [];
+    removeServer: any = [];
     serverGroupName = ''
     id: number = 0;
+    endProcess = false;
+    changeStatus = false;
     checkAdd: number = 0;
     identity: any = 999999999;
     url: '../../../../../assets/image/no-image.jpg';
@@ -33,13 +36,14 @@ export class CreatePackageComponent implements OnInit {
         unit: [0, [Validators.required]],
         rating: [0, [Validators.required]],
         attribute: ['', [Validators.required]],
-        warehouseQuantity: [0, [Validators.required]],
+        warehouseQuantity: [1000, [Validators.required]],
         // tradeCount: [0, [Validators.required]],
         descriptionVi: ['', [Validators.required]],
         descriptionEn: ['', [Validators.required]],
         // deliveryTime: ['', [Validators.required]],
         imageId: ['', [Validators.required]],
-        gameId: ['', [Validators.required]],
+        gameId: [0, [Validators.required]],
+        topSale: ['', [Validators.required]],
     });
     public files: File;
     getImageId = '';
@@ -50,9 +54,9 @@ export class CreatePackageComponent implements OnInit {
     starColorW: StarRatingColor = StarRatingColor.warn;
     serverForm: FormGroup = this.formBuilder.group({
         id: [0, [Validators.required]],
-        packageId: [0, [Validators.required]],
-        name: ['', [Validators.required]]
-        // ,parentId: [0, [Validators.required]]
+        packageId: [0],
+        name: ['', [Validators.required]],
+        gameId: [0]
     });
     inputValue: any;
 
@@ -109,8 +113,32 @@ export class CreatePackageComponent implements OnInit {
             this.toastrService.error('Bạn phải thêm ảnh cho gói', 'Lỗi');
             return;
         }
-        if (!this.packageForm.valid && this.getImageId === '') {
-            this.toastrService.error('Bạn phải nhập đầy đủ thông tin', 'Lỗi');
+        if (this.packageForm.controls['name'].value === '') {
+            this.toastrService.error('Bạn phải nhập đầy đủ tên gói SP', 'Lỗi');
+            return;
+        }
+        if (this.packageForm.controls['price'].value === '0') {
+            this.toastrService.error('Bạn phải nhập đầy đủ giá gói SP', 'Lỗi');
+            return;
+        }
+        if (this.packageForm.controls['unit'].value === '') {
+            this.toastrService.error('Bạn phải nhập đầy đủ đơn vị gói SP', 'Lỗi');
+            return;
+        }
+        if (this.packageForm.controls['attribute'].value === '') {
+            this.toastrService.error('Bạn phải nhập đầy đủ category gói SP', 'Lỗi');
+            return;
+        }
+        if (this.packageForm.controls['descriptionVi'].value === '') {
+            this.toastrService.error('Bạn phải nhập đầy đủ mô tả gói SP', 'Lỗi');
+            return;
+        }
+        if (this.packageForm.controls['descriptionEn'].value === '') {
+            this.toastrService.error('Bạn phải nhập đầy đủ mô tả gói SP', 'Lỗi');
+            return;
+        }
+        if (this.packageForm.controls['gameId'].value === '0') {
+            this.toastrService.error('Bạn phải nhập đầy đủ loại game của gói SP', 'Lỗi');
             return;
         }
         if (this.id != 0) {
@@ -121,8 +149,7 @@ export class CreatePackageComponent implements OnInit {
             gamePackage.server = this.serverGroup;
             this.packageService.updatePackage(this.id, gamePackage).subscribe(data => {
                 this.toastrService.success('Chúc mừng bạn', 'Sửa thành công');
-                console.log(this.packageForm.value)
-                console.log(data)
+                this.endProcess = true;
             })
         } else {
             this.packageForm.value['imageId'] = this.getImageId;
@@ -132,8 +159,16 @@ export class CreatePackageComponent implements OnInit {
             gamePackage.server = this.serverGroup;
             this.packageService.createPackage(gamePackage).subscribe(data => {
                 this.toastrService.success('Chúc mừng bạn', 'Thêm mới thành công');
-                console.log(this.packageForm.value)
-                console.log(data)
+                this.endProcess = true;
+            })
+        }
+    }
+
+    onChangeStatus() {
+        if (confirm("Xac nhan thay đổi status ?")) {
+            this.packageService.deletePackage(this.id).subscribe(data => {
+                this.toastrService.success('Chúc mừng bạn', 'Update status thành công');
+                this.changeStatus = true;
             })
         }
     }
@@ -161,26 +196,29 @@ export class CreatePackageComponent implements OnInit {
     findPackage() {
         if (this.id !== 0 && this.id !== undefined) {
             let res: any;
-            this.packageService.getListPackage().subscribe(data => {
-                res = data.filter(item => item['id'] == this.id)
+            this.packageService.getPackage(this.id).subscribe(data => {
+                res = data['data'];
                 this.packageForm = new FormGroup({
-                    id: new FormControl(res[0].id),
-                    name: new FormControl(res[0].name, [Validators.required]),
-                    price: new FormControl(res[0].price, [Validators.required]),
-                    unit: new FormControl(res[0].unit, [Validators.required]),
-                    rating: new FormControl(res[0].rating, [Validators.required]),
-                    attribute: new FormControl(res[0].attribute, [Validators.required]),
-                    warehouseQuantity: new FormControl(res[0].warehouseQuantity, [Validators.required]),
-                    tradeCount: new FormControl(res[0].tradeCount, [Validators.required]),
-                    descriptionVi: new FormControl(res[0].descriptionVi, [Validators.required]),
-                    descriptionEn: new FormControl(res[0].descriptionEn, [Validators.required]),
-                    // deliveryTime: new FormControl(res[0].deliveryTime, [Validators.required]),
-                    imageId: new FormControl(res[0].imageId, [Validators.required]),
-                    gamedId: new FormControl(res[0].gameId, [Validators.required])
-                })
-                this.getImageId = res[0].imageId;
-                this.listServer = res[0].server;
-                this.rating = res[0].rating;
+                    id: new FormControl(res.id),
+                    name: new FormControl(res.name, [Validators.required]),
+                    price: new FormControl(res.price, [Validators.required]),
+                    unit: new FormControl(res.unit, [Validators.required]),
+                    rating: new FormControl(res.rating, [Validators.required]),
+                    attribute: new FormControl(res.attribute, [Validators.required]),
+                    warehouseQuantity: new FormControl(res.warehouseQuantity, [Validators.required]),
+                    tradeCount: new FormControl(res.tradeCount, [Validators.required]),
+                    descriptionVi: new FormControl(res.descriptionVi, [Validators.required]),
+                    descriptionEn: new FormControl(res.descriptionEn, [Validators.required]),
+                    // deliveryTime: new FormControl(res.deliveryTime, [Validators.required]),
+                    imageId: new FormControl(res.imageId, [Validators.required]),
+                    gameId: new FormControl(res.gameId, [Validators.required]),
+                    topSale: new FormControl(res.topSale, [Validators.required])
+                });
+                console.log(res)
+                this.getImageId = res.imageId;
+                this.serverGroup = res.server;
+                this.rating = res.rating;
+                this.url = res.previewUrl;
             })
         } else {
             this.id = 0;
@@ -189,10 +227,8 @@ export class CreatePackageComponent implements OnInit {
 
 
     checkAddStatus(id) {
-        console.log(id)
         if (id !== undefined && id !== 0) {
             this.serverGroup = this.serverGroup.filter(server => server.id !== id);
-
         } else {
             this.createServer();
         }

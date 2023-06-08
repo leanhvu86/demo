@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="form-group">
                                     <mat-form-field class="example-full-width" appearance="fill">
-                                        <mat-label>Thuộc tính</mat-label>
+                                        <mat-label>Category</mat-label>
                                         <input type="text" matInput formControlName="attribute">
                                     </mat-form-field>
                                 </div>
@@ -62,7 +62,15 @@
                                         <input type="number" matInput formControlName="price">
                                     </mat-form-field>
                                 </div>
-
+                                <div class="form-group">
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <select formControlName="topSale" matNativeControl>
+                                            <option value="" selected>Vui lòng chọn top sale</option>
+                                            <option value="ACTIVE" >TOP SALE</option>
+                                            <option value="INACTIVE">KHÔNG</option>
+                                        </select>
+                                    </mat-form-field>
+                                </div>
 
                             </div>
                             <div class="col-sm-6 right-col q-col">
@@ -143,7 +151,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-12" style="text-align: center;">
-                                                <button mat-flat-button ele class="btn" *ngIf="checkAdd == 0"
+                                                <button mat-flat-button ele class="btn" *ngIf="checkAdd == 0&&!endProcess"
                                                         (click)="addServer()">
                                                     <mat-icon>add</mat-icon>
                                                 </button>
@@ -161,13 +169,16 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12 submitButton">
-                                <button *ngIf="id != 0" type="submit" class="btn btn-primary btn-edit"
+                                <button *ngIf="id != 0" type="submit" class="btn btn-primary btn-edit"  [disabled]="endProcess"
                                         (click)="onUpdatePackage()">Sửa
                                 </button>
-                                <button *ngIf="id == 0 || id == undefined" type="submit"
-                                        class="btn btn-primary btn-edit" (click)="onUpdatePackage()">Thêm
+                                <button *ngIf="id != 0" type="submit" class="btn btn-warning btn-edit"  [disabled]="changeStatus"
+                                        (click)="onChangeStatus()">Sửa Status
                                 </button>
-                                <button class="btn btn-primary btn-back" routerLink="..">Trở về</button>
+                                <button *ngIf="id == 0 || id == undefined" type="submit" [disabled]="endProcess"
+                                        class="btn btn-primary btn-edit" (click)="onUpdatePackage()" >Thêm
+                                </button>
+                                <button class="btn btn-warning btn-back" routerLink="{{routes.PACKAGE}}">Trở về</button>
                             </div>
                         </div>
                     </div>

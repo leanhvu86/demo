@@ -1,9 +1,9 @@
 <mat-card-title>
-    <p>Thêm ảnh</p>
+    <p>Thêm ảnh kích cỡ 1440 x 810</p>
 </mat-card-title>
 <mat-card-content>
     <input type="file" class="form-control-file" (change)="onFileChanged($event)">
-    <img [src]="url" style="max-width: 100px; margin: 20px;" alt="">
+    <img [src]="url" style="width: 100%; margin: 20px; height: auto" alt="">
     <br>
     <div class="q-btn">
         <button class="btn btn-primary" (click)="onUpload()">Thêm</button>
