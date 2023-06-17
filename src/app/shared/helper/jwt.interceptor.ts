@@ -4,7 +4,8 @@ import {Observable, of} from 'rxjs';
 
 import {Router} from '@angular/router';
 import {catchError} from 'rxjs/operators';
-import { LoginFormComponent } from 'src/app/pages/auth/components/login-form/login-form.component';
+import {LoginFormComponent} from 'src/app/pages/auth/components/login-form/login-form.component';
+import {ToastrService} from "ngx-toastr";
 
 /*
 The JWT interceptor intercepts the incoming requests from the application/user and adds JWT token to the request's
@@ -14,7 +15,8 @@ This JWT token in the request header is required to access the SECURE END API PO
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
-    constructor() {
+    constructor(protected toastrService: ToastrService,
+    ) {
     }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -36,15 +38,16 @@ export class JwtInterceptor implements HttpInterceptor {
         // if (!request.headers.has('Content-Type')) {
         //     request = request.clone({headers: request.headers.set('Content-Type', 'application/json')});
         // }
-        
+
         request = request.clone({headers: request.headers.set('Accept', 'application/json')});
         request = request.clone({headers: request.headers.set('Access-Control-Allow-Origin', '*')});
         // request = request.clone({headers: request.headers.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE')});
         // request = request.clone({headers: request.headers.set('Access-Control-Allow-Headers', 'X-Requested-With,content-type')});
-        
+
         return next.handle(request).pipe(catchError((error, caught) => {
             // intercept the respons error and displace it to the console
             console.log(error);
+            this.toastrService.error('Lỗi hệ thống!', 'Lỗi')
             this.handleAuthError(error);
             return of(error);
         }) as any);
