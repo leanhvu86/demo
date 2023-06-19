@@ -1,26 +1,28 @@
 <button class="email-button" mat-mini-fab [matMenuTriggerFor]="email">
-  <mat-icon matBadge="4" matBadgeColor="accent" class="email-button__icon">mail_outline</mat-icon>
+    <mat-icon matBadge="{{emails?.length}} " matBadgeColor="accent" class="email-button__icon">mail_outline</mat-icon>
 </button>
 <mat-menu #email="matMenu" xPosition="before">
-  <div class="email-menu-header">
-    <h4 class="email-menu-header__title">New Order</h4>
-    <p class="email-menu-header__subtitle">{{emails.length}} New Order</p>
-  </div>
-
-  <div *ngFor="let email of emails, let i = index" class="mail-wrapper">
-    <div class="mail-wrapper__icon-wrapper">
-      <button class="mail-wrapper__icon" [ngClass]="colors[i]" mat-mini-fab>{{email.name | shortName}}</button>
-      <span class="mail-wrapper__time">{{email.time}}</span>
+    <div class="email-menu-header">
+        <h4 class="email-menu-header__title">Danh sách đơn hàng</h4>
+        <p class="email-menu-header__subtitle">{{emails?.length}} Chưa xử lý</p>
     </div>
-    <div class="mail-content">
-      <span class="mail-content__user">{{email.name}}</span>
-      <span class="mail-content__message">{{email.message}}</span>
-    </div>
-  </div>
 
-  <div class="send-message-button-wrapper">
-    <button class="send-message-button" mat-fab>
-      Send New Message <mat-icon class="send-message-button__icon">send</mat-icon>
-    </button>
-  </div>
+    <div *ngFor="let email of emails, let i = index" class="mail-wrapper" (click)="reload(email.id)"
+         routerLink="{{routes.EDIT_ORDER}}/{{email.id}}">
+        <div class="mail-wrapper__icon-wrapper">
+            <button class="mail-wrapper__icon" [ngClass]="colors[i]"
+                    mat-mini-fab>{{email.customerName | shortName}}</button>
+            <span class="mail-wrapper__time">{{email.createdAt}}</span>
+        </div>
+        <div class="mail-content">
+            <span class="mail-content__user">{{email.customerName}}</span>
+            <span class="mail-content__message">{{email.totalAmount| currency : 'VND' : 'symbol' : '1.0-0' }}</span>
+        </div>
+    </div>
+
+    <!--  <div class="send-message-button-wrapper">-->
+    <!--    <button class="send-message-button" mat-fab>-->
+    <!--      Send New Message <mat-icon class="send-message-button__icon">send</mat-icon>-->
+    <!--    </button>-->
+    <!--  </div>-->
 </mat-menu>

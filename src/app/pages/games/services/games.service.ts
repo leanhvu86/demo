@@ -40,8 +40,8 @@ export class GamesService {
     return this.http.post<Games[]>(this. BASE_SERVER_URL+'/api/games/update', data);
   }
 
-  deleteGame(id:number): Observable<any> {
-    return this.http.get<Games[]>(this.BASE_SERVER_URL+'/api/games/delete/' + id);
+  deleteGame(object:any): Observable<any> {
+    return this.http.post<Games[]>(this.BASE_SERVER_URL+'/api/games/delete' ,object);
   }
 
   getCompanies(): Observable<any> {

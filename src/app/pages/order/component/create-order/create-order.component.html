@@ -1,0 +1,117 @@
+<app-layout>
+    <mat-toolbar class="page-header" role="heading">
+        <h1>Thông tin đơn hàng</h1>
+    </mat-toolbar>
+    <mat-card class="user-table-wrapper">
+
+        <div class="container" style="margin-top: 10px; background-color: white;padding:50px 50px;">
+            <div class="row">
+                <div class="col">
+                    <a>Tên khách hàng: {{orderInfo?.customerName}}</a>
+                </div>
+                <div class="col">
+                    <a>Số điện thoại: {{orderInfo?.phoneNumber}}</a>
+                </div>
+                <div class="col">
+                    <a>Email: {{orderInfo?.email}}</a>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col">
+                    <a>Số lần giao dịch: {{orderInfo?.tradeCount}}</a>
+                </div>
+                <div class="col">
+                    <a>Tổng tiền giao dịch: {{orderInfo?.totalAmountTrade| currency : 'VND' : 'symbol' : '1.0-0' }}</a>
+                </div>
+                <div class="col">
+                    <a>Trạng thái hoạt động: {{orderInfo?.userStatus}}</a>
+                </div>
+            </div>
+            <hr/>
+            <br/>
+            <div class="row">
+                <div class="col">
+                    <a>Mã đơn hàng: {{orderInfo?.code}}</a>
+                </div>
+
+                <div class="col">
+                    <a>Trạng thái: {{orderInfo?.status}}</a>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col">
+                    <a>Ngày đặt hàng: {{orderInfo?.createdAt}}</a>
+                </div>
+
+                <div class="col">
+                    <a>Tổng tiền: {{orderInfo?.totalAmount| currency : 'VND' : 'symbol' : '1.0-0' }}</a>
+                </div>
+            </div>
+        </div>
+    </mat-card>
+    <mat-card class="user-table-wrapper">
+        <mat-card-content class="user-table__content">
+            <table class="user-table__table" mat-table [dataSource]="dataSource">
+                <ng-container matColumnDef="name">
+                    <th class="user-table__table-header" mat-header-cell *matHeaderCellDef style="width: 550px;"> Tên gói</th>
+                    <td class="user-table__table-body" mat-cell
+                        *matCellDef="let element"> {{element.gamePackage.name}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="game">
+                    <th class="user-table__table-header" mat-header-cell *matHeaderCellDef style="width: 180px;"> Tên Game</th>
+                    <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.game.name}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="price">
+                    <th class="user-table__table-header" mat-header-cell *matHeaderCellDef style="width: 80px;"> Đơn giá</th>
+                    <td class="user-table__table-body" mat-cell
+                        *matCellDef="let element"> {{element.price| currency : 'VND' : 'symbol' : '1.0-0' }} </td>
+                </ng-container>
+                <ng-container matColumnDef="quantity">
+                    <th class="user-table__table-header" mat-header-cell *matHeaderCellDef style="width: 70px;"> Số lượng</th>
+                    <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+                </ng-container>
+                <ng-container matColumnDef="amount">
+                    <th class="user-table__table-header" mat-header-cell *matHeaderCellDef style="width: 100px;"> Tổng</th>
+                    <td class="user-table__table-body" mat-cell
+                        *matCellDef="let element"> {{element.amount| currency : 'VND' : 'symbol' : '1.0-0' }} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="statusName">
+                    <th class="user-table__table-header" mat-header-cell *matHeaderCellDef style="width: 120px;">  Trạng thái</th>
+                    <td class="user-table__table-body user-table__content-badge" mat-cell
+                        *matCellDef="let element"><span
+                            style="color: #0c83e2">{{element.statusName}}</span></td>
+                </ng-container>
+
+                <ng-container matColumnDef="action">
+                    <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Check</th>
+                    <td class="user-table__table-body" mat-cell *matCellDef="let element">
+                        <button class="user-table-wrapper__button" (click)="openConfirmDialog(element)"
+                             [disabled]="disableButton"   routerLinkActive="active" mat-mini-fab>
+                            <mat-icon class="user-table-wrapper__q-icon">edit</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                </tr>
+            </table>
+        </mat-card-content>
+    </mat-card>
+
+    <div class="q-btn">
+        <button type="submit" class="btn btn-warning btn-edit" [disabled]="disableButton"
+                (click)="onConfirmOrder('4')">Huỷ đơn hàng
+        </button>
+        <button type="submit" class="btn btn-primary btn-edit" [disabled]="disableButton"
+                (click)="onConfirmOrder('3')">Xác nhận đơn hàng
+        </button>
+
+        <button class="btn btn-warning btn-back" routerLink="{{routes.ORDER}}">Trở về</button>
+    </div>
+</app-layout>

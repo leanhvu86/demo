@@ -9,6 +9,8 @@ import { EditUserComponent } from './pages/users/components/edit-user/edit-user.
 import { CreateCategoryComponent } from './pages/category/component/create-category/create-category.component';
 import { CreatePackageComponent } from './pages/package/component/create-package/create-package.component';
 import { CreateBlogComponent } from './pages/blog/component/create-blog/create-blog.component';
+import {OrdersModule} from "./pages/order/orders.module";
+import {CreateOrderComponent} from "./pages/order/component/create-order/create-order.component";
 
 const routes: Routes = [
   {
@@ -64,6 +66,18 @@ const routes: Routes = [
     pathMatch: 'full',
     canActivate: [AuthGuard],
     component: CreateCategoryComponent
+  },
+  {
+    path: 'order',
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/order/orders.module').then(m => m.OrdersModule)
+  },
+  {
+    path: 'order/edit/:id',
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
+    component: CreateOrderComponent
   },
   {
     path: 'package',

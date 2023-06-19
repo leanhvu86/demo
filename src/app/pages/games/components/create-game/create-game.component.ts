@@ -29,6 +29,7 @@ export class CreateGameComponent implements OnInit {
     createGame: boolean = false;
     id: number = 0;
     public routes: typeof routes = routes;
+    public status: string;
 
     constructor(private gameService: GamesService,
                 private formbuilder: FormBuilder,
@@ -128,6 +129,19 @@ export class CreateGameComponent implements OnInit {
     }
 
     onKeydown(e) {
+    }
+
+    onDelete(id: number) {
+        let message = this.status==='ACTIVE'?'Bạn muốn khoá game':'Bạn muốn mở game?';
+        if (confirm(message)) {
+            let object ={
+                id,
+                status:this.status==='ACTIVE'?'INACTIVE':'ACTIVE'
+            }
+            this.gameService.deleteGame(object).subscribe(data => {
+                window.location.reload();
+            });
+        }
     }
 
     onCreateGame() {
@@ -258,6 +272,7 @@ export class CreateGameComponent implements OnInit {
                     gamePriority: [res.gamePriority,]
                 })
                 this.getImageId = res.imageId;
+                this.status=res.status;
             })
             this.gameService.getListGame().subscribe(data => {
                 all = data['data'].filter(item => item['id'] == idFind)

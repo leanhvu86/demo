@@ -11,6 +11,7 @@ export enum routes {
   EDIT_CATEGORY = '/categories/edit',
   PACKAGE = '/package',
   ORDER = '/order',
+  EDIT_ORDER = '/order/edit',
   BLOG = '/blog',
   CREATE_BLOG = '/blog/create',
   EDIT_BLOG = '/blog/edit',

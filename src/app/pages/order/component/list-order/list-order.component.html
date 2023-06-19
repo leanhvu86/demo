@@ -1,0 +1,75 @@
+<mat-card class="user-table-wrapper">
+    <mat-card-title class="user-table-wrapper__header">
+        <div class="user-table-wrapper__search" style="width:70%">
+            <div class="user-table-wrapper__icon-wrapper">
+                <mat-icon class="user-table-wrapper__icon">search</mat-icon>
+            </div>
+            <input matInput class="user-table-wrapper__search-input" placeholder="Tìm kiếm"
+                   (keyup)="applyFilter($event)" autocomplete="on">
+        </div>
+    </mat-card-title>
+    <mat-card-content class="user-table__content">
+        <table class="user-table__table" mat-table [dataSource]="dataSource">
+            <!-- Checkbox Column -->
+            <ng-container matColumnDef="select">
+                <th class="user-table__table-checkbox" mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox color="primary" (change)="$event ? masterToggle() : null"
+                                  [checked]="selection.hasValue() && isAllSelected()"
+                                  [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                  [aria-label]="checkboxLabel()">
+                    </mat-checkbox>
+                </th>
+                <td class="user-table__table-checkbox" mat-cell *matCellDef="let row">
+                    <mat-checkbox color="primary" (click)="$event.stopPropagation()"
+                                  (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
+                                  [aria-label]="checkboxLabel(row)">
+                    </mat-checkbox>
+                </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="code">
+                <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Mã đơn hàng</th>
+                <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.code}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="customerName">
+                <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Tên Khách Hang</th>
+                <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.customerName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="totalAmount">
+                <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Tổng tiền</th>
+                <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.totalAmount| currency : 'VND' : 'symbol' : '1.0-0' }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+                <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Trạng thái</th>
+                <td class="user-table__table-body user-table__content-badge" mat-cell *matCellDef="let element"><span
+                       style="color: #0c83e2">{{element.status}}</span></td>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+                <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Hành động</th>
+                <td class="user-table__table-body" mat-cell *matCellDef="let element">
+                    <button class="user-table-wrapper__button" routerLink="{{routes.EDIT_ORDER}}/{{element.id}}" routerLinkActive="active"  mat-mini-fab>
+                        <mat-icon class="user-table-wrapper__q-icon">edit</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+            </tr>
+        </table>
+    </mat-card-content>
+    <div class="pagination" >
+        <mat-paginator
+            #paginator
+            [length]="totalData"
+            [pageSizeOptions]="pageSizes"
+            showFirstLastButtons
+        ></mat-paginator>
+<!--        <mat-paginator [pageSizeOptions]="[10, 15, 100]" showFirstLastButtons></mat-paginator>-->
+    </div>
+</mat-card>

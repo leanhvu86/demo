@@ -1,5 +1,6 @@
 export interface Email {
-  name: string;
-  time: string;
-  message: string
+  customerName: string;
+  createdAt: string;
+  totalAmount: string;
+  id: string;
 }

@@ -96,7 +96,8 @@
                                     </select>
                                 </mat-form-field>
                             </div>
-                            <a style="color: red;font-size: 10px;">Phải đủ số lượng game: HOT: càng nhiều càng tốt - TOP: ít nhất là 3 - NEW: nhỏ nhất là 5 thì website Trunggame mới đẹp</a>
+                            <a style="color: red;font-size: 10px;">Phải đủ số lượng game: HOT: càng nhiều càng tốt -
+                                TOP: ít nhất là 3 - NEW: nhỏ nhất là 5 thì website Trunggame mới đẹp</a>
                         </div>
                         <div class="col-sm-6 right-col q-col">
                             <div class="form-group">
@@ -145,10 +146,14 @@
 
     </form>
     <div class="submitButton">
+        <button class="btn btn-warning" *ngIf="id != undefined" (click)="onDelete(id)"
+                [disabled]="createGame">{{status === 'ACTIVE' ? 'Khoá game' : 'Mở Game'}}
+        </button>
         <button class="btn btn-primary" *ngIf="id == undefined" (click)="onCreateGame()" [disabled]="createGame">Thêm
         </button>
         <button class="btn btn-primary" *ngIf="id != undefined" (click)="onUpdateGame()" [disabled]="createGame">Lưu
         </button>
+
         <button class="btn btn-warning btn-back" routerLink="{{routes.GAMES}}">Trở về</button>
     </div>
     <app-footer></app-footer>

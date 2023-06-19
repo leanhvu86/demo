@@ -13,6 +13,7 @@ import { UserComponent, EmailComponent } from './components';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { SearchComponent } from './components/search/search.component';
 import { ShortNamePipe } from './pipes';
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -26,15 +27,16 @@ import { ShortNamePipe } from './pipes';
   exports: [
     HeaderComponent
   ],
-  imports: [
-    CommonModule,
-    MatToolbarModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatInputModule,
-    MatBadgeModule
-  ]
+    imports: [
+        CommonModule,
+        MatToolbarModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatInputModule,
+        MatBadgeModule,
+        RouterModule
+    ]
 })
 export class HeaderModule { }

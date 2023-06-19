@@ -69,9 +69,6 @@
                 <td class="list-game__table-body" mat-cell *matCellDef="let element">
                     <button class="list-game-wrapper__button" routerLink="{{routes.EDIT_GAMES}}/{{element.id}}" routerLinkActive="active" mat-mini-fab>
                         <mat-icon class="list-game-wrapper__q-icon">edit</mat-icon>
-                    </button> |
-                    <button class="list-game-wrapper__button" (click)="onDelete(element.id)" mat-mini-fab>
-                        <mat-icon class="list-game-wrapper__q-icon">delete</mat-icon>
                     </button>
                 </td>
             </ng-container>
@@ -81,6 +78,6 @@
         </table>
     </mat-card-content>
     <div class="pagination">
-        <mat-paginator [pageSizeOptions]="[10, 15, 100]" showFirstLastButtons></mat-paginator>
+        <mat-paginator [pageSizeOptions]="[5,10, 15]" showFirstLastButtons></mat-paginator>
     </div>
 </mat-card>
