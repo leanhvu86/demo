@@ -59,6 +59,7 @@ export class EditOrderDetailComponent implements OnInit {
         status: [''],
         gameId: [0],
         packageId: [0],
+        description: [''],
     })
 
     ngOnInit(): void {
@@ -77,6 +78,7 @@ export class EditOrderDetailComponent implements OnInit {
             status: new FormControl(this.data.orderDetail.status),
             gameId: new FormControl(this.data.orderDetail.gameId),
             packageId: new FormControl(this.data.orderDetail.packageId),
+            description: new FormControl(this.data.orderDetail.description),
         })
         console.log(this.categoryForm.value)
     }

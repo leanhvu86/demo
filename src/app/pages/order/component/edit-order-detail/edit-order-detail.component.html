@@ -94,6 +94,12 @@
                             <option [value]="2">Huỷ</option>
                         </select>
                     </mat-form-field>
+                    <div class="form-group example-full-width">
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Lý do huỷ (nếu có)</mat-label>
+                            <input type="text" matInput formControlName="description" [readonly]='checkOrder'>
+                        </mat-form-field>
+                    </div>
                 </div>
             </div>
         </div>

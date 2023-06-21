@@ -60,11 +60,11 @@ export class CreateOrderComponent implements OnInit {
         if(type==="3"){
             let checkFinish=true;
             this.orderInfo.orderDetailList.forEach(detail=>{
-                if(detail.status===''|| detail.status===null)
+                if(detail.status===''|| detail.status===null||detail.status=='2')
                     checkFinish= false;
             })
             if(!checkFinish){
-                this.toastrService.error("Bạn phải thực hiện xác nhận hết các gói hàng mới có thể xác nhận được order!")
+                this.toastrService.error("Bạn phải thực hiện xác nhận thành công các gói hàng mới có thể xác nhận thành công order!")
                 return;
             }
         }else{
