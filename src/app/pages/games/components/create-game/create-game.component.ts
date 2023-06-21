@@ -269,6 +269,7 @@ export class CreateGameComponent implements OnInit {
                     marketType: [res.marketType, [Validators.required]],
                     contentVi: [res.contentVi, [Validators.required]],
                     contentEn: [res.contentEn, [Validators.required]],
+                    status: [res.status, [Validators.required]],
                     gamePriority: [res.gamePriority,]
                 })
                 this.getImageId = res.imageId;
