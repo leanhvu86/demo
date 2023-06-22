@@ -24,12 +24,14 @@ import {CKEditorModule} from "ckeditor4-angular";
 import {MatOptionModule} from "@angular/material/core";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatSelectModule} from "@angular/material/select";
+import {SafePipe} from "./models/SafePipe";
 
 @NgModule({
     declarations: [
         GamesPageComponent,
         ListGameComponent,
-        CreateGameComponent
+        CreateGameComponent,
+        SafePipe
     ],
     imports: [
         CommonModule,

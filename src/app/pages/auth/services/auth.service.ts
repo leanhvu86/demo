@@ -33,7 +33,6 @@ export class AuthService {
 
   public signOut(): void {
     localStorage.removeItem('token');
-    console.log(localStorage.getItem('token'))
   }
 
   public getUser(): Observable<User> {

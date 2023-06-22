@@ -50,14 +50,10 @@ export class CreateCategoryComponent implements OnInit {
         if (this.id != 0) {
             this.categoriesService.updateCategory(this.categoryForm.value).subscribe(data => {
                 this.toastrService.success('Chúc mừng bạn', 'Sửa thành công');
-                console.log(this.categoryForm.value)
-                console.log(data)
             })
         } else {
             this.categoriesService.createCategory(this.categoryForm.value).subscribe(data => {
                 this.toastrService.success('Chúc mừng bạn', 'Thêm mới thành công');
-                console.log(this.categoryForm.value)
-                console.log(data)
             })
         }
     }

@@ -90,7 +90,6 @@ export class CreateOrderComponent implements OnInit {
                 totalAmount: totalAmount
             }
             this.orderService.updateOrder(object).subscribe(data => {
-                console.log(data);
                 if (type === "3") {
                     this.orderInfo.status = "Thành công";
                 } else if (type === "4") {
@@ -118,7 +117,6 @@ export class CreateOrderComponent implements OnInit {
                     this.orderInfo.status = "Huỷ";
                     this.disableButton = true;
                 }
-                console.log(this.orderInfo);
                 let temp = data['orderDetailList'];
                 temp.forEach(order=>{
                     if(order.status===""){
@@ -137,7 +135,6 @@ export class CreateOrderComponent implements OnInit {
     }
 
     openConfirmDialog(orderDetail) {
-        console.log("edit")
         this.matDialog.open(EditOrderDetailComponent, {
             width: '1550px',
             height: '680px',

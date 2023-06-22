@@ -32,7 +32,6 @@ export class ListPackageComponent implements OnInit {
   getAllPackage() {
     this.packageService.getListPackage().subscribe(data => {
       this.dataSource.data = data['data'];
-      console.log(data)
     })
   }
 

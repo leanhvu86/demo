@@ -49,7 +49,6 @@ export class CreateBannerComponent implements OnInit {
             formData.append('file', this.files);
             formData.append('type', 'banner');
             this.bannerService.uploadFile(formData).subscribe(data => {
-                console.log(data)
                 if (data['status']!==200){
                     this.toastrService.error('File upload lỗi vui long liên hệ admin', 'Lỗi');
                 }else{

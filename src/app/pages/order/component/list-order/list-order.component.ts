@@ -41,7 +41,6 @@ export class ListOrderComponent implements OnInit {
         if (this.paginator.pageIndex !== undefined) pageNumber = this.paginator.pageIndex;
         if (this.paginator.pageSize !== undefined) pageSize = this.paginator.pageSize;
         this.orderService.getListOrder(pageNumber, pageSize, this.orderBy).subscribe((data) => {
-            console.log(data)
             this.totalData = data.length;
             data.forEach(order => {
                 if (order.status === "1") {

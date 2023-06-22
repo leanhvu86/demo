@@ -81,8 +81,8 @@
                             </div>
                             <div class="form-group">
                                 <mat-form-field class="example-full-width" appearance="fill">
-                                    <mat-label>Link youtube</mat-label>
-                                    <input type="text" placeholder="Link youtube" matInput
+                                    <mat-label>ID video on youtube</mat-label>
+                                    <input type="text" placeholder="Link youtube" matInput (focusout)="onchangeLink($event)"
                                            formControlName="youtubeLink">
                                 </mat-form-field>
                             </div>
@@ -100,13 +100,21 @@
                                 TOP: ít nhất là 3 - NEW: nhỏ nhất là 5 thì website Trunggame mới đẹp</a>
                         </div>
                         <div class="col-sm-6 right-col q-col">
-                            <div class="form-group">
-                                <!-- <label for="imageId">Ảnh</label> <br> -->
-                                Size ảnh : 320 x 440
-                                <input type="file" class="form-control-file" (change)="onFileChanged($event)">
-                                <img [src]="url" style="max-width: 100px; margin: 20px;" alt="">
-                                <!-- <button type="button" class="btn btn-primary" (click)="onUpload()">Upload</button> -->
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <!-- <label for="imageId">Ảnh</label> <br> -->
+                                        Size ảnh : 320 x 440
+                                        <input type="file" class="form-control-file" (change)="onFileChanged($event)">
+                                        <img [src]="url" style="max-width: 100px; margin: 20px;" alt="">
+                                        <!-- <button type="button" class="btn btn-primary" (click)="onUpload()">Upload</button> -->
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <iframe width="100%" height="300" [src]="link | safe"></iframe>
+                                </div>
                             </div>
+
                         </div>
                     </div>
                     <div class="row">

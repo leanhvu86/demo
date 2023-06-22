@@ -57,6 +57,12 @@
                             (click)="onChangeStatus(1,element)">
                         Mở
                     </button>
+                    <br/>
+                    <br/>
+                    <button class="btn btn-success " *ngIf="element.status === 'ACTIVE'"
+                            (click)="onChangeLevel(element.id)">
+                        Lên 1 level
+                    </button>
                 </td>
             </ng-container>
 

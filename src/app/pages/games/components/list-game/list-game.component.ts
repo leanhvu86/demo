@@ -37,7 +37,6 @@ export class ListGameComponent implements OnInit {
   getGame() {
     this.gameService.getListGame().pipe().subscribe( data => {
       this.dataSource.data = data['data']
-      console.log(this.dataSource.data)
     });
   }
 

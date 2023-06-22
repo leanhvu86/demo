@@ -23,7 +23,6 @@ export class EmailComponent implements OnInit {
 
     loadData() {
         this.http.get<Order[]>(this.BASE_SERVER_URL + '/api/orders/check-order').subscribe(data => {
-            console.log(data);
             this.emails = data;
         })
     }

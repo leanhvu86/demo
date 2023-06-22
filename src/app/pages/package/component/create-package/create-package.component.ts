@@ -82,7 +82,6 @@ export class CreatePackageComponent implements OnInit {
     }
 
     onRatingChanged(rating) {
-        console.log(rating);
         this.rating = rating;
     }
 
@@ -108,7 +107,6 @@ export class CreatePackageComponent implements OnInit {
     }
 
     onUpdatePackage() {
-        console.log(this.packageForm.value)
         if (this.getImageId === '') {
             this.toastrService.error('Bạn phải thêm ảnh cho gói', 'Lỗi');
             return;
@@ -214,7 +212,6 @@ export class CreatePackageComponent implements OnInit {
                     gameId: new FormControl(res.gameId, [Validators.required]),
                     topSale: new FormControl(res.topSale, [Validators.required])
                 });
-                console.log(res)
                 this.getImageId = res.imageId;
                 this.serverGroup = res.server;
                 this.rating = res.rating;

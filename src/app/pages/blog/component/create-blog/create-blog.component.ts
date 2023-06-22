@@ -74,7 +74,6 @@ export class CreateBlogComponent implements OnInit {
 
     ngOnInit(): void {
         this.id = this._route.snapshot.params["id"];
-        console.log(this.id);
         this.findBlog(this.id);
     }
 
@@ -111,7 +110,6 @@ export class CreateBlogComponent implements OnInit {
         } else {
             this.blogService.getBlog(idFind).subscribe(data => {
                 res = data['data']
-                console.log(res)
                 this.blogForm = this.formBuilder.group({
                     id: [res.id, [Validators.required]],
                     title: [res.title, [Validators.required]],

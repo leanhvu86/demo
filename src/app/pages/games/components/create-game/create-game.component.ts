@@ -26,6 +26,7 @@ export class CreateGameComponent implements OnInit {
     gameForm: FormGroup;
     url = '../../../../../assets/image/no-image.jpg';
     thumbnailUrl = '../../../../../assets/image/no-image.jpg';
+    link: string;
     createGame: boolean = false;
     id: number = 0;
     public routes: typeof routes = routes;
@@ -49,7 +50,7 @@ export class CreateGameComponent implements OnInit {
             marketType: ['', [Validators.required]],
             contentVi: ['', [Validators.required]],
             contentEn: ['', [Validators.required]],
-            gamePriority: ['', ]
+            gamePriority: ['',]
         });
 
     }
@@ -79,9 +80,9 @@ export class CreateGameComponent implements OnInit {
         formData.append('file', this.files);
         formData.append('type', 'banner');
         this.gameService.uploadFile(formData).subscribe(data => {
-            if (data['status']!==200){
+            if (data['status'] !== 200) {
                 this.toastrService.error('File upload lỗi vui long liên hệ admin', 'Lỗi');
-            }else{
+            } else {
                 this.getImageId = data['data']['id']
             }
         })
@@ -105,12 +106,12 @@ export class CreateGameComponent implements OnInit {
             );
         })
     }
+
     getMarketTypes() {
         this.gameService.getMarketTypes().pipe().subscribe(data => {
             data.forEach(market => {
                 this.options.push(market.name);
             });
-            console.log(this.options)
             this.filteredOptions = this.gameForm.get("marketType").valueChanges.pipe(
                 startWith(''),
                 map(value => this._filter(value || '')),
@@ -132,11 +133,11 @@ export class CreateGameComponent implements OnInit {
     }
 
     onDelete(id: number) {
-        let message = this.status==='ACTIVE'?'Bạn muốn khoá game':'Bạn muốn mở game?';
+        let message = this.status === 'ACTIVE' ? 'Bạn muốn khoá game' : 'Bạn muốn mở game?';
         if (confirm(message)) {
-            let object ={
+            let object = {
                 id,
-                status:this.status==='ACTIVE'?'INACTIVE':'ACTIVE'
+                status: this.status === 'ACTIVE' ? 'INACTIVE' : 'ACTIVE'
             }
             this.gameService.deleteGame(object).subscribe(data => {
                 window.location.reload();
@@ -147,101 +148,101 @@ export class CreateGameComponent implements OnInit {
     onCreateGame() {
         this.gameForm.value['imageId'] = this.getImageId;
         this.gameForm.value['thumbnail'] = this.getImageId;
-        console.log(this.gameForm.value)
-        if(this.gameForm.controls['name'].value===''){
+        if (this.gameForm.controls['name'].value === '') {
             this.toastrService.error('Bạn phải điền đầy đủ tên của game!', 'Lỗi');
             return;
         }
-        if(this.gameForm.controls['categoryId'].value==='0'){
+        if (this.gameForm.controls['categoryId'].value === '0') {
             this.toastrService.error('Bạn phải chọn category của game!', 'Lỗi');
             return;
         }
-        if( this.getImageId===''){
+        if (this.getImageId === '') {
             this.toastrService.error('Bạn phải chọn ảnh của game!', 'Lỗi');
             return;
         }
-        if(this.gameForm.controls['type'].value===''){
+        if (this.gameForm.controls['type'].value === '') {
             this.toastrService.error('Bạn phải chọn loại của game!', 'Lỗi');
             return;
         }
-        if(this.gameForm.controls['description'].value===''){
+        if (this.gameForm.controls['description'].value === '') {
             this.toastrService.error('Bạn phải điền mô tả của game!', 'Lỗi');
             return;
         }
-        if(this.gameForm.controls['descriptionEn'].value===''){
+        if (this.gameForm.controls['descriptionEn'].value === '') {
             this.toastrService.error('Bạn phải điền mô tả tiếng Anh của game!', 'Lỗi');
             return;
         }
-        if(this.gameForm.controls['companyName'].value===''){
+        if (this.gameForm.controls['companyName'].value === '') {
             this.toastrService.error('Bạn phải điền công ty của game!', 'Lỗi');
             return;
         }
-        if(this.gameForm.controls['marketType'].value===''){
+        if (this.gameForm.controls['marketType'].value === '') {
             this.toastrService.error('Bạn phải điền thị trường của game!', 'Lỗi');
             return;
         }
-        if(this.gameForm.controls['contentVi'].value===''){
+        if (this.gameForm.controls['contentVi'].value === '') {
             this.toastrService.error('Bạn phải điền nội dung của game!', 'Lỗi');
             return;
         }
-        if(this.gameForm.controls['contentEn'].value===''){
+        if (this.gameForm.controls['contentEn'].value === '') {
             this.toastrService.error('Bạn phải điền nội dung tiếng Anh của game!', 'Lỗi');
             return;
         }
         this.gameService.createGame(this.gameForm.value).subscribe(data => {
             this.toastrService.success('Chúc mừng bạn', 'Thêm mới thành công');
-            console.log(data)
             this.createGame = true;
         });
+    }
+
+    onchangeLink(event) {
+        this.link = "https://www.youtube.com/embed/" + event.target.value;
     }
 
     onUpdateGame() {
         this.gameForm.value['imageId'] = this.getImageId;
         this.gameForm.value['thumbnail'] = this.getImageId;
-        if(this.gameForm.controls['name'].value===''){
+        if (this.gameForm.controls['name'].value === '') {
             this.toastrService.error('Bạn phải điền đầy đủ tên của game!', 'Lỗi');
             return;
         }
-        if(this.gameForm.controls['categoryId'].value==='0'){
+        if (this.gameForm.controls['categoryId'].value === '0') {
             this.toastrService.error('Bạn phải chọn category của game!', 'Lỗi');
             return;
         }
-        if( this.getImageId===''){
+        if (this.getImageId === '') {
             this.toastrService.error('Bạn phải chọn ảnh của game!', 'Lỗi');
             return;
         }
-        if(this.gameForm.controls['type'].value===''){
+        if (this.gameForm.controls['type'].value === '') {
             this.toastrService.error('Bạn phải chọn loại của game!', 'Lỗi');
             return;
         }
-        if(this.gameForm.controls['description'].value===''){
+        if (this.gameForm.controls['description'].value === '') {
             this.toastrService.error('Bạn phải điền mô tả của game!', 'Lỗi');
             return;
         }
-        if(this.gameForm.controls['descriptionEn'].value===''){
+        if (this.gameForm.controls['descriptionEn'].value === '') {
             this.toastrService.error('Bạn phải điền mô tả tiếng Anh của game!', 'Lỗi');
             return;
         }
-        if(this.gameForm.controls['companyName'].value===''){
+        if (this.gameForm.controls['companyName'].value === '') {
             this.toastrService.error('Bạn phải điền công ty của game!', 'Lỗi');
             return;
         }
-        if(this.gameForm.controls['marketType'].value===''){
+        if (this.gameForm.controls['marketType'].value === '') {
             this.toastrService.error('Bạn phải điền thị trường của game!', 'Lỗi');
             return;
         }
-        if(this.gameForm.controls['contentVi'].value===''){
+        if (this.gameForm.controls['contentVi'].value === '') {
             this.toastrService.error('Bạn phải điền nội dung của game!', 'Lỗi');
             return;
         }
-        if(this.gameForm.controls['contentEn'].value===''){
+        if (this.gameForm.controls['contentEn'].value === '') {
             this.toastrService.error('Bạn phải điền nội dung tiếng Anh của game!', 'Lỗi');
             return;
         }
-        console.log(this.gameForm.value)
         this.gameService.updateGame(this.gameForm.value).subscribe(data => {
             this.toastrService.success('Chúc mừng bạn', 'Sửa thành công');
-            console.log(data);
             this.createGame = true;
         })
     }
@@ -254,7 +255,6 @@ export class CreateGameComponent implements OnInit {
         } else {
             this.gameService.getGame(idFind).subscribe(data => {
                 res = data['data']
-                console.log(res)
                 this.gameForm = this.formbuilder.group({
                     id: [res.id, [Validators.required]],
                     name: [res.name, [Validators.required]],
@@ -273,7 +273,9 @@ export class CreateGameComponent implements OnInit {
                     gamePriority: [res.gamePriority,]
                 })
                 this.getImageId = res.imageId;
-                this.status=res.status;
+                this.status = res.status;
+                this.link = "https://www.youtube.com/embed/" + res.youtubeLink;
+
             })
             this.gameService.getListGame().subscribe(data => {
                 all = data['data'].filter(item => item['id'] == idFind)

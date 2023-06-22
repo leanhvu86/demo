@@ -36,7 +36,6 @@ export class EditOrderDetailComponent implements OnInit {
         private formBuilder: FormBuilder,
         @Inject(MAT_DIALOG_DATA) public data: any) {
 
-        console.log(data);
         this.customerName = data.customerName;
         this.phoneNumber = data.phoneNumber;
         this.email = data.email;
@@ -80,7 +79,6 @@ export class EditOrderDetailComponent implements OnInit {
             packageId: new FormControl(this.data.orderDetail.packageId),
             description: new FormControl(this.data.orderDetail.description),
         })
-        console.log(this.categoryForm.value)
     }
 
     hasValue() {
@@ -93,7 +91,6 @@ export class EditOrderDetailComponent implements OnInit {
         this.categoryForm.patchValue({
             amount: amount
         });
-        console.log(this.categoryForm.value['amount']);
 
     }
 
@@ -108,11 +105,9 @@ export class EditOrderDetailComponent implements OnInit {
             this.toastrService.error("Vui lòng xác nhận trạng thái gói!");
         }
 
-        console.log(this.categoryForm.value);
         if (confirm("Bạn muốn xác nhận gói?")) {
             this.checkOrder = true;
             this.orderService.updateOrderDetail(this.categoryForm.value).subscribe(data => {
-                console.log(data);
                 this.checkOrder = false;
                 this.toastrService.success('Update trạng thái gói thành công');
             })
