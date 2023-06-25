@@ -35,6 +35,9 @@ export class UsersService {
   activeUser(id:any): Observable<Users[]> {
     return this.http.post<Users[]>(this.BASE_SERVER_URL+'/api/user/active', id);
   }
+  changePassword(userObject:any): Observable<Users[]> {
+    return this.http.post<Users[]>(this.BASE_SERVER_URL+'/api/auth/changePassword', userObject);
+  }
 
   // ================================
   public loadEmployeeTableData(): Observable<Employee[]> {

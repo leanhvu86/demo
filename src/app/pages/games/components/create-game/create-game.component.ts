@@ -25,6 +25,7 @@ export class CreateGameComponent implements OnInit {
     selected = '';
     gameForm: FormGroup;
     url = '../../../../../assets/image/no-image.jpg';
+    fullUrl='';
     thumbnailUrl = '../../../../../assets/image/no-image.jpg';
     link: string;
     createGame: boolean = false;
@@ -84,6 +85,7 @@ export class CreateGameComponent implements OnInit {
                 this.toastrService.error('File upload lỗi vui long liên hệ admin', 'Lỗi');
             } else {
                 this.getImageId = data['data']['id']
+                this.fullUrl= data['data']['url']
             }
         })
     }

@@ -11,6 +11,7 @@ import { CreatePackageComponent } from './pages/package/component/create-package
 import { CreateBlogComponent } from './pages/blog/component/create-blog/create-blog.component';
 import {OrdersModule} from "./pages/order/orders.module";
 import {CreateOrderComponent} from "./pages/order/component/create-order/create-order.component";
+import {PasswordComponent} from "./shared/password/password.component";
 
 const routes: Routes = [
   {
@@ -78,6 +79,12 @@ const routes: Routes = [
     pathMatch: 'full',
     canActivate: [AuthGuard],
     component: CreateOrderComponent
+  },
+  {
+    path: 'password',
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
+    component: PasswordComponent
   },
   {
     path: 'package',

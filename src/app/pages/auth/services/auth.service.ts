@@ -33,11 +33,14 @@ export class AuthService {
 
   public signOut(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('secretKey');
   }
 
   public getUser(): Observable<User> {
+    let username = localStorage.getItem('username');
+
     return of({
-      name: 'Trung Game',
+      name: username,
       lastName: ''
     });
   }

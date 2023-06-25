@@ -15,7 +15,7 @@ export class ListOrderComponent implements OnInit {
     public routes: typeof routes = routes;
     parentCate: any = []
     @Input() OrderData: [];
-    public displayedColumns: string[] = ['select', 'code', 'customerName', 'totalAmount', 'status', 'action'];
+    public displayedColumns: string[] = ['select', 'code', 'customerName','createdAt','updatedAt', 'totalAmount', 'status', 'action'];
     public dataSource = new MatTableDataSource<any>();
     public selection = new SelectionModel<any>(true, []);
     public orderBy = 'status';

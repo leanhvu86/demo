@@ -28,17 +28,25 @@ export class LoginFormComponent implements OnInit {
     public ngOnInit(): void {
         this.form = new FormGroup({
             username: new FormControl('', [Validators.required]),
-            password: new FormControl('', [Validators.required])
+            password: new FormControl('', [Validators.required]),
+            secretKey: new FormControl('', [Validators.required])
         });
         this.login()
     }
 
     public login() {
         if (this.form.valid) {
+            let secret='TRUNGGAME-dse234343-663454c3-2359-4109-a13d-204f6022a4d1';
+            if (this.form.controls['secretKey'].value !== secret) {
+                this.toastrService.error('Bạn phải điền đúng secrect key để đăng nhập trang Admin!', 'Lỗi');
+                return;
+            }
             this.authService.login(this.form.value).subscribe(data => {
                 if (data['data']['roles'][0] == 'ROLE_ADMIN') {
                     localStorage.setItem('token', data['data']['token']);
                     localStorage.setItem('cGFzc3dvcmQ', btoa("ADMIN TRUNG BET"));
+                    localStorage.setItem('secretKey', secret);
+                    localStorage.setItem('username', this.form.controls['username'].value);
                     alert("Chào mừng admin!")
                     this.router.navigate([this.routers.TABLES]).then();
                 } else {

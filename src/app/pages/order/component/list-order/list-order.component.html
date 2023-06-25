@@ -30,7 +30,7 @@
             <!-- Name Column -->
             <ng-container matColumnDef="code">
                 <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Mã đơn hàng</th>
-                <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.code}} </td>
+                <td class="user-table__table-body" mat-cell *matCellDef="let element" style="width: 200px"> {{element.code}} </td>
             </ng-container>
 
             <ng-container matColumnDef="customerName">
@@ -38,21 +38,37 @@
                 <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.customerName}} </td>
             </ng-container>
 
+            <ng-container matColumnDef="createdAt">
+                <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Ngày đặt</th>
+                <td class="user-table__table-body" mat-cell
+                    *matCellDef="let element"> {{element.createdAt | date: 'dd/MM/yyyy HH:MM:ss'}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="updatedAt">
+                <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Ngày duyệt</th>
+                <td class="user-table__table-body" mat-cell
+                    *matCellDef="let element"> {{element.updatedAt | date: 'dd/MM/yyyy HH:MM:ss'}}
+                </td>
+            </ng-container>
+
             <ng-container matColumnDef="totalAmount">
                 <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Tổng tiền</th>
-                <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.totalAmount| currency : 'VND' : 'symbol' : '1.0-0' }} </td>
+                <td class="user-table__table-body" mat-cell
+                    *matCellDef="let element"> {{element.totalAmount| currency : 'VND' : 'symbol' : '1.0-0' }} </td>
             </ng-container>
 
             <ng-container matColumnDef="status">
                 <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Trạng thái</th>
                 <td class="user-table__table-body user-table__content-badge" mat-cell *matCellDef="let element"><span
-                       style="color: #0c83e2">{{element.status}}</span></td>
+                        style="color: #0c83e2">{{element.status}}</span></td>
             </ng-container>
 
             <ng-container matColumnDef="action">
                 <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Hành động</th>
                 <td class="user-table__table-body" mat-cell *matCellDef="let element">
-                    <button class="user-table-wrapper__button" routerLink="{{routes.EDIT_ORDER}}/{{element.id}}" routerLinkActive="active"  mat-mini-fab>
+                    <button class="user-table-wrapper__button" routerLink="{{routes.EDIT_ORDER}}/{{element.id}}"
+                            routerLinkActive="active" mat-mini-fab>
                         <mat-icon class="user-table-wrapper__q-icon">edit</mat-icon>
                     </button>
                 </td>
@@ -63,13 +79,13 @@
             </tr>
         </table>
     </mat-card-content>
-    <div class="pagination" >
+    <div class="pagination">
         <mat-paginator
             #paginator
             [length]="totalData"
             [pageSizeOptions]="pageSizes"
             showFirstLastButtons
         ></mat-paginator>
-<!--        <mat-paginator [pageSizeOptions]="[10, 15, 100]" showFirstLastButtons></mat-paginator>-->
+        <!--        <mat-paginator [pageSizeOptions]="[10, 15, 100]" showFirstLastButtons></mat-paginator>-->
     </div>
 </mat-card>

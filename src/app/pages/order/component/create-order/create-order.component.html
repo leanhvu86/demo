@@ -19,7 +19,7 @@
             <br/>
             <div class="row">
                 <div class="col">
-                    <a>Số lần giao dịch: {{orderInfo?.tradeCount}}</a>
+                    <a>Số lần giao dịch thành công: {{orderInfo?.successCount+"/"+orderInfo?.tradeCount}}</a>
                 </div>
                 <div class="col">
                     <a>Tổng tiền giao dịch: {{orderInfo?.totalAmountTrade| currency : 'VND' : 'symbol' : '1.0-0' }}</a>
@@ -54,6 +54,12 @@
     <mat-card class="user-table-wrapper">
         <mat-card-content class="user-table__content">
             <table class="user-table__table" mat-table [dataSource]="dataSource">
+                <ng-container matColumnDef="previewUrl">
+                    <th class="list-game__table-header" mat-header-cell *matHeaderCellDef> Thumbnail</th>
+                    <td class="list-game__table-body" mat-cell *matCellDef="let element">
+                        <img src="{{element.previewUrl}}" style="max-width: 50px;" alt="element.previewUrl">
+                    </td>
+                </ng-container>
                 <ng-container matColumnDef="name">
                     <th class="user-table__table-header" mat-header-cell *matHeaderCellDef style="width: 550px;"> Tên gói</th>
                     <td class="user-table__table-body" mat-cell

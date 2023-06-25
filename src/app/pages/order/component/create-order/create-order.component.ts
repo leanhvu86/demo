@@ -23,7 +23,7 @@ export class CreateOrderComponent implements OnInit {
     public routes: typeof routes = routes;
     public orderInfo: Order;
     public dataSource = new MatTableDataSource<any>();
-    public displayedColumns: string[] = ['name', 'game', 'price', 'quantity', 'amount', 'statusName', 'action'];
+    public displayedColumns: string[] = ['previewUrl','name', 'game', 'price', 'quantity', 'amount', 'statusName', 'action'];
     disableButton: boolean;
 
     constructor(
@@ -82,9 +82,10 @@ export class CreateOrderComponent implements OnInit {
         }
 
         if (confirm(message)) {
-            let totalAmount = this.orderInfo.totalAmount;
+            let totalAmount = 0;
             this.orderInfo.orderDetailList.forEach(detail=>{
-                totalAmount=totalAmount+detail.amount;
+                if(detail.status==='1')
+                    totalAmount=totalAmount+detail.amount;
             })
             let object = {
                 orderId: this.id,

@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {catchError} from 'rxjs/operators';
 import {LoginFormComponent} from 'src/app/pages/auth/components/login-form/login-form.component';
 import {ToastrService} from "ngx-toastr";
+import {AuthService} from "../../pages/auth/services";
 
 /*
 The JWT interceptor intercepts the incoming requests from the application/user and adds JWT token to the request's
@@ -15,7 +16,7 @@ This JWT token in the request header is required to access the SECURE END API PO
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
-    constructor(protected toastrService: ToastrService,
+    constructor(protected toastrService: ToastrService,protected authService: AuthService
     ) {
     }
 
@@ -28,6 +29,12 @@ export class JwtInterceptor implements HttpInterceptor {
                 }
             });
         } else {
+            let secret = 'TRUNGGAME-dse234343-663454c3-2359-4109-a13d-204f6022a4d1';
+            if (localStorage.getItem('secretKey') !== secret) {
+                this.toastrService.error('Bạn không phải là admin! Lỗi hệ thống!', 'Lỗi');
+                this.authService.signOut();
+                window.location.href = '/login';
+            }
             request = request.clone({
                 setHeaders: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -35,9 +42,9 @@ export class JwtInterceptor implements HttpInterceptor {
             });
         }
 
-        // if (!request.headers.has('Content-Type')) {
-        //     request = request.clone({headers: request.headers.set('Content-Type', 'application/json')});
-        // }
+        if (!request.headers.has('Content-Type')) {
+            request = request.clone({headers: request.headers.set('Content-Type', 'application/json')});
+        }
 
         request = request.clone({headers: request.headers.set('Accept', 'application/json')});
         request = request.clone({headers: request.headers.set('Access-Control-Allow-Origin', '*')});
@@ -60,8 +67,10 @@ export class JwtInterceptor implements HttpInterceptor {
         if (err.status === 401) {
             // navigate /delete cookies or whatever
             console.log('handled error ' + err.status);
-            // this.loginService.logoutUser();
+            this.authService.signOut();
             // window.location.reload();
+
+            this.toastrService.error('Bạn không phải là admin! Lỗi hệ thống!', 'Lỗi')
             // tslint:disable-next-line:max-line-length
             // if you've caught / handled the error, you don't want to rethrow it unless you also want downstream consumers to have to handle it as well.
             return of(err.message);

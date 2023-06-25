@@ -2,6 +2,7 @@ export enum routes {
   DASHBOARD = '/dashboard',
   TYPOGRAPHY = '/typography',
   TABLES = '/users',
+  PASSWORD = '/password',
   EDIT_USER = '/users/edit',
   GAMES = '/games',
   CREATE_GAMES = '/games/create',

@@ -1,10 +1,9 @@
-import { HttpClient, HttpHeaders, HttpParams  } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Order } from '../models/order';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {Order} from '../models/order';
 
 import {AppSetting} from "../../../appsetting";
-import {Games} from "../../games/models/games";
 import {OrderDetail} from "../models/orderDetail";
 
 @Injectable({
