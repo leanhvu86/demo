@@ -56,7 +56,9 @@ export class CreateOrderComponent implements OnInit {
 
     onConfirmOrder(type) {
         let message = '';
-        type ==="3"?message="Bạn muốn xác nhận đơn hàng thành công?":message="Bạn muốn huỷ đơn hàng?";
+        console.log(this.orderInfo.status)
+        let messStatus = this.orderInfo.status==='Thành công'?"Đơn hàng đã xác nhận thành công! ":""
+        type ==="3"?message= messStatus+"Bạn muốn xác nhận đơn hàng thành công?":message= messStatus+"Bạn muốn huỷ đơn hàng?";
         if(type==="3"){
             let checkFinish=true;
             this.orderInfo.orderDetailList.forEach(detail=>{
