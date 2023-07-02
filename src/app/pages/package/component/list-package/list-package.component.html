@@ -36,6 +36,10 @@
                 <td class="user-table__table-body" mat-cell *matCellDef="let element" > {{ element.price | currency : 'VND' : 'symbol' : '1.0-0' }}
             </ng-container>
 
+            <ng-container matColumnDef="tradeCount">
+                <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Giảm giá</th>
+                <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.tradeCount| currency : 'VND' : 'symbol' : '1.0-0' }} </td>
+            </ng-container>
             <ng-container matColumnDef="unit">
                 <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Đơn vị</th>
                 <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.unit}} </td>
@@ -66,10 +70,6 @@
                 <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.warehouseQuantity}} </td>
             </ng-container>
 
-            <ng-container matColumnDef="tradeCount">
-                <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Lượt bán</th>
-                <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.tradeCount}} </td>
-            </ng-container>
 
             <!-- <ng-container matColumnDef="description_vi">
                 <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Mô tả (VI)</th>

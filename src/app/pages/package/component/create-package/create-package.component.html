@@ -64,14 +64,10 @@
                                 </div>
                                 <div class="form-group">
                                     <mat-form-field class="example-full-width" appearance="fill">
-                                        <select formControlName="topSale" matNativeControl>
-                                            <option value="" selected>Vui lòng chọn top sale</option>
-                                            <option value="ACTIVE" >TOP SALE</option>
-                                            <option value="INACTIVE">KHÔNG</option>
-                                        </select>
+                                        <mat-label>Giảm giá</mat-label>
+                                        <input type="number" matInput formControlName="tradeCount">
                                     </mat-form-field>
                                 </div>
-
                             </div>
                             <div class="col-sm-6 right-col q-col">
                                 <div class="form-group">
@@ -96,11 +92,15 @@
                                         </select>
                                     </mat-form-field>
                                 </div>
-                                <mat-star-rating [rating]="rating" [starCount]="starCount"
-                                                 [color]="starColor"
-                                                 (ratingUpdated)="onRatingChanged($event)"></mat-star-rating>
-                                <br/>
-                                <br/>
+                                <div class="form-group">
+                                    <mat-form-field class="example-full-width" appearance="fill">
+                                        <select formControlName="topSale" matNativeControl>
+                                            <option value="" selected>Vui lòng chọn top sale</option>
+                                            <option value="ACTIVE" >TOP SALE</option>
+                                            <option value="INACTIVE">KHÔNG</option>
+                                        </select>
+                                    </mat-form-field>
+                                </div>
                             </div>
                         </div>
 
@@ -168,6 +168,11 @@
                                 </div>
                             </div>
                         </div>
+                        <mat-star-rating [rating]="rating" [starCount]="starCount"
+                                         [color]="starColor"
+                                         (ratingUpdated)="onRatingChanged($event)"></mat-star-rating>
+                        <br/>
+                        <br/>
                         <div class="row">
                             <div class="col-sm-12 submitButton">
                                 <button *ngIf="id != 0" type="submit" class="btn btn-primary btn-edit"  [disabled]="endProcess"

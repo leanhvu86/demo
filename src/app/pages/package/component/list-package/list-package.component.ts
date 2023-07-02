@@ -14,7 +14,7 @@ export class ListPackageComponent implements OnInit {
 
   public routes: typeof routes = routes;
   @Input() packageData: [];
-  public displayedColumns: string[] = ['select', 'name', 'price', 'unit', 'status', 'attribute', 'warehouseQuantity', 'tradeCount', 'previewUrl', 'action'];
+  public displayedColumns: string[] = ['select', 'name', 'price','tradeCount',  'unit', 'status', 'attribute', 'warehouseQuantity', 'previewUrl', 'action'];
   public dataSource = new MatTableDataSource<any>();
   public selection = new SelectionModel<any>(true, []);
 
