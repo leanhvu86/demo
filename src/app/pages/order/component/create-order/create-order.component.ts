@@ -23,7 +23,7 @@ export class CreateOrderComponent implements OnInit {
     public routes: typeof routes = routes;
     public orderInfo: Order;
     public dataSource = new MatTableDataSource<any>();
-    public displayedColumns: string[] = ['previewUrl','name', 'game', 'price', 'quantity', 'amount', 'statusName', 'action'];
+    public displayedColumns: string[] = ['previewUrl', 'name', 'game', 'price', 'quantity', 'amount', 'statusName', 'action'];
     disableButton: boolean;
 
     constructor(
@@ -42,8 +42,8 @@ export class CreateOrderComponent implements OnInit {
     })
 
     ngOnInit(): void {
-        if(localStorage.getItem("orderId")!=="0")
-            this.id =     localStorage.getItem("orderId");
+        if (localStorage.getItem("orderId") !== "0")
+            this.id = localStorage.getItem("orderId");
         else
             this.id = this._route.snapshot.params["id"];
 
@@ -57,25 +57,28 @@ export class CreateOrderComponent implements OnInit {
     onConfirmOrder(type) {
         let message = '';
         console.log(this.orderInfo.status)
-        let messStatus = this.orderInfo.status==='Thành công'?"Đơn hàng đã xác nhận thành công! ":""
-        type ==="3"?message= messStatus+"Bạn muốn xác nhận đơn hàng thành công?":message= messStatus+"Bạn muốn huỷ đơn hàng?";
-        if(type==="3"){
-            let checkFinish=true;
-            this.orderInfo.orderDetailList.forEach(detail=>{
-                if(detail.status===''|| detail.status===null||detail.status=='2')
-                    checkFinish= false;
-            })
-            if(!checkFinish){
+        let messStatus = this.orderInfo.status === 'Thành công' ? "Đơn hàng đã xác nhận thành công! " : ""
+        type === "3" ? message = messStatus + "Bạn muốn xác nhận đơn hàng thành công?" : message = messStatus + "Bạn muốn huỷ đơn hàng?";
+        if (type === "3") {
+            let checkFinish = true;
+            let checkSuccess = false;
+            this.orderInfo.orderDetailList.forEach(detail => {
+                if (detail.status === '' || detail.status === '0' || detail.status === null)
+                    checkFinish = false;
+                if (detail.status === '1')
+                    checkSuccess = true;
+            });
+            if (!checkFinish || !checkSuccess) {
                 this.toastrService.error("Bạn phải thực hiện xác nhận thành công các gói hàng mới có thể xác nhận thành công order!")
                 return;
             }
-        }else{
-            let checkFinish=true;
-            this.orderInfo.orderDetailList.forEach(detail=>{
-                if(detail.status==='1')
-                    checkFinish= false;
+        } else {
+            let checkFinish = true;
+            this.orderInfo.orderDetailList.forEach(detail => {
+                if (detail.status === '1')
+                    checkFinish = false;
             })
-            if(!checkFinish){
+            if (!checkFinish) {
                 this.toastrService.error("Bạn đã xác nhận hết các gói hàng! Hiện không thể huỷ đơn hàng!")
                 return;
             }
@@ -83,9 +86,9 @@ export class CreateOrderComponent implements OnInit {
 
         if (confirm(message)) {
             let totalAmount = 0;
-            this.orderInfo.orderDetailList.forEach(detail=>{
-                if(detail.status==='1')
-                    totalAmount=totalAmount+detail.amount;
+            this.orderInfo.orderDetailList.forEach(detail => {
+                if (detail.status === '1')
+                    totalAmount = totalAmount + detail.amount;
             })
             let object = {
                 orderId: this.id,
@@ -121,13 +124,14 @@ export class CreateOrderComponent implements OnInit {
                     this.disableButton = true;
                 }
                 let temp = data['orderDetailList'];
-                temp.forEach(order=>{
-                    if(order.status===""){
-                        order.statusName ="Chờ xử lý";
-                    }else  if(order.status==="1"){
-                        order.statusName ="Thành công";
-                    } if(order.status==="2"){
-                        order.statusName ="Huỷ";
+                temp.forEach(order => {
+                    if (order.status === "" || order.status === "0") {
+                        order.statusName = "Chờ xử lý";
+                    } else if (order.status === "1") {
+                        order.statusName = "Thành công";
+                    }
+                    if (order.status === "2") {
+                        order.statusName = "Huỷ";
                     }
                 })
                 this.dataSource.data = temp;
@@ -141,11 +145,11 @@ export class CreateOrderComponent implements OnInit {
         this.matDialog.open(EditOrderDetailComponent, {
             width: '1550px',
             height: '680px',
-            data:{
-                orderDetail:orderDetail,
-                phoneNumber:this.orderInfo.phoneNumber,
-                customerName:this.orderInfo.customerName,
-                email:this.orderInfo.email
+            data: {
+                orderDetail: orderDetail,
+                phoneNumber: this.orderInfo.phoneNumber,
+                customerName: this.orderInfo.customerName,
+                email: this.orderInfo.email
             }
         })
             .afterClosed()

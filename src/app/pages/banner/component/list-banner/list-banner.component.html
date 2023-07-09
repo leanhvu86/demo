@@ -39,7 +39,7 @@
             <ng-container matColumnDef="url">
                 <th class="list-game__table-header" mat-header-cell *matHeaderCellDef> Ảnh</th>
                 <td class="list-game__table-body" mat-cell *matCellDef="let element">
-                    <img src="{{element.imageUrl}}" style="width: 60%; height: auto;" alt="element.url" >
+                    <img src="{{element.imageUrl}}" style="width: 60%; height: auto;" alt="element.url">
                 </td>
             </ng-container>
 
@@ -56,6 +56,12 @@
                     <button class="btn btn-success " *ngIf="element.status !== 'ACTIVE'"
                             (click)="onChangeStatus(1,element)">
                         Mở
+                    </button>
+                    <br/>
+                    <br/>
+                    <button class="btn btn-warning" *ngIf="element.status !== 'ACTIVE'"
+                            (click)="onDelete(element.id,element)">
+                        Xoá Banner
                     </button>
                     <br/>
                     <br/>

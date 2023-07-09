@@ -25,9 +25,10 @@ export class CreateGameComponent implements OnInit {
     selected = '';
     gameForm: FormGroup;
     url = '../../../../../assets/image/no-image.jpg';
-    fullUrl='';
+    fullUrl = '';
     thumbnailUrl = '../../../../../assets/image/no-image.jpg';
     link: string;
+    canDeleteFile: boolean = true;
     createGame: boolean = false;
     id: number = 0;
     public routes: typeof routes = routes;
@@ -84,8 +85,9 @@ export class CreateGameComponent implements OnInit {
             if (data['status'] !== 200) {
                 this.toastrService.error('File upload lỗi vui long liên hệ admin', 'Lỗi');
             } else {
-                this.getImageId = data['data']['id']
-                this.fullUrl= data['data']['url']
+                this.getImageId = data['data']['id'];
+                this.fullUrl = data['data']['url'];
+                this.canDeleteFile = false;
             }
         })
     }
@@ -276,6 +278,9 @@ export class CreateGameComponent implements OnInit {
                 })
                 this.getImageId = res.imageId;
                 this.status = res.status;
+                if(res.imageId!==''){
+                    this.canDeleteFile = false;
+                }
                 this.link = "https://www.youtube.com/embed/" + res.youtubeLink;
 
             })
@@ -284,6 +289,18 @@ export class CreateGameComponent implements OnInit {
                 this.url = all[0].imageUrl
             })
         }
+    }
+
+    onDeleteFile() {
+        this.gameService.deleteFile(this.getImageId).subscribe(data => {
+            console.log(data)
+            this.getImageId = '';
+            this.url = '../../../../../assets/image/no-image.jpg';
+            this.canDeleteFile = true;
+            this.fullUrl = "";
+            this.toastrService.success('Xoá file thành công', 'Xoá');
+
+        })
     }
 }
 

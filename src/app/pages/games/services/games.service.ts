@@ -1,53 +1,59 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
 
-import { Games } from '../models/games';
+import {Games} from '../models/games';
 import {AppSetting} from "../../../appsetting";
 import {Companies} from "../models/companies";
 import {MarketTypes} from "../models/marketTypes";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class GamesService {
 
-  constructor(private http: HttpClient) { };
-  
-  BASE_SERVER_URL= AppSetting.BASE_SERVER_URL;
+    constructor(private http: HttpClient) {
+    };
 
-  uploadFile(data:any): Observable<any> {
-    return this.http.post<any>(this.BASE_SERVER_URL+'/api/file/upload', data);
-  }
+    BASE_SERVER_URL = AppSetting.BASE_SERVER_URL;
 
-  getListGame(): Observable<Games[]> {
-    return this.http.get<Games[]>(this.BASE_SERVER_URL+'/api/games');
-  }
+    uploadFile(data: any): Observable<any> {
+        return this.http.post<any>(this.BASE_SERVER_URL + '/api/file/upload', data);
+    }
 
-  createGame(data:Games[]): Observable<Games[]> {
-    return this.http.post<Games[]>(this. BASE_SERVER_URL+'/api/games', data);
-  }
+    getListGame(): Observable<Games[]> {
+        return this.http.get<Games[]>(this.BASE_SERVER_URL + '/api/games');
+    }
 
-  getListCategory(): Observable<any> {
-    return this.http.get<any>(this.BASE_SERVER_URL+'/api/category/list');
-  }
+    createGame(data: Games[]): Observable<Games[]> {
+        return this.http.post<Games[]>(this.BASE_SERVER_URL + '/api/games', data);
+    }
 
-  getGame(id:number): Observable<any> {
-    return this.http.get<Games[]>(this.BASE_SERVER_URL+'/api/games/' + id);
-  }
+    deleteFile(data: any): Observable<any> {
+        return this.http.post<any>(this.BASE_SERVER_URL + '/api/file/delete/'+data,null);
+    }
 
-  updateGame(data:Games[]): Observable<Games[]> {
-    return this.http.post<Games[]>(this. BASE_SERVER_URL+'/api/games/update', data);
-  }
+    getListCategory(): Observable<any> {
+        return this.http.get<any>(this.BASE_SERVER_URL + '/api/category/list');
+    }
 
-  deleteGame(object:any): Observable<any> {
-    return this.http.post<Games[]>(this.BASE_SERVER_URL+'/api/games/delete' ,object);
-  }
+    getGame(id: number): Observable<any> {
+        return this.http.get<Games[]>(this.BASE_SERVER_URL + '/api/games/' + id);
+    }
 
-  getCompanies(): Observable<any> {
-    return this.http.get<Companies[]>(this.BASE_SERVER_URL+'/api/companies');
-  }
-  getMarketTypes(): Observable<any> {
-    return this.http.get<MarketTypes[]>(this.BASE_SERVER_URL+'/api/marketTypes');
-  }
+    updateGame(data: Games[]): Observable<Games[]> {
+        return this.http.post<Games[]>(this.BASE_SERVER_URL + '/api/games/update', data);
+    }
+
+    deleteGame(object: any): Observable<any> {
+        return this.http.post<Games[]>(this.BASE_SERVER_URL + '/api/games/delete', object);
+    }
+
+    getCompanies(): Observable<any> {
+        return this.http.get<Companies[]>(this.BASE_SERVER_URL + '/api/companies');
+    }
+
+    getMarketTypes(): Observable<any> {
+        return this.http.get<MarketTypes[]>(this.BASE_SERVER_URL + '/api/marketTypes');
+    }
 }

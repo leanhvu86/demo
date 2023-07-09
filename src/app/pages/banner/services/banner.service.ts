@@ -27,8 +27,13 @@ export class BannerService {
     updateBanner(type: number, data: any): Observable<Banner[]> {
         return this.http.post<Banner[]>(this.BASE_SERVER_URL + '/api/banners/update/' + type, data);
     }
+
+    deleteBanner(type: number, data: any): Observable<Banner[]> {
+        return this.http.post<Banner[]>(this.BASE_SERVER_URL + '/api/banners/delete/' + type, data);
+    }
+
     changeLevel(id: number): Observable<Banner[]> {
-        return this.http.post<Banner[]>(this.BASE_SERVER_URL + '/api/banners/up/' + id,{});
+        return this.http.post<Banner[]>(this.BASE_SERVER_URL + '/api/banners/up/' + id, {});
     }
 
     uploadFile(data: any): Observable<any> {

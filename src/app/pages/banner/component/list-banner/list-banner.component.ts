@@ -91,6 +91,12 @@ export class ListBannerComponent implements OnInit {
         })
     }
 
+    onDelete(type, banner) {
+        this.bannerService.deleteBanner(type, banner).subscribe(data => {
+            this.getAllBanner();
+        })
+    }
+
     onChangeLevel(id) {
         this.bannerService.changeLevel(id).subscribe(data => {
             this.getAllBanner();

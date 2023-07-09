@@ -47,6 +47,7 @@ export class CreatePackageComponent implements OnInit {
     });
     public files: File;
     getImageId = '';
+    canDeleteFile: boolean = true;
     rating: number = 3;
     starCount: number = 5;
     starColor: StarRatingColor = StarRatingColor.accent;
@@ -102,7 +103,8 @@ export class CreatePackageComponent implements OnInit {
         formData.append('file', this.files);
         formData.append('type', 'banner');
         this.gameService.uploadFile(formData).subscribe(data => {
-            this.getImageId = data['data']['id']
+            this.getImageId = data['data']['id'];
+            this.canDeleteFile = false;
         })
     }
 
@@ -216,6 +218,9 @@ export class CreatePackageComponent implements OnInit {
                 this.serverGroup = res.server;
                 this.rating = res.rating;
                 this.url = res.previewUrl;
+                if(res.imageId!==''){
+                    this.canDeleteFile = true;
+                }
             })
         } else {
             this.id = 0;
@@ -251,5 +256,15 @@ export class CreatePackageComponent implements OnInit {
 
     getServer(parId: number, listSer2: [], sgName: string) {
         this.serverGroupName = sgName
+    }
+    onDeleteFile() {
+        this.gameService.deleteFile(this.getImageId).subscribe(data => {
+            console.log(data)
+            this.getImageId = '';
+            this.url = '../../../../../assets/image/no-image.jpg';
+            this.canDeleteFile = true;
+            this.toastrService.success('Xoá file thành công', 'Xoá');
+
+        })
     }
 }
