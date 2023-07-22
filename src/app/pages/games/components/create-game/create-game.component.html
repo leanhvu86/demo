@@ -106,13 +106,13 @@
                                     <div class="form-group">
                                         <!-- <label for="imageId">Ảnh</label> <br> -->
                                         Size ảnh : 320 x 440
-                                        <input type="file" *ngIf="canDeleteFile" class="form-control-file"
+                                        <input type="file"  class="form-control-file"
                                                (change)="onFileChanged($event)">
                                         <img [src]="url" style="max-width: 100px; margin: 20px;" alt="">
                                         <br/>
                                         <span>{{fullUrl}}</span>
                                         <br/>
-                                        <button class="btn btn-warning" *ngIf="!canDeleteFile" (click)="onDeleteFile()">
+                                        <button class="btn btn-warning"  (click)="onDeleteFile()">
                                             Xoá Ảnh
                                         </button>
                                     </div>
@@ -166,7 +166,7 @@
         </button>
         <button class="btn btn-primary" *ngIf="id == undefined" (click)="onCreateGame()" [disabled]="createGame">Thêm
         </button>
-        <button class="btn btn-primary" *ngIf="id != undefined" (click)="onUpdateGame()" [disabled]="createGame">Lưu
+        <button class="btn btn-primary" *ngIf="id != undefined" (click)="onUpdateGame(0)" [disabled]="createGame">Lưu
         </button>
 
         <button class="btn btn-warning btn-back" routerLink="{{routes.GAMES}}">Trở về</button>

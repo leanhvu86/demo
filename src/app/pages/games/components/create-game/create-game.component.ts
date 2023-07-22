@@ -88,6 +88,9 @@ export class CreateGameComponent implements OnInit {
                 this.getImageId = data['data']['id'];
                 this.fullUrl = data['data']['url'];
                 this.canDeleteFile = false;
+                if(this.id!==0){
+                    this.onUpdateGame(1);
+                }
             }
         })
     }
@@ -202,7 +205,7 @@ export class CreateGameComponent implements OnInit {
         this.link = "https://www.youtube.com/embed/" + event.target.value;
     }
 
-    onUpdateGame() {
+    onUpdateGame(type) {
         this.gameForm.value['imageId'] = this.getImageId;
         this.gameForm.value['thumbnail'] = this.getImageId;
         if (this.gameForm.controls['name'].value === '') {
@@ -247,7 +250,8 @@ export class CreateGameComponent implements OnInit {
         }
         this.gameService.updateGame(this.gameForm.value).subscribe(data => {
             this.toastrService.success('Chúc mừng bạn', 'Sửa thành công');
-            this.createGame = true;
+            if(type==0)
+                this.createGame = true;
         })
     }
 
@@ -292,15 +296,17 @@ export class CreateGameComponent implements OnInit {
     }
 
     onDeleteFile() {
-        this.gameService.deleteFile(this.getImageId).subscribe(data => {
-            console.log(data)
-            this.getImageId = '';
-            this.url = '../../../../../assets/image/no-image.jpg';
-            this.canDeleteFile = true;
-            this.fullUrl = "";
-            this.toastrService.success('Xoá file thành công', 'Xoá');
-
-        })
+        if (confirm("Bạn muốn xoá ảnh? Nếu đã xoá ảnh thì bắt buộc phải thêm ảnh mới và lưu lại!")) {
+            this.gameService.deleteFile(this.getImageId).subscribe(data => {
+                console.log(data)
+                this.getImageId = '';
+                this.url = '../../../../../assets/image/no-image.jpg';
+                this.canDeleteFile = true;
+                this.fullUrl = "";
+                this.toastrService.success('Xoá file thành công', 'Xoá');
+                this.toastrService.warning('Bạn phải upload file mới và lưu thông tin nếu không sẽ lỗi!', 'Chú ý');
+            });
+        }
     }
 }
 

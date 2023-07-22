@@ -86,6 +86,10 @@ export class EditOrderDetailComponent implements OnInit {
     }
 
     changeQuantity() {
+        if(this.categoryForm.controls['quantity'].value<1){
+            this.toastrService.error("Số lượng phải lớn hơn 0!");
+            return;
+        }
         let amount = this.categoryForm.controls['quantity'].value * this.categoryForm.controls['price'].value;
 
         this.categoryForm.patchValue({
@@ -103,8 +107,12 @@ export class EditOrderDetailComponent implements OnInit {
     onConfirmOrder() {
         if (this.categoryForm.value['status'] === null || this.categoryForm.value['status'] === "0") {
             this.toastrService.error("Vui lòng xác nhận trạng thái gói!");
+            return;
         }
-
+        if(this.categoryForm.controls['quantity'].value<1){
+            this.toastrService.error("Số lượng phải lớn hơn 0!");
+            return;
+        }
         if (confirm("Bạn muốn xác nhận gói?")) {
             this.checkOrder = true;
             this.orderService.updateOrderDetail(this.categoryForm.value).subscribe(data => {

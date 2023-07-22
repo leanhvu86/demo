@@ -125,11 +125,11 @@
                                 <div class="form-group">
                                     <!-- <label for="imageId">Ảnh</label> <br> -->
                                     Size ảnh : 320 x 440
-                                    <input type="file" class="form-control-file" *ngIf="canDeleteFile" (change)="onFileChanged($event)">
+                                    <input type="file" class="form-control-file"  (change)="onFileChanged($event)">
                                     <br/>
                                     <img [src]="url" style="max-width: 100px; margin: 20px;" alt="">
                                     <br/>
-                                    <button class="btn btn-warning" *ngIf="!canDeleteFile" (click)="onDeleteFile()">
+                                    <button class="btn btn-warning"  (click)="onDeleteFile()">
                                         Xoá Ảnh
                                     </button>
                                 </div>

@@ -105,7 +105,8 @@ export class CreatePackageComponent implements OnInit {
         this.gameService.uploadFile(formData).subscribe(data => {
             this.getImageId = data['data']['id'];
             this.canDeleteFile = false;
-        })
+            this.onUpdatePackage();
+        });
     }
 
     onUpdatePackage() {
@@ -218,8 +219,9 @@ export class CreatePackageComponent implements OnInit {
                 this.serverGroup = res.server;
                 this.rating = res.rating;
                 this.url = res.previewUrl;
-                if(res.imageId!==''){
-                    this.canDeleteFile = true;
+                console.log(res.imageId);
+                if (res.imageId !== '') {
+                    this.canDeleteFile = false;
                 }
             })
         } else {
@@ -257,14 +259,18 @@ export class CreatePackageComponent implements OnInit {
     getServer(parId: number, listSer2: [], sgName: string) {
         this.serverGroupName = sgName
     }
-    onDeleteFile() {
-        this.gameService.deleteFile(this.getImageId).subscribe(data => {
-            console.log(data)
-            this.getImageId = '';
-            this.url = '../../../../../assets/image/no-image.jpg';
-            this.canDeleteFile = true;
-            this.toastrService.success('Xoá file thành công', 'Xoá');
 
-        })
+    onDeleteFile() {
+        if (confirm("Bạn muốn xoá ảnh? Nếu đã xoá ảnh thì bắt buộc phải thêm ảnh mới và lưu lại!")) {
+
+            this.gameService.deleteFile(this.getImageId).subscribe(data => {
+                console.log(data)
+                this.getImageId = '';
+                this.url = '../../../../../assets/image/no-image.jpg';
+                this.canDeleteFile = true;
+                this.toastrService.success('Xoá file thành công', 'Xoá');
+                this.toastrService.warning('Bạn phải upload file mới và lưu thông tin nếu không sẽ lỗi!', 'Chú ý');
+            })
+        }
     }
 }

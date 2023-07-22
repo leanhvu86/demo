@@ -11,26 +11,27 @@
     <mat-card-content class="user-table__content">
         <table class="user-table__table" mat-table [dataSource]="dataSource">
             <!-- Checkbox Column -->
-            <ng-container matColumnDef="select">
-                <th class="user-table__table-checkbox" mat-header-cell *matHeaderCellDef>
-                    <mat-checkbox color="primary" (change)="$event ? masterToggle() : null"
-                                  [checked]="selection.hasValue() && isAllSelected()"
-                                  [indeterminate]="selection.hasValue() && !isAllSelected()"
-                                  [aria-label]="checkboxLabel()">
-                    </mat-checkbox>
-                </th>
-                <td class="user-table__table-checkbox" mat-cell *matCellDef="let row">
-                    <mat-checkbox color="primary" (click)="$event.stopPropagation()"
-                                  (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
-                                  [aria-label]="checkboxLabel(row)">
-                    </mat-checkbox>
-                </td>
-            </ng-container>
+<!--            <ng-container matColumnDef="select">-->
+<!--                <th class="user-table__table-checkbox" mat-header-cell *matHeaderCellDef>-->
+<!--                    <mat-checkbox color="primary" (change)="$event ? masterToggle() : null"-->
+<!--                                  [checked]="selection.hasValue() && isAllSelected()"-->
+<!--                                  [indeterminate]="selection.hasValue() && !isAllSelected()"-->
+<!--                                  [aria-label]="checkboxLabel()">-->
+<!--                    </mat-checkbox>-->
+<!--                </th>-->
+<!--                <td class="user-table__table-checkbox" mat-cell *matCellDef="let row">-->
+<!--                    <mat-checkbox color="primary" (click)="$event.stopPropagation()"-->
+<!--                                  (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"-->
+<!--                                  [aria-label]="checkboxLabel(row)">-->
+<!--                    </mat-checkbox>-->
+<!--                </td>-->
+<!--            </ng-container>-->
 
             <!-- Name Column -->
             <ng-container matColumnDef="code">
                 <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Mã đơn hàng</th>
-                <td class="user-table__table-body" mat-cell *matCellDef="let element" style="width: 200px"> {{element.code}} </td>
+                <td class="user-table__table-body" mat-cell *matCellDef="let element"
+                    style="width: 200px"> {{element.code}} </td>
             </ng-container>
 
             <ng-container matColumnDef="customerName">
@@ -84,7 +85,7 @@
             #paginator
             [length]="totalData"
             [pageSizeOptions]="pageSizes"
-            showFirstLastButtons
+            [showFirstLastButtons]="true" (page)=" setPage($event)"
         ></mat-paginator>
         <!--        <mat-paginator [pageSizeOptions]="[10, 15, 100]" showFirstLastButtons></mat-paginator>-->
     </div>

@@ -78,7 +78,7 @@
                     <div class="form-group example-full-width">
                         <mat-form-field class="example-full-width" appearance="fill">
                             <mat-label>Số lượng</mat-label>
-                            <input type="number" matInput formControlName="quantity" required (change)="changeQuantity()" [readonly]='checkOrder'>
+                            <input type="number" matInput formControlName="quantity" min="1" required (change)="changeQuantity()" [readonly]='checkOrder'>
                         </mat-form-field>
                     </div>
                     <div class="form-group example-full-width">
