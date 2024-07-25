@@ -4,7 +4,8 @@
             <div class="user-table-wrapper__icon-wrapper">
                 <mat-icon class="user-table-wrapper__icon">search</mat-icon>
             </div>
-            <input matInput class="user-table-wrapper__search-input" placeholder="Tìm kiếm" (keyup)="applyFilter($event)" autocomplete="on">
+            <input matInput class="user-table-wrapper__search-input" placeholder="Tìm kiếm"
+                   (keyup)="applyFilter($event)" autocomplete="on">
         </div>
         <button mat-flat-button routerLink="{{routes.CREATE_BLOG}}" routerLinkActive="active">
             <mat-icon>add</mat-icon>
@@ -14,11 +15,16 @@
         <table class="user-table__table" mat-table [dataSource]="dataSource">
             <ng-container matColumnDef="select">
                 <th class="user-table__table-checkbox" mat-header-cell *matHeaderCellDef>
-                    <mat-checkbox color="primary" (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                    <mat-checkbox color="primary" (change)="$event ? masterToggle() : null"
+                                  [checked]="selection.hasValue() && isAllSelected()"
+                                  [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                  [aria-label]="checkboxLabel()">
                     </mat-checkbox>
                 </th>
                 <td class="user-table__table-checkbox" mat-cell *matCellDef="let row">
-                    <mat-checkbox color="primary" (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+                    <mat-checkbox color="primary" (click)="$event.stopPropagation()"
+                                  (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
+                                  [aria-label]="checkboxLabel(row)">
                     </mat-checkbox>
                 </td>
             </ng-container>
@@ -38,8 +44,10 @@
                 </td>
             </ng-container>
             <ng-container matColumnDef="link">
-                <th class="user-table__table-header" mat-header-cell *matHeaderCellDef style="width: 280px"> Url</th>
-                <td class="user-table__table-body" mat-cell *matCellDef="let element"> {{element.link}} </td>
+                <th class="user-table__table-header" mat-header-cell *matHeaderCellDef > Url
+                </th>
+                <td class="user-table__table-body" mat-cell *matCellDef="let element" style="inline-size: 250px;
+    overflow-wrap: break-word;"> <a href="{{element.link}}">{{element.link}}</a> </td>
             </ng-container>
             <ng-container matColumnDef="status">
                 <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Status</th>
@@ -49,12 +57,13 @@
             <ng-container matColumnDef="action">
                 <th class="user-table__table-header" mat-header-cell *matHeaderCellDef> Hành động</th>
                 <td class="user-table__table-body" mat-cell *matCellDef="let element">
-                    <button class="user-table-wrapper__button" routerLink="{{routes.EDIT_BLOG}}/{{element.id}}" routerLinkActive="active" mat-mini-fab>
+                    <button class="user-table-wrapper__button" routerLink="{{routes.EDIT_BLOG}}/{{element.id}}"
+                            routerLinkActive="active" mat-mini-fab>
                         <mat-icon class="user-table-wrapper__q-icon">edit</mat-icon>
                     </button>
-<!--                    <button class="user-table-wrapper__button" mat-mini-fab>-->
-<!--                        <mat-icon class="user-table-wrapper__q-icon" (click)="onDelete(element.id)">delete</mat-icon>-->
-<!--                    </button>-->
+                    <!--                    <button class="user-table-wrapper__button" mat-mini-fab>-->
+                    <!--                        <mat-icon class="user-table-wrapper__q-icon" (click)="onDelete(element.id)">delete</mat-icon>-->
+                    <!--                    </button>-->
                 </td>
             </ng-container>
 

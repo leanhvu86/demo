@@ -37,7 +37,7 @@ export class CreatePackageComponent implements OnInit {
         rating: [0, [Validators.required]],
         attribute: ['', [Validators.required]],
         warehouseQuantity: [1000, [Validators.required]],
-        tradeCount: [10000, [Validators.required]],
+        tradeCount: [0, [Validators.required]],
         descriptionVi: ['', [Validators.required]],
         descriptionEn: ['', [Validators.required]],
         // deliveryTime: ['', [Validators.required]],

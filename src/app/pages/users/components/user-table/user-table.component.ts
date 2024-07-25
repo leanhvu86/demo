@@ -14,7 +14,7 @@ export class UserTableComponent implements OnInit {
 
     public routes: typeof routes = routes;
     @Input() userTableData: [];
-    public displayedColumns: string[] = ['select', 'username', 'email', 'fullName', 'address', 'phoneNumber', 'roles', 'status', 'action'];
+    public displayedColumns: string[] = ['select', 'username', 'fullName', 'address', 'phoneNumber', 'roles', 'status', 'action'];
     public dataSource = new MatTableDataSource<any>();
     public selection = new SelectionModel<any>(true, []);
 
